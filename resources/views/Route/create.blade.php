@@ -29,12 +29,6 @@
             </div>
 
 
-            <div class="col-md-12">
-                <div class="form-group">
-                    <label>Shop Name: </label>
-                    <input type="text" class="form-control" placeholder="enter User name" name="user_name">
-                </div>
-            </div>
 
             <div class="col-md-12">
                 <div class="form-group">
