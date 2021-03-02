@@ -9,7 +9,6 @@
                 <a class="btn btn-success"  href="{{route('route.create')}}">Create</a>
 
 
-
                 <div class="container">
                     <!-- Trigger the modal with a button -->
                     <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Create</button>
@@ -18,15 +17,16 @@
                     <div class="modal fade" id="myModal" role="dialog">
                         <div class="modal-dialog">
 
+                            <form action="{{route('route.store')}}" method="POST">
+                            @csrf
+
                             <!-- Modal content-->
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    <h4 class="modal-title">route add</h4>
+                                    <h4 class="modal-title">Add Route</h4>
                                 </div>
-                                <div class="modal-body">
-                                    <p>Some text in the modal.</p>
 
+                                <div class="modal-body">
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label>Route Name: </label>
@@ -34,21 +34,33 @@
                                         </div>
                                     </div>
 
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Shop Name: </label>
+                                            <input type="text" class="form-control" placeholder="enter shop name" name="shop_ID">
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>User Name: </label>
+                                            <input type="text" class="form-control" placeholder="enter User name" name="user_id">
+                                        </div>
+                                    </div>
+
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    <button  type="submit" class="btn btn-primary">submit</button>
+                                    <a class="btn btn-primary" href="{{route('route.index')}}">Cancel</a>
                                 </div>
                             </div>
-
-
-
+                            </form>
 
                         </div>
                     </div>
 
                 </div>
-
-
 
 
             </div>

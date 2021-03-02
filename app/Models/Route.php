@@ -11,5 +11,7 @@ class Route extends Model
     protected $table ='routes';
     protected $fillable=[
         'route_name',
+        'user_id',
+        'shop_ID',
     ];
 }

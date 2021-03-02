@@ -16,10 +16,10 @@ class CreateRoutesTable extends Migration
         Schema::create('routes', function (Blueprint $table) {
             $table->bigIncrements('RouteID');
             $table->string('route_name');
-//            $table->unsignedBigInteger('user_id');
-//            $table->foreign('user_id')->references('userID')->on('users');
-//            $table->unsignedBigInteger('shop_ID');
-//            $table->foreign('shop_ID')->references('ShopID')->on('shops');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('userID')->on('users');
+            $table->unsignedBigInteger('shop_ID');
+            $table->foreign('shop_ID')->references('ShopID')->on('shops');
             $table->timestamps();
         });
     }

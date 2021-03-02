@@ -37,8 +37,8 @@ class CreateShopsTable extends Migration
             'shop_name'=>'Asiri Stores',
             'owner_name'=>'Mr.Kasun Asiri',
             'owner_NIC'=>'451236987V',
-            'lng'=>'7.4279931188932675, 79.92221698419246',
-            'lng'=>'79.92221698419246',
+            'lng'=>'7.4279931188932675',
+            'lat'=>'79.92221698419246',
             'image'=>'www.dd',
             'address_no'=>'456/2',
             'suburb'=>'Mihindu mawatha',
@@ -47,8 +47,7 @@ class CreateShopsTable extends Migration
             'country'=>'Sri lanka',
             'registered_date'=>'2015-10-25',
             'due_dates'=>'15',
-            'registered_date'=>'2015-10-25',
-            'registered_date'=>'2015-10-25',
+            'user_id'=>'1',
 
         ]);
 

@@ -24,7 +24,7 @@
             <div class="col-md-12">
                 <div class="form-group">
                     <label>Shop Name: </label>
-                    <input type="text" class="form-control" placeholder="enter shop name" name="shop_name">
+                    <input type="text" class="form-control" placeholder="enter shop name" name="shop_ID">
                 </div>
             </div>
 
@@ -32,7 +32,7 @@
             <div class="col-md-12">
                 <div class="form-group">
                     <label>Shop Name: </label>
-                    <input type="text" class="form-control" placeholder="enter User name" name="user_name">
+                    <input type="text" class="form-control" placeholder="enter User name" name="user_id">
                 </div>
             </div>
 
