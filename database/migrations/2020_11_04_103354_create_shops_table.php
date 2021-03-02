@@ -33,24 +33,6 @@ class CreateShopsTable extends Migration
             $table->timestamps();
         });
 
-        DB::table('shops')->insert([
-            'shop_name'=>'Asiri Stores',
-            'owner_name'=>'Mr.Kasun Asiri',
-            'owner_NIC'=>'451236987V',
-            'lng'=>'7.4279931188932675, 79.92221698419246',
-            'lng'=>'79.92221698419246',
-            'image'=>'www.dd',
-            'address_no'=>'456/2',
-            'suburb'=>'Mihindu mawatha',
-            'city'=>'kuliyapitiya',
-            'province'=>'north western province',
-            'country'=>'Sri lanka',
-            'registered_date'=>'2015-10-25',
-            'due_dates'=>'15',
-            'registered_date'=>'2015-10-25',
-            'registered_date'=>'2015-10-25',
-
-        ]);
 
     }
 

@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RouteController;
-use App\Http\Controllers\membercontroller;
+use App\Http\Controllers\ShopController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,5 +21,4 @@ Route::get('/', function () {
 
 Route::resource('route',RouteController::class);
 
-Route::view('add','addmember');
-Route::post('add',[membercontroller::class,'addData']);
+Route::resource('shop',ShopController::class);
