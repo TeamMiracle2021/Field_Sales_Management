@@ -6,7 +6,7 @@
         <div class="col-lg-12 margin-tb">
             <div class="float-right">
 {{--                <a class="btn btn-success" data-toggle="modal" data-target="#myModal href="">Create</a>--}}
-                <a class="btn btn-success"  href="{{route('route.create')}}">Create</a>
+{{--                <a class="btn btn-success"  href="{{route('route.create')}}">Create</a>--}}
 
 
                 <div class="container">
@@ -66,17 +66,31 @@
             </div>
         </div>
     </div>
-
+@if($msg = Session::get('add'))
+    <div class="alert alert-success">
+        <p>{{$msg}}</p>
+    </div>
+@endif
     <table class="table table-bordered">
         <tr>
             <th>Route Name</th>
             <th>Shop Name</th>
+            <th>User Name</th>
             <th>Action</th>
         </tr>
-{{--        to view database data--}}
-        <tr>
 
+        @foreach($route as $data)
+        <tr>
+            <td>{{$data->route_name}}</td>
+            <td>{{$data->shop_ID}}</td>
+            <td>{{$data->user_id}}</td>
+            <td>
+                <a class="btn btn-primary" href="{{route('route.edit',$data->route_name)}}">Edit</a>
+                <a class="btn btn-danger" href="">Delete</a>
+                <a class="btn btn-primary" href="">View</a>
+            </td>
         </tr>
+        @endforeach
     </table>
 
 @endsection

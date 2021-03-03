@@ -21,5 +21,3 @@ Route::get('/', function () {
 
 Route::resource('route',RouteController::class);
 
-Route::view('add','addmember');
-Route::post('add',[membercontroller::class,'addData']);

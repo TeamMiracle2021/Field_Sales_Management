@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Route;
 use Illuminate\Http\Request;
+use function Couchbase\defaultDecoder;
 
 class RouteController extends Controller
 {
@@ -14,7 +15,8 @@ class RouteController extends Controller
      */
     public function index()
     {
-        return view('Route.index');
+        $route = route::get();
+        return view('Route.index')->with(compact('route'));
     }
 
     /**
@@ -38,9 +40,10 @@ class RouteController extends Controller
         $request->validate([
            'route_name'=>'required'
         ]);
-//        dd($request);
+
        Route::create($request->all());
 
+//        return redirect()->route('Route.index')->with('add','Record added');
         return view('Route.index');
 
 
@@ -66,6 +69,7 @@ class RouteController extends Controller
     public function edit(Route $route)
     {
         //
+            dd($route);
     }
 
     /**
