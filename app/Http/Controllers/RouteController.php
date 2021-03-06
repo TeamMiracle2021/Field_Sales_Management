@@ -43,8 +43,8 @@ class RouteController extends Controller
 
        Route::create($request->all());
 
-//        return redirect()->route('Route.index')->with('add','Record added');
-        return view('Route.index');
+        return redirect()->route('route.index');
+      //  return view('Route.index');
 
 
     }

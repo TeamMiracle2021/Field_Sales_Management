@@ -9,6 +9,7 @@ class Route extends Model
 {
     use HasFactory;
     protected $table ='routes';
+    protected $primaryKey='RouteID';
     protected $fillable=[
         'RouteID',
         'route_name',

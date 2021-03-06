@@ -1,4 +1,9 @@
-@extends('Route.layout')
+@extends('layouts.master')
+
+@section('title')
+    Route | Sales Automation system
+@endsection
+
 
 @section('content')
 
