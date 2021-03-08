@@ -71,6 +71,16 @@
             </div>
         </div>
     </div>
+
+
+
+
+
+
+
+
+
+
 @if($msg = Session::get('add'))
     <div class="alert alert-success">
         <p>{{$msg}}</p>
@@ -90,7 +100,7 @@
             <td>{{$data->shop_ID}}</td>
             <td>{{$data->user_id}}</td>
             <td>
-                <a class="btn btn-primary" href="{{route('route.edit',$data->route_name)}}">Edit</a>
+                <a class="btn btn-primary" href="{{route('route.edit',$data->RouteID)}}">Edit</a>
                 <a class="btn btn-danger" href="">Delete</a>
                 <a class="btn btn-primary" href="">View</a>
             </td>

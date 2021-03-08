@@ -68,8 +68,7 @@ class RouteController extends Controller
      */
     public function edit(Route $route)
     {
-        //
-            dd($route);
+        return view('route.edit',compact('route'));
     }
 
     /**
@@ -81,7 +80,8 @@ class RouteController extends Controller
      */
     public function update(Request $request, Route $route)
     {
-        //
+        $route->update($request->all());
+        return redirect()->route('route.index');
     }
 
     /**

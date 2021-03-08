@@ -20,38 +20,40 @@ Route::get('/', function () {
 });
 
 Route::resource('route',RouteController::class);
+Route::get('route/{id}/edit/','RouteController@edit');
+Route::get('/route/{id}/edit/', function () {
+   return view('Route.edit');
 
 
-
-
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('/dashboard', function () {
-    return view('admin.dashboard');
-});
-
-Route::get('/User', function () {
-    return view('admin.user');
-});
-
-Route::get('/shop', function () {
-    return view('admin.shop');
-});
-
-Route::get('/privilage', function () {
-    return view('admin.privilage');
-});
-
-
-Route::get('/product', function () {
-    return view('admin.product');
-});
-
-Route::get('/report', function () {
-    return view('admin.report');
-});
-
-Route::get('/authentication', function () {
-    return view('admin.authentication');
+//
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+//Route::get('/dashboard', function () {
+//    return view('admin.dashboard');
+//});
+//
+//Route::get('/User', function () {
+//    return view('admin.user');
+//});
+//
+//Route::get('/shop', function () {
+//    return view('admin.shop');
+//});
+//
+//Route::get('/privilage', function () {
+//    return view('admin.privilage');
+//});
+//
+//
+//Route::get('/product', function () {
+//    return view('admin.product');
+//});
+//
+//Route::get('/report', function () {
+//    return view('admin.report');
+//});
+//
+//Route::get('/authentication', function () {
+//    return view('admin.authentication');
 });

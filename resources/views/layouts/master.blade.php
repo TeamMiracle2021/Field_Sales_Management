@@ -49,8 +49,8 @@
       <!--
         Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
     -->
-      <div class="logo">
-<h1>Field sales managent</h1>
+      <div class="logo" >
+          <img width="150px" height="150px" src="https://upload.wikimedia.org/wikipedia/en/thumb/0/0e/Financial_Services_Authority.svg/1200px-Financial_Services_Authority.svg.png">
       </div>
       <div class="sidebar-wrapper" id="sidebar-wrapper" >
         <ul class="nav">
