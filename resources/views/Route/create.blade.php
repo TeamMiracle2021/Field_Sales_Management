@@ -1,4 +1,4 @@
-@extends('Route.layout')
+@extends('layouts.master')
 
 @section('content')
 

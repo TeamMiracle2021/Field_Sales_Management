@@ -45,7 +45,7 @@
 
 <body class="">
   <div class="wrapper">
-    <div class="sidebar" data-color="yellow" style="width:17%">
+    <div class="sidebar" data-color="yellow" >
       <!--
         Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
     -->
