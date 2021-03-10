@@ -41,6 +41,9 @@
   <link href="../assets/css/now-ui-dashboard.css?v=1.5.0" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
 {{--  <link href="../assets/demo/demo.css" rel="stylesheet" />--}}
+
+
+    <link rel="stylesheet" href="{{'assets/css/dataTables.min.css'}}">
 </head>
 
 <body class="">
@@ -188,6 +191,9 @@
   <script src="../assets/js/core/popper.min.js"></script>
   <script src="../assets/js/core/bootstrap.min.js"></script>
   <script src="../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+
+  <script src="{{'assets/js/dataTable.min.js'}}"></script>
+
   <!--  Google Maps Plugin    -->
   <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
   <!-- Chart JS -->

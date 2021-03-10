@@ -78,15 +78,12 @@
 
 
 
-
-
-
 @if($msg = Session::get('add'))
     <div class="alert alert-success">
         <p>{{$msg}}</p>
     </div>
 @endif
-    <table class="table table-bordered">
+    <table id="datatable" class="table table-bordered">
         <tr>
             <th>Route Name</th>
             <th>Shop Name</th>
@@ -108,4 +105,17 @@
         @endforeach
     </table>
 
+
+    <span>
+        {{$route->links()}}
+    </span>
+
+@endsection
+
+@section('scripts')
+    <script>
+        $(document).ready( function () {
+            $('#datatable').DataTable();
+        } );
+    </script>
 @endsection

@@ -16,7 +16,9 @@ class RouteController extends Controller
     public function index()
     {
         $route = route::get();
+        $route = route::paginate(6);
         return view('Route.index')->with(compact('route'));
+//        return view('Route.index',compact('route'));
     }
 
     /**
