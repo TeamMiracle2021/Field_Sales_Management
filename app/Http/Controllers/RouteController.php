@@ -45,7 +45,7 @@ class RouteController extends Controller
 
        Route::create($request->all());
 
-        return redirect()->route('route.index');
+        return redirect()->route('route.index')->with('add','Record Added');
       //  return view('Route.index');
 
 
@@ -83,7 +83,7 @@ class RouteController extends Controller
     public function update(Request $request, Route $route)
     {
         $route->update($request->all());
-        return redirect()->route('route.index');
+        return redirect()->route('route.index')->with('add','Record Updated');
     }
 
     /**
@@ -94,7 +94,8 @@ class RouteController extends Controller
      */
     public function destroy(Route $route)
     {
-        //
+        $route->delete();
+        return redirect()->route('route.index')->with('add','Record Deleted');
     }
 
 

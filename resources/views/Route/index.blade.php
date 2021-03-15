@@ -97,9 +97,16 @@
             <td>{{$data->shop_ID}}</td>
             <td>{{$data->user_id}}</td>
             <td>
-                <a class="btn btn-primary" href="{{route('route.edit',$data->RouteID)}}">Edit</a>
-                <a class="btn btn-danger" href="">Delete</a>
-                <a class="btn btn-primary" href="">View</a>
+                <form action="{{route('route.destroy',$data->RouteID)}}" method="POST">
+                    <a class="btn btn-primary" href="{{route('route.edit',$data->RouteID)}}">Edit</a>
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger">Delete</button>
+    {{--                    <a class="btn btn-danger" >Delete</a>--}}
+
+
+                    <a class="btn btn-primary" href="">View</a>
+                </form>
             </td>
         </tr>
         @endforeach
