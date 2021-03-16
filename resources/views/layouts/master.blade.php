@@ -43,7 +43,7 @@
 {{--  <link href="../assets/demo/demo.css" rel="stylesheet" />--}}
 
 
-    <link rel="stylesheet" href="{{'assets/css/dataTables.min.css'}}">
+    <link rel="stylesheet" href="{{ asset('assets/css/dataTables.min.css') }}">
 </head>
 
 <body class="">
@@ -192,7 +192,7 @@
   <script src="../assets/js/core/bootstrap.min.js"></script>
   <script src="../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
 
-  <script src="{{'assets/js/dataTable.min.js'}}"></script>
+  <script src="{{ asset('assets/js/dataTable.min.js')}}"></script>
 
   <!--  Google Maps Plugin    -->
   <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>

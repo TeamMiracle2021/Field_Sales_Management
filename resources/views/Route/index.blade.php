@@ -105,7 +105,7 @@
     {{--                    <a class="btn btn-danger" >Delete</a>--}}
 
 
-                    <a class="btn btn-primary" href="">View</a>
+                    <a class="btn btn-primary" href="{{route('route.show',$data->RouteID)}}">View</a>
                 </form>
             </td>
         </tr>
@@ -113,9 +113,9 @@
     </table>
 
 
-    <span>
-        {{$route->links()}}
-    </span>
+{{--    <span>--}}
+{{--        {{$route->links()}}--}}
+{{--    </span>--}}
 
 @endsection
 
