@@ -25,7 +25,7 @@
                 <!-- Add icons to the links using the .nav-icon class
                      with font-awesome or any other icon font library -->
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="./dashboard" class="nav-link">
                         <i class="nav-icon fas fa-home"></i>
                         <p>Dashboard</p>
                     </a>
@@ -33,7 +33,7 @@
 
 
                 <li class="nav-item">
-                    <a href="./User" class="nav-link">
+                    <a href="./user" class="nav-link">
                         <i class="nav-icon fas fa-users"></i>
                         <p>Users</p>
                     </a>
@@ -41,7 +41,7 @@
 
 
                 <li class="nav-item">
-                    <a href="./Product" class="nav-link">
+                    <a href="./product" class="nav-link">
                         <i class="nav-icon fas fa-shopping-bag"></i>
                         <p>Products</p>
                     </a>

@@ -113,9 +113,6 @@
     </section>
 
 
-{{--    <span>--}}
-{{--        {{$route->links()}}--}}
-{{--    </span>--}}
 
 @endsection
 

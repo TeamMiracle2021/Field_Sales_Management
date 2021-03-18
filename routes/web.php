@@ -2,7 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RouteController;
-use App\Http\Controllers\membercontroller;
+use App\Http\Controllers\ShopController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,14 +17,22 @@ use App\Http\Controllers\membercontroller;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/dashboard', function () {
+    return view('dashboard');
 });
 
+Route::resource('product',ProductController::class); // http://127.0.0.1:8000/product
+Route::resource('category',CategoryController::class); // http://127.0.0.1:8000/category
+// Route::get('product',[ProductController::class,'search']);
+Route::delete('product',[ProductController::class,'destroy']);
+
+
+Route::resource('shop',ShopController::class);
 Route::resource('route',RouteController::class);
-Route::get('route/{id}/edit/','RouteController@edit');
-Route::get('/route/{id}/edit/', function () {
-   return view('Route.edit');
+//Route::get('route/{id}/edit/','RouteController@edit');
+//Route::get('/route/{id}/edit/', function () {
+//   return view('Route.edit');
+//});
 
 
 //
@@ -56,4 +66,3 @@ Route::get('/route/{id}/edit/', function () {
 //
 //Route::get('/authentication', function () {
 //    return view('admin.authentication');
-});
