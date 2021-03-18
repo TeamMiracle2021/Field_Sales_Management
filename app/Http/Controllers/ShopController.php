@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Shop;
+use Database\Seeders\DatabaseSeeder;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 
 
 class ShopController extends Controller
@@ -17,7 +18,8 @@ class ShopController extends Controller
     public function index()
     {
 
-        return view('Shop.Index');
+        $Shop =Shop::get();
+        return view('shop.Index')->with (compact('Shop'));
     }
 
     /**
@@ -27,7 +29,7 @@ class ShopController extends Controller
      */
     public function create()
     {
-        //
+        return view('shop.Add');
     }
 
     /**
@@ -44,7 +46,9 @@ class ShopController extends Controller
         $Shop->owner_NIC=$request->owner_NIC;
         $Shop->lat=$request->lat;
         $Shop->Lng=$request->Lng;
-        $Shop->image=$request->image;
+        $Shop->image=$request->file('file');
+//        $Shop->imageName=time();
+//        $Shop->move(public_path('image'));
         $Shop->address_no=$request->address_no;
         $Shop->suburb=$request->suburb;
         $Shop->city=$request->city;
@@ -56,7 +60,8 @@ class ShopController extends Controller
         $Shop->user_id=$request->user_id;
         //shop::create($request->all());
         $Shop->save();
-        return redirect('shop.Index');
+        return redirect()->route('shop.index')->with('add','Record Added');
+
     }
 
     /**
@@ -67,7 +72,7 @@ class ShopController extends Controller
      */
     public function show(Shop $shop)
     {
-        //
+        return view('shop.show',compact('shop'));
     }
 
     /**
@@ -78,7 +83,7 @@ class ShopController extends Controller
      */
     public function edit(Shop $shop)
     {
-        //
+        return view('shop.Edit',compact('shop'));
     }
 
     /**
@@ -90,7 +95,8 @@ class ShopController extends Controller
      */
     public function update(Request $request, Shop $shop)
     {
-        //
+        $shop->update($request->all());
+        return redirect()->route('shop.index')->with('add','Record Updated');
     }
 
     /**
@@ -102,5 +108,26 @@ class ShopController extends Controller
     public function destroy(Shop $shop)
     {
         //
+        $shop->delete();
+        return redirect()->route('shop.index')->with('add','Record Deleted');
     }
+
+//    public function search( ){
+//
+//        $search_text=$_GET['query'];
+//        $data= DB::table('shops')
+//
+//            ->where('shop_name','LIKE','%'.$search_text.'%')
+//            ->orWhere('owner_name','LIKE','%'.$search_text.'%')
+//            ->orWhere('owner_NIC','LIKE','%'.$search_text.'%')
+//
+//
+//
+//            ->get();
+//
+//        return view('shop',compact('data'));
+//
+//
+//
+//    }
 }

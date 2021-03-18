@@ -22,3 +22,4 @@ Route::get('/', function () {
 Route::resource('route',RouteController::class);
 
 Route::resource('shop',ShopController::class);
+Route::get("search",[ShopController::class,'search']);

@@ -2,99 +2,35 @@
 
 @section("content")
 
-    <div class="row">
+    <div class="form-group row">
         <div class="col-lg-12 margin-tb">
-            <div class="pull-right">
 
-                <!-- Modal content-->
-                <div class="container">
-                    <center><h2>Shop Activities</h2></center>
-                    <!-- Trigger the modal with a button -->
-                    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">ADD</button>
-                    <input type="text" placeholder="Search.." name="search2">
-                    <button type="submit"><i class="fa fa-search"></i></button>
-
-
-                    <!-- Modal -->
-                    <div class="modal fade" id="myModal" role="dialog">
-                        <div class="modal-dialog">
-
-                            <!-- Modal content-->
-                            <form action="{{route('shop.store')}}" method="POST">
-                                @csrf
-                                <div class="modal-content">
-
-                                    <div class="modal-header">
-                                        <h4 class="modal-title">Add Shop</h4>
-                                    </div>
-
-                                    <div class="modal-body">
-
-                                        <label for="Shop Name" ><b> Shop Name : </b></label>
-                                        <input type="text" name="shop_name" required style="background: #ffffff; margin: 5px 20px;  width: 50%" >
-                                        <br>
-                                        <label for="Owner Name" ><b>Owner Name : </b></label>
-                                        <input type="text" name="owner_name" required style="background: #ffffff; margin: 5px 20px; width: 50%" >
-                                        <br>
-                                        <label for="Owner NIC" ><b>Owner NIC : </b></label>
-                                        <input type="text" name="owner_NIC" required style="background: #ffffff; margin: 5px 20px; width: 50%" >
-                                        <br>
-                                        {{--                                       <label for="Contact number" ><b>Contact number : </b></label>--}}
-                                        {{--                                       <input type="text" name="telephone_numbers" required style="background: #ffffff; margin: 5px 20px; width: 50%" >--}}
-                                        {{--                                       <br>--}}
-                                        <label for="Latitude" ><b>Latitude : </b></label>
-                                        <input type="text" name="Lat" required style="background: #ffffff; margin: 5px 20px; width: 50%" >
-                                        <br>
-                                        <label for="Longitude" ><b>Longitude : </b></label>
-                                        <input type="text" name="Lng" required style="background: #ffffff; margin: 5px 20px; width: 50%" >
-                                        <br>
-                                        <label for="Address No"><b>Address No : </b></label>
-                                        <input type="text" name="address_no" style="background: #ffffff; margin: 5px 20px; width: 50%" >
-                                        <br>
-                                        <label for="Suburb" ><b>Suburb : </b></label>
-                                        <input type="text" name="suburb" required style="background: #ffffff; margin: 5px 20px; width: 50%" >
-                                        <br>
-                                        <label for="City"><b>City : </b></label>
-                                        <input type="text" name="city" style="background: #ffffff; margin: 5px 20px; width: 50%" >
-                                        <br>
-                                        <label for="Province"><b>Province : </b></label>
-                                        <input type="text" name="province" style="background: #ffffff; margin: 5px 20px; width:50%" >
-                                        <br>
-                                        <label for="Country"><b>Country : </b></label>
-                                        <input type="text" name="country" style="background: #ffffff; margin: 5px 20px; width: 50%" >
-                                        <br>
-                                        <label for="Register Date" ><b>Register Date : </b></label>
-                                        <input type="Date" name="registered_date" required style="background: #ffffff; margin: 5px 20px; width: 50%" >
-                                        <br>
-                                        <label><b>Due Date : </b></label>
-                                        <input type="text" name="due_dates" style="background: #ffffff; margin: 5px 22px; width: 50%" >
-                                        <br>
-                                        <label for="Image" ><b>Image : </b></label>
-                                        <input type="Image" name="Image" style="background: #ffffff; margin: 5px 20px; width: 50%" >
-                                        <br>
-                                        <label for="userID"><b>UserID : </b></label>
-                                        <input type="text" name="user_id" style="background: #ffffff; margin: 5px 22px; width: 50%" >
-                                        <br>
-
-                                        <div class="text-right">
-                                            <button type="submit"  Value="Save" class="btn btn-default btn-lg">Save</button>
-                                            {{--                                           <button type="button"  Value="Cancel "class="btn btn-default btn-lg">Cancel</button>--}}
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
+            <center><h2>Shop Activities</h2></center>
+            <div class="float-left">
+                    <a href="{{route('shop.create')}}">
+                        <button type="button" class="btn btn-info btn-lg" >ADD</button>
+                    </a>
             </div>
+
+
+{{--                <div class="container-fluid">--}}
+{{--                    <form class="d-flex" type='get' action="{{url('/search')}}">--}}
+{{--                        <input class="form-control me-2" name='query' type="search" placeholder="Search" aria-label="Search">--}}
+{{--                        <button class="btn btn-outline-success" type="submit">Search</button>--}}
+
+{{--                    </form>--}}
+{{--                </div>--}}
+
+
         </div>
     </div>
 
-    {{--    @if($msg = Session::get("add"))--}}
-    {{--        <div class="alert alert-success">--}}
-    {{--            <p>$msg</p>--}}
-    {{--        </div>--}}
-    {{--    @endif--}}
+
+        @if($msg = Session::get("add"))
+            <div class="alert alert-success">
+                <p>{{$msg}}</p>
+            </div>
+        @endif
 
     <table class="table table-bordered">
         <tr>
@@ -104,11 +40,24 @@
             <th>City</th>
             <th>Action</th>
         </tr>
-
+@foreach($Shop as $data)
         <tr>
-
+            <td>{{$data->shop_name}}</td>
+            <td>{{$data->owner_name}}</td>
+            <td>{{$data->suburb}}</td>
+            <td>{{$data->city}}</td>
+            <td>
+                <form action="{{route('shop.destroy',$data->ShopID)}}" method="POST">
+                <a class="btn btn-primary" href="{{route('shop.edit',$data->ShopID)}}">Edit</a>
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger">Delete</button>
+{{--                <a class="btn btn-primary" href="{{route('shop.index')}}">Delete</a>--}}
+                <a class="btn btn-primary" href="{{route('shop.show',$data->ShopID)}}">View</a>
+                </form>
+            </td>
         </tr>
-
+@endforeach
     </table>
 
 @endsection
