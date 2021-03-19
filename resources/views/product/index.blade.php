@@ -73,15 +73,62 @@
 
 
 
-
-            <section class="content">
-                <h1><b><center>Products</center></b></h1>
+<section class="content">
+    <h1><b><center>Products</center></b></h1>
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
                                     <a class="btn btn-primary"  href="{{route('product.create')}}">Create Product</a>
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createCreateModel" data-bs-whatever="@fat">Create Category</button><br>
+                                    <form action="{{route('category.store')}}" method="POST">
+                                        @csrf
+                                        <div class="modal fade" id="createCreateModel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+
+                                            <!-- hedaer of the popup form    -->
+
+                                            <div class="modal-dialog">
+
+                                                <div class="modal-content">
+
+                                                    <div class="modal-header">
+
+                                                        <h5 class="modal-title" id="exampleModalLabel">Add new category details</h5>
+
+                                                        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+
+                                                    </div>
+
+
+
+
+                                                    <!-- Lable and text box of Product Name: -->
+
+                                                    <div class="modal-body">
+
+                                                        <div class="form-group">
+
+                                                            <label>Category Name :</label><br>
+
+                                                            <input type="text" class="form-control" name="category_name" placeholder="Enter category name" required>
+
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="modal-footer">
+                                                        <button type="submit" class="btn btn-primary">Save</button>
+                                                        <button type="submit" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </form>
+
                                 </div>
 
                                 <!-- /.card-header -->
@@ -114,7 +161,7 @@
                                                         <button type="submit" class="btn btn-danger">Delete</button>
 
 
-                                                        <a class="btn btn-primary" href="{{route('product.show',$data->productID)}}">View</a>
+                                                        <a class="btn btn-success" href="{{route('product.show',$data->productID)}}">View</a>
                                                     </form>
                                                 </td>
 

@@ -1,76 +1,100 @@
 @extends("layouts.app")
 
 @section('content')
-<br><br><br>
-<div class="row">
-    <div class="col-xl-12">
-        <div class="pull-left">
-            <h3>Product Details</h3>
-            <a class="btn btn-xs btn-primary" href="{{route('product.index')}}">back</a>
-        </div>
-    </div>
-</div>
+<br>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
 
-<!-- <div class="row">
-    <div class="col-lg-12">
-        <div class="form-group">
-            <strong>ID: </strong>
-            {{$product->productID}}
-        </div>
-    </div>
-</div>
+                        <div class="card-header">
+                            <div class="row">
+                                <div class="col-xl-12">
+                                    <h3 class="float-left"><b>Product Details</b></h3>
+                                    <a class="btn btn-primary float-right" href="{{route('product.index')}}">back</a>
+                                </div>
+                            </div>
+                        </div>
 
-<div class="row">
-    <div class="col-lg-12">
-        <div class="form-group">
-            <strong>Name: </strong>
-            {{$product->product_Name}}
-        </div>
-    </div>
-</div> -->
-
-
-
-
+                        <div class="card-body">
 
 <div class="row">
     <div class="table table-responsive">
         <table class="table table-bordered" id="productTable">
 
             <tr>
-                <th>Product Id</th>
-                <th>Product Name</th>
-                <th>Cost Price</th>
-                <th>Sales Price</th>
-                <th>Labled Price</th>
-                <th>Weight</th>
-                <th>Expire Date</th>
-                <!-- <th>user_id</th> -->
-                <th>Category Id</th>
-                <th>Created At</th>
-                <th>Updated At</th>
-
+                <th>Product</th>
+                <th>Details</th>
             </tr>
 
             <tr>
-
+                <td>Product Id</td>
                 <td> {{$product->productID}}</td>
-                <td> {{$product->product_Name}}</td>
-                <td> {{$product->cost_price}}</td>
-                <td> {{$product->sales_price}}</td>
-                <td> {{$product->labled_price}}</td>
-                <td> {{$product->weight}}</td>
-                <td> {{$product->Expire_date}}</td>
-                <!-- <td> {{$product->user_id}}</td> -->
-                <td> {{$product->category_id}}</td>
-                <td> {{$product->created_at}}</td>
-                <td> {{$product->updated_at}}</td>
-
-
             </tr>
+
+            <tr>
+                <td>Product Name</td>
+                <td> {{$product->product_Name}}</td>
+            </tr>
+
+            <tr>
+                <td>Cost Price</td>
+                <td> {{$product->cost_price}}</td>
+            </tr>
+
+            <tr>
+                <td>Sales Price</td>
+                <td> {{$product->sales_price}}</td>
+            </tr>
+
+            <tr>
+                <td>Labled Price</td>
+                <td> {{$product->labled_price}}</td>
+            </tr>
+
+            <tr>
+                <td>Weight</td>
+                <td> {{$product->weight}}</td>
+            </tr>
+
+            <tr>
+                <td>Expire Date</td>
+                <td> {{$product->Expire_date}}</td>
+            </tr>
+
+            <tr>
+                <td>Category Id</td>
+                <td> {{$product->category_id}}</td>
+            </tr>
+
+            <tr>
+                <td>Created At</td>
+                <td> {{$product->created_at}}</td>
+            </tr>
+
+            <tr>
+                <td>Updated At</td>
+                <td> {{$product->updated_at}}</td>
+            </tr>
+
 
             @endsection
 
         </table>
     </div>
 </div>
+
+
+
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+    </section>

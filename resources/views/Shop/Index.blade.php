@@ -89,7 +89,7 @@
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger">Delete</button>
                                                 {{--                <a class="btn btn-primary" href="{{route('shop.index')}}">Delete</a>--}}
-                                                <a class="btn btn-primary" href="{{route('shop.show',$data->ShopID)}}">View</a>
+                                                <a class="btn btn-success" href="{{route('shop.show',$data->ShopID)}}">View</a>
                                             </form>
                                         </td>
                                     </tr>

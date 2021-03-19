@@ -1,126 +1,159 @@
 @extends("layouts.app")
 
 @section('content')
+    <br>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
 
-    <div class="form-group row">
-        <div class="col-lg-12 margin-tb">
-            <center><h2 class="modal-title"><b>View Shop Details</b></h2></center>
-        </div>
-    </div>
+                        <div class="card-header">
+                            <div class="row">
+                                <div class="col-xl-12">
+                                    <h3 class="float-left"><b>Shop Details</b></h3>
+                                    <a class="btn btn-primary float-right" href="{{route('shop.index')}}">back</a>
+                                </div>
+                            </div>
+                        </div>
 
-    <center><form>
-    <div class="row">
+                        <div class="card-body">
+
+                            <div class="row">
+                                <div class="table table-responsive">
+                                    <table class="table table-bordered" id="shopTable">
+
+                                        <tr>
+                                            <th>Shop</th>
+                                            <th>Details</th>
+                                        </tr>
+
+                                        <tr>
+                                            <td>Shop ID</td>
+                                            <td> {{$shop->ShopID}}</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>Shop Name</td>
+                                            <td> {{$shop->shop_name}}</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>Owner Name</td>
+                                            <td>{{$shop->owner_name}}</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>Owner NIC</td>
+                                            <td> {{$shop->owner_NIC}}</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>Latitude</td>
+                                            <td> {{$shop->lat}}</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>Longitude</td>
+                                            <td>{{$shop->lng}}</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>Address No</td>
+                                            <td> {{$shop->address_no}}</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>Suburb</td>
+                                            <td> {{$shop->suburb}}</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>City</td>
+                                            <td>{{$shop->city}}</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>Province</td>
+                                            <td> {{$shop->province}}</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>Country</td>
+                                            <td>{{$shop->country}}</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>Registered Date</td>
+                                            <td>{{$shop->registered_date}}</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>Due Dates</td>
+                                            <td>{{$shop->due_dates}}</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>User</td>
+                                            <td>{{$shop->user_id}}</td>
+                                        </tr>
+
+                                        <td>Created At</td>
+                                        <td> {{$shop->created_at}}</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>Updated At</td>
+                                            <td> {{$shop->updated_at}}</td>
+                                        </tr>
+
+
+{{--                                        @endsection--}}
+
+                                    </table>
+                                </div>
+                            </div>
 
 
 
-       <div class="col-lg-12">
-            <div class="form-group">
-                <td><strong>Shop Name: </strong></td>
-                <td>{{$shop->shop_name}}</td>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /.col -->
             </div>
+            <!-- /.row -->
         </div>
-
-
-            <div class="col-lg-12">
-            <div class="form-group">
-                <td><strong>Owner Name: </strong></td>
-                <td>{{$shop->owner_name}}</td>
-            </div>
-        </div>
-
-        <div class="col-lg-12">
-            <div class="form-group">
-                <strong>Owner NIC: </strong>
-                {{$shop->owner_NIC}}
-            </div>
-        </div>
-
-        <div class="col-lg-12">
-            <div class="form-group">
-                <strong>Latitude: </strong>
-                {{$shop->lat}}
-            </div>
-        </div>
-
-        <div class="col-lg-12">
-            <div class="form-group">
-                <strong>Longitude: </strong>
-                {{$shop->Lng}}
-            </div>
-        </div>
-
-        <div class="col-lg-12">
-            <div class="form-group">
-                <strong>Image: </strong>
-                {{$shop->image}}
-            </div>
-        </div>
-
-        <div class="col-lg-12">
-            <div class="form-group">
-                <strong>Address No: </strong>
-                {{$shop->address_no}}
-            </div>
-        </div>
-
-        <div class="col-lg-12">
-            <div class="form-group">
-                <strong>Suburb: </strong>
-                {{$shop->suburb}}
-            </div>
-        </div>
-
-        <div class="col-lg-12">
-            <div class="form-group">
-                <strong>City: </strong>
-                {{$shop->city}}
-            </div>
-        </div>
-
-        <div class="col-lg-12">
-            <div class="form-group">
-                <strong>Province: </strong>
-                {{$shop->province}}
-            </div>
-        </div>
-
-        <div class="col-lg-12">
-            <div class="form-group">
-                <strong>Country: </strong>
-                {{$shop->country}}
-            </div>
-        </div>
-
-        <div class="col-lg-12">
-            <div class="form-group">
-                <strong>Registered Date: </strong>
-                {{$shop->registered_date}}
-            </div>
-        </div>
-
-        <div class="col-lg-12">
-            <div class="form-group">
-                <strong>Due Dates: </strong>
-                {{$shop->due_dates}}
-            </div>
-        </div>
-
-         <div class="col-lg-12">
-            <div class="form-group">
-                <strong>User ID :</strong>
-                {{$shop->user_id}}
-            </div>
-        </div>
-
-
-    </div>
-
-    </form></center>
-
-    <div class="text-right">
-        <a class="btn btn-primary" href="{{route('shop.index')}}">Cancel</a>
-    </div>
-
-
-
+        <!-- /.container-fluid -->
+    </section>
 @endsection
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

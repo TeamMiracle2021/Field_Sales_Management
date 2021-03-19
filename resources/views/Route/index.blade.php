@@ -57,6 +57,9 @@
 {{--        @endforeach--}}
 {{--    </table>--}}
 
+
+
+
     <section class="content">
         <h1><b><center>Routes</center></b></h1>
         <div class="container-fluid">
@@ -65,6 +68,7 @@
                     <div class="card">
                         <div class="card-header">
                             <a class="btn btn-primary"  href="{{route('route.create')}}">Create Route</a>
+
                         </div>
 
                         <!-- /.card-header -->
