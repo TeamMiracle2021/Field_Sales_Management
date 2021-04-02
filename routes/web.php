@@ -17,13 +17,14 @@ use App\Http\Controllers\CategoryController;
 |
 */
 
+
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 });
 
-Route::resource('product',ProductController::class); // http://127.0.0.1:8000/product
-Route::resource('category',CategoryController::class); // http://127.0.0.1:8000/category
-// Route::get('product',[ProductController::class,'search']);
+Route::resource('product',ProductController::class);
+Route::resource('category',CategoryController::class);
 Route::delete('product',[ProductController::class,'destroy']);
 
 
@@ -33,5 +34,10 @@ Route::resource('route',RouteController::class);
 //Route::get('/route/{id}/edit/', function () {
 //   return view('Route.edit');
 //});
+//
+//Route::get('shop/map','ShopController@gmap');
+
+
+Route::get('show2', [App\Http\Controllers\RouteController::class,'show2']);
 
 

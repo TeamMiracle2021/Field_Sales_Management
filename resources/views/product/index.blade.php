@@ -81,7 +81,7 @@
                             <div class="card">
                                 <div class="card-header">
                                     <a class="btn btn-primary"  href="{{route('product.create')}}">Create Product</a>
-                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createCreateModel" data-bs-whatever="@fat">Create Category</button><br>
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createCreateModel" >Create Category</button><br>
                                     <form action="{{route('category.store')}}" method="POST">
                                         @csrf
                                         <div class="modal fade" id="createCreateModel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

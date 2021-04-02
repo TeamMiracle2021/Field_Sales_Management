@@ -22,9 +22,14 @@ class Shop extends Model
         'city',
         'province',
         'country',
+        'telephone_numbers',
         'registered_date',
         'due_dates',
-        //'telephone_numbers',
-        'user_id'
+        'user_id',
+        'RouteID'
     ];
+
+    public function route(){
+        return $this->belongsTo(Route::class, 'RouteID', 'RouteID');
+    }
 }

@@ -30,6 +30,10 @@ class ShopController extends Controller
     public function create()
     {
         return view('shop.Add');
+//        return DB::select("select lat,lng from shops where shopID=4");
+//        $users = DB::table('users')
+//            ->where('lat', '>', 6)
+//            ->get();
     }
 
     /**
@@ -40,15 +44,14 @@ class ShopController extends Controller
      */
     public function store(Request $request)
     {
+
         $Shop=new Shop();
         $Shop->shop_name=$request->shop_name;
         $Shop->owner_name=$request->owner_name;
         $Shop->owner_NIC=$request->owner_NIC;
         $Shop->lat=$request->lat;
-        $Shop->Lng=$request->Lng;
+        $Shop->lng=$request->lng;
         $Shop->image=$request->file('file');
-//        $Shop->imageName=time();
-//        $Shop->move(public_path('image'));
         $Shop->address_no=$request->address_no;
         $Shop->suburb=$request->suburb;
         $Shop->city=$request->city;
@@ -56,8 +59,9 @@ class ShopController extends Controller
         $Shop->country=$request->country;
         $Shop->registered_date=$request->registered_date;
         $Shop->due_dates=$request->due_dates;
-        //$Shop->telephone_numbers->telephone_numbers;
+        $Shop->telephone_numbers=$request->telephone_numbers;
         $Shop->user_id=$request->user_id;
+        $Shop->RouteID=$request->RouteID;
         //shop::create($request->all());
         $Shop->save();
         return redirect()->route('shop.index')->with('add','Record Added');
@@ -73,6 +77,9 @@ class ShopController extends Controller
     public function show(Shop $shop)
     {
         return view('shop.show',compact('shop'));
+//        return view('maps.mapview');
+//        return DB::select("select lat from shops where shopID=4");
+
     }
 
     /**
@@ -112,5 +119,13 @@ class ShopController extends Controller
         return redirect()->route('shop.index')->with('add','Record Deleted');
     }
 
+
+
+//    public function gmap()
+//    {
+//        return view('maps.mapview');
+////        return DB::select("select lat,lng from shops where shopID=5");
+//
+//    }
 
 }

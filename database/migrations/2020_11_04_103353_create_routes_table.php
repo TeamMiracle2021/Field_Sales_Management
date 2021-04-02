@@ -16,10 +16,12 @@ class CreateRoutesTable extends Migration
         Schema::create('routes', function (Blueprint $table) {
             $table->bigIncrements('RouteID');
             $table->string('route_name');
-            $table->unsignedBigInteger('user_id');
+            $table->decimal('start_lat',16,14)->nullable();
+            $table->decimal('start_lng',16,14)->nullable();
+            $table->decimal('end_lat',16,14)->nullable();
+            $table->decimal('end_lng',16,14)->nullable();
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('userID')->on('users');
-            $table->unsignedBigInteger('shop_ID');
-            $table->foreign('shop_ID')->references('ShopID')->on('shops');
             $table->timestamps();
         });
     }

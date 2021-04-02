@@ -1,32 +1,90 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="pull-left">
-                <h3>Show post</h3>
-                <a class="btn btn-xs btn-primary" href="{{route('route.index')}}">back</a>
-            </div>
-        </div>
-    </div>
+    <br>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+
+                        <div class="card-header">
+                            <div class="row">
+                                <div class="col-xl-12">
+                                    <h3 class="float-left"><b>Route Details</b></h3>
+                                    <a class="btn btn-primary float-right" href="{{route('route.index')}}">back</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card-body">
 
 
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="form-group">
-                <strong>Name: </strong>
-                {{$route->route_name}}
-            </div>
-        </div>
-    </div>
 
-    <div class="row">
-        <div class="col-xl-12">
-            <div class="form-group">
-                <strong>User ID :</strong>
-                {{$route->user_id}}
+                            <div class="row">
+                                <div class="table table-responsive">
+                                    <table class="table table-bordered" id="shopTable">
+
+                                        <tr>
+                                            <th>Route</th>
+                                            <th>Details</th>
+                                        </tr>
+
+                                        <tr>
+                                            <td>Route ID</td>
+                                            <td> {{$route->RouteID}}</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>Route Name</td>
+                                            <td> {{$route->route_name}}</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>Starting point latitute</td>
+                                            <td>{{$route->start_lat}}</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>Starting point longitude</td>
+                                            <td> {{$route->start_lng}}</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>End point latitude</td>
+                                            <td> {{$route->end_lat}}</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>End point longitude</td>
+                                            <td>{{$route->end_lng}}</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>User</td>
+                                            <td> {{$route->user_id}}</td>
+                                        </tr>
+
+
+                                    </table>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /.col -->
             </div>
+            <!-- /.row -->
         </div>
-    </div>
+        <!-- /.container-fluid -->
+    </section>
+
+
+
 
 @endsection

@@ -84,6 +84,11 @@
                                         </tr>
 
                                         <tr>
+                                            <td>Telephone Number</td>
+                                            <td>{{$shop->telephone_numbers}}</td>
+                                        </tr>
+
+                                        <tr>
                                             <td>Registered Date</td>
                                             <td>{{$shop->registered_date}}</td>
                                         </tr>

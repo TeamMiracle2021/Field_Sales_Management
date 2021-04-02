@@ -70,7 +70,7 @@
                 <div class="form-group row">
                     <label class="col-md-2 col-form-label">Longitude:</label>
                     <div class="col-sm-10">
-                    <input type="text" class="form-control" value="{{$shop->Lng}}" placeholder="Enter longitude of shop" name="Lng">
+                    <input type="text" class="form-control" value="{{$shop->lng}}" placeholder="Enter longitude of shop" name="lng">
                 </div>
             </div>
 
@@ -138,7 +138,17 @@
             </div>
 
 
-                <div class="form-group row">
+        <div class="form-group row">
+            <label class="col-md-2 col-form-label">Telephone Number:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" value="{{$shop->telephone_numbers}}" placeholder="Telephone Number" name="telephone_numbers">
+            </div>
+        </div>
+
+
+
+
+        <div class="form-group row">
                     <label class="col-md-2 col-form-label">Register Date:</label>
                     <div class="col-sm-10">
                     <input type="date" class="form-control" value="{{$shop->registered_date}}" placeholder="Register Date" name="registered_date">

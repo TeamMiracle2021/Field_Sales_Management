@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Route;
 use Illuminate\Http\Request;
 use function Couchbase\defaultDecoder;
+use App\Http\Controllers\DB;
 
 class RouteController extends Controller
 {
@@ -99,9 +100,18 @@ class RouteController extends Controller
     }
 
 
-    public function addData(Request $request)
+
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Route  $route
+     * @return \Illuminate\Http\Response
+     */
+    public function show2()
     {
-        //
+
+        return view('maps.mapview');
     }
 
 

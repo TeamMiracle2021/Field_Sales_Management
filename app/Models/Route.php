@@ -13,7 +13,14 @@ class Route extends Model
     protected $fillable=[
         'RouteID',
         'route_name',
-        'user_id',
-        'shop_ID',
+        'start_lat',
+        'start_lng',
+        'end_lat',
+        'end_lng',
+        'user_id'
     ];
+
+    public function shops(){
+        return $this->hasMany(Shop::class, 'RouteID', 'RouteID');
+    }
 }

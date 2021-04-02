@@ -56,7 +56,7 @@
                     <div class="form-group row">
                         <label class="col-md-2 col-form-label">Longitude:</label>
                         <div class="col-sm-10">
-                        <input type="text" class="form-control" placeholder="Enter longitude of shop" name="lat">
+                        <input type="text" class="form-control" placeholder="Enter longitude of shop" name="lng">
                     </div>
                 </div>
 
@@ -121,6 +121,14 @@
                 </div>
 
 
+                                <div class="form-group row">
+                                    <label class="col-md-2 col-form-label">Telephone Number:</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" placeholder="Telephone Number" name="telephone_numbers">
+                                    </div>
+                                </div>
+
+
                     <div class="form-group row">
                         <label class="col-md-2 col-form-label">Register Date:</label>
                         <div class="col-sm-10">
@@ -144,6 +152,14 @@
                 </div>
 
 
+                                <div class="form-group row">
+                                    <label class="col-md-2 col-form-label">Route ID:</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" placeholder="Enter route ID" name="RouteID">
+                                    </div>
+                                </div>
+
+
                     <div class="text-right">
                         <button type="submit"  Value="Save" class="btn btn-primary">Save</button>
                         <a class="btn btn-secondary" href="{{route('shop.index')}}">Cancel</a>
@@ -157,18 +173,7 @@
         </div>
     </section>
 
-    <script>
-        function previewFile(input){
-            var file=$("input[type=file]").get(0).files[0];
-            if(file){
-                var reader = new FileReader();
-                reader.onload = function (){
-                    $('previewImg').attr("src",reader.result);
-                }
-                reader.readAsDataURL(file);
-            }
-        }
-    </script>
+
 
 @endsection
 
