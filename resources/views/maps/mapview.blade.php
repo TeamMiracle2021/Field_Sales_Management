@@ -64,8 +64,8 @@
                 computeTotalDistance(directionsRenderer.getDirections());
             });
             displayRoute(
-                "6.921215720773966, 79.84635294669383",
-                "6.906008772681582, 79.91032383776876",
+                {{ $route->start_lat }}"6.921215720773966, {{ $route->start_lng }}79.84635294669383",
+                {{ $route->end_lat }}"6.906008772681582, {{ $route->end_lng }}79.91032383776876",
                 directionsService,
                 directionsRenderer
             );

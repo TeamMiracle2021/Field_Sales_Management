@@ -50,6 +50,102 @@
 <script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
 <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.html5.min.js"></script>
 <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.print.min.js"></script>
+{{--for printable ooption--}}
+<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.print.min.js"></script>
+
+{{--for column visibility--}}
+<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.colVis.min.js"></script>
+
+{{--for query builder--}}
+<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/searchbuilder/1.0.1/js/dataTables.searchBuilder.min.js"></script>
+<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/datetime/1.0.2/js/dataTables.dateTime.min.js"></script>
+
+
+
+{{--for query builder/csv/pdf/exel/print/column  visibility--}}
+<script type="text/javascript" class="init">
+    $(document).ready(function() {
+        $('#example').DataTable( {
+            dom: 'QSrfBti',
+            buttons: [
+                {
+                    extend: 'print',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+                },
+
+                {
+                    extend: 'pdf',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+                },
+
+                {
+                    extend: 'csv',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+                },
+
+                {
+                    extend: 'excel',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+                },
+
+
+
+                'colvis'
+            ],
+
+            scrollY: 300,
+            paging:  false,
+            keys:    true,
+            searchBuilder:{
+                conditions:{
+                    num:{
+                        'MultipleOf': {
+                            conditionName: 'Multiple Of', // String value that will be displayed in the condition select element
+                            init: function (that, fn, preDefined = null) {
+                                // Declare the input element and set the listener to trigger searching
+                                var el =  $('<input/>').on('input', function() { fn(that, this) });
+
+                                // Add mechanism to apply preDefined values that may be passed in
+                                if (preDefined !== null) {
+                                    $(el).val(preDefined[0]);
+                                }
+
+                                return el;
+                            },
+                            inputValue: function (el) {
+                                // Return the value within the input element
+                                return $(el[0]).val();
+                            },
+                            isInputValid: function (el, that) {
+                                // If there is text in the input element then it is valid for searching
+                                return $(el[0]).val().length !== 0;
+                            },
+                            search: function (value, comparison) {
+                                // Use the modulo (%) operator to check that there is no remainder
+                                return value%comparison === 0;
+                            }
+                        }
+                    }
+                }
+            }
+        })
+    });
+
+
+
+</script>
+
+
+
+
 
 
 {{--for csv pdf execl--}}
@@ -58,7 +154,7 @@
         $('#example3').DataTable( {
             dom: 'Bfrtip',
             buttons: [
-                'copy', 'csv', 'excel', 'pdf', 'print'
+                'copy', 'csv', 'excel', 'pdf', 'print', 'colvis'
             ]
         } );
     } );
@@ -66,6 +162,8 @@
 
 
 
+
+{{--for index view datatables--}}
 <script>
     $(function () {
         $("#example1").DataTable({
@@ -84,3 +182,19 @@
         });
     });
 </script>
+
+
+
+{{--partial suport for query builder--}}
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-365466-5']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+

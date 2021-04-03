@@ -39,7 +39,7 @@ class ProductController extends Controller
 
 
 
-    //********************************************************************************   create  *******************************************************************************   
+    //********************************************************************************   create  *******************************************************************************
     public function create()
     {
         return view('product.createProduct');
@@ -57,10 +57,10 @@ class ProductController extends Controller
 
 
 
-    //********************************************************************************   store  ******************************************************************************** 
+    //********************************************************************************   store  ********************************************************************************
     public function store(Request $request)
     {
-        
+
         $request->validate([
             'product_Name'=>'required|max:255',
             'cost_price'=>'required|max:255',
@@ -114,7 +114,7 @@ class ProductController extends Controller
     //********************************************************************************   edit  ********************************************************************************
     public function edit(Product $product)
     {
-        return view('product.edit', compact('product')); //product=folder name in views, edit=edit.blade.php 
+        return view('product.edit', compact('product')); //product=folder name in views, edit=edit.blade.php
 
         //dd($product);
     }
@@ -129,7 +129,7 @@ class ProductController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Product  $product    
+     * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
 
@@ -192,4 +192,19 @@ class ProductController extends Controller
         alert()->success('we will contact you soon')->persistent('Close')->autoclose(3500);
         return back();
     }
+
+
+
+
+
+
+
+
+    public function index1()
+    {
+        $product = Product::get();
+        return view('reports.productreport')->with(compact('product'));
+    }
+
+
 }

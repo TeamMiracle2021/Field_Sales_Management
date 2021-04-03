@@ -4,6 +4,9 @@
 
 
 
+@section('title')
+    Shops | FSM
+@endsection
 
         @if($msg = Session::get("add"))
             <div class="alert alert-default-primary">

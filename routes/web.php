@@ -5,6 +5,11 @@ use App\Http\Controllers\RouteController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ReportController;
+
+
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -30,14 +35,20 @@ Route::delete('product',[ProductController::class,'destroy']);
 
 Route::resource('shop',ShopController::class);
 Route::resource('route',RouteController::class);
-//Route::get('route/{id}/edit/','RouteController@edit');
-//Route::get('/route/{id}/edit/', function () {
-//   return view('Route.edit');
-//});
-//
-//Route::get('shop/map','ShopController@gmap');
 
 
-Route::get('show2', [App\Http\Controllers\RouteController::class,'show2']);
+Route::resource('report',\App\Http\Controllers\ReportController::class);
+Route::get('/show2/{id}', [RouteController::class, 'show2'])->name('route.show2');
+
+
+Route::get('/report/product', [RouteController::class, 'productreport'])->name('report.productreport');
+Route::get('/rep/product', [ProductController::class, 'index1'])->name('product.index1');
+
+
+
+
+
+
+
 
 

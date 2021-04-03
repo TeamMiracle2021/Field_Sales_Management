@@ -61,6 +61,7 @@ class RouteController extends Controller
     public function show(Route $route)
     {
         return view('route.show',compact('route'));
+//        return view('reports.productreport');
     }
 
     /**
@@ -108,10 +109,11 @@ class RouteController extends Controller
      * @param  \App\Models\Route  $route
      * @return \Illuminate\Http\Response
      */
-    public function show2()
+    public function show2($id)
     {
-
-        return view('maps.mapview');
+        $route = Route::find($id);
+        dd($route);
+        return view('maps.mapview')->with($route, 'route');
     }
 
 
