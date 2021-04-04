@@ -57,21 +57,21 @@
                 mapTypeId: "terrain",
             });
 
-
-            const rectangle = new google.maps.Rectangle({
-                strokeColor: "#ff0000",
-                strokeOpacity: 0.8,
-                strokeWeight: 2,
-                fillColor: "#FF0000",
-                fillOpacity: 0.35,
-                map,
-                bounds: {
-                    north: 6.938,
-                    south: 6.900,
-                    east: 79.880,
-                    west: 79.838,
-                },
-            });
+            //
+            // const rectangle = new google.maps.Rectangle({
+            //     strokeColor: "#ff0000",
+            //     strokeOpacity: 0.8,
+            //     strokeWeight: 2,
+            //     fillColor: "#FF0000",
+            //     fillOpacity: 0.35,
+            //     map,
+            //     bounds: {
+            //         north: 6.938,
+            //         south: 6.900,
+            //         east: 79.880,
+            //         west: 79.838,
+            //     },
+            // });
 
             const directionsService = new google.maps.DirectionsService();
             const directionsRenderer = new google.maps.DirectionsRenderer({

@@ -27,9 +27,9 @@ class RouteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Route $route)
+    public function create()
     {
-        return view('Route.create')->with('route', $route);
+        return view('Route.create');
     }
 
     /**
