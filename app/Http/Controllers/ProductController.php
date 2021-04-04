@@ -200,7 +200,7 @@ class ProductController extends Controller
 
 
 
-    public function index1()
+    public function productreport()
     {
         $product = Product::get();
         return view('reports.productreport')->with(compact('product'));

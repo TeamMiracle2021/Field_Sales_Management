@@ -25,7 +25,7 @@
                 <!-- Add icons to the links using the .nav-icon class
                      with font-awesome or any other icon font library -->
                 <li class="nav-item">
-                    <a href="./dashboard" class="nav-link">
+                    <a href="/dashboard" class="nav-link">
                         <i class="nav-icon fas fa-home"></i>
                         <p>Dashboard</p>
                     </a>
@@ -33,7 +33,7 @@
 
 
                 <li class="nav-item">
-                    <a href="./user" class="nav-link">
+                    <a href="/user" class="nav-link">
                         <i class="nav-icon fas fa-users"></i>
                         <p>Users</p>
                     </a>
@@ -41,7 +41,7 @@
 
 
                 <li class="nav-item">
-                    <a href="./product" class="nav-link">
+                    <a href="/product" class="nav-link">
                         <i class="nav-icon fas fa-shopping-bag"></i>
                         <p>Products</p>
                     </a>
@@ -57,7 +57,7 @@
 {{--                </li>--}}
 
                 <li class="nav-item">
-                    <a href="./shop" class="nav-link">
+                    <a href="/shop" class="nav-link">
                         <i class="nav-icon fas fa-shopping-cart"></i>
                         <p>Shops</p>
                     </a>
@@ -65,14 +65,14 @@
 
 
                 <li class="nav-item">
-                    <a href="./route" class="nav-link">
+                    <a href="/route" class="nav-link">
                         <i class="nav-icon fas fa-route"></i>
                         <p>Routes</p>
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a href="./report" class="nav-link">
+                    <a href="/report" class="nav-link">
                         <i class="nav-icon fas fa-file-alt"></i>
                         <p>Reports</p>
                     </a>

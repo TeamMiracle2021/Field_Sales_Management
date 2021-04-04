@@ -62,9 +62,22 @@
 
                                         <tr>
                                             <td>User</td>
-                                            <td> {{$route->user_id}}</td>
+                                            <td> {{$route->user->first_name}}</td>
                                         </tr>
 
+
+
+
+                                        <tr>
+                                            <td>shops</td>
+
+                                            <td>
+                                        @foreach($route->shops as $shop)
+                                             {{$shop->shop_name}}    ,
+
+                                        @endforeach
+                                            </td>
+                                        </tr>
 
                                     </table>
                                 </div>

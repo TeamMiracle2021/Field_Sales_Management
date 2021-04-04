@@ -1,72 +1,71 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-    <title>Report</title>
-    <style>
-    #emp{
-font-family: Arial,Helvetica,sans-serif;
-border-collapse:collapse;
-width:80%;
-margin: 55px;
-
-    }
-
-    #emp td,#emp th{
-border:1px solid #ddd;
-padding:0px;
-
-    }
-    #emp tr:nth-child(even){
-      background-color:#0bfdfd;
-    }
-
-    #emp th{
-      padding-top:3px;
-      padding-bottom:3px;
-      text-align:left;
-      background-color:#4cAF50;
-      color:#fff;
-
-    }
-    
-    </style>
-</head>
-<body>
-
-<nav class="navbar navbar-light bg-light">
-  <div class="container-fluid">
-    <form class="d-flex" type='get' action="{{url('/searchroute')}}">
-      <input class="form-control me-2" name='query' type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success" type="submit">Search</button>
-     <div class="form-group row">
-                                
-</br></br>
-    </form>
-  </div>
-</nav>  
+@extends("layouts.app")
 
 
-<a href="http://127.0.0.1:8000/download-pdfroute" class="btn btn-dark" role="button" aria-pressed="true"> PDF</a>
-<table id="emp">
+@section('title')
+    Route Report
+@endsection
 
-<tr>
-    <th>Route Name </th>
-    <th>Shop_Name</th>
-    
-     
-  </tr>
-  @foreach($data as $item)
-  <tr> 
-   
-    <td>{{$item->route_name}}</td>
-    <td>{{$item->shop_name}}</td>
-     
+@section('content')
 
-  </tr>
-  @endforeach
-</table>
-</body>
+
+
+    <section class="content">
+        <h4><b><center>Reports of Routes</center></b></h4>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="float-right">
+                                <a class="btn btn-primary"  href="{{route('report.index')}}">Back</a>
+                            </div>
+
+                        </div>
+
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <table id="example" class="table table-bordered table-striped ">
+                                <thead>
+                                <tr>
+                                    <th>Route ID</th>
+                                    <th>Shop Name</th>
+                                    <th>Start Latitude</th>
+                                    <th>Start Longitude</th>
+                                    <th>End Latitude</th>
+                                    <th>End Longitude</th>
+{{--                                    <th>USer</th>--}}
+{{--                                    <th>Shops</th>--}}
+
+
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($route as $data)
+
+                                    <tr>
+                                        <td>{{$data->RouteID}}</td>
+                                        <td>{{$data->start_lat}}</td>
+                                        <td>{{$data->start_lng}}</td>
+                                        <td>{{$data->end_lat}}</td>
+                                        <td>{{$data->end_lng}}</td>
+                                        <td>{{$data->user_id}}</td>
+{{--                                        <td>{{$data->address_no}}</td>--}}
+
+
+                                    </tr>
+
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+    </section>
+@endsection

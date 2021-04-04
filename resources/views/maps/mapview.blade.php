@@ -1,7 +1,8 @@
+
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Draggable Directions</title>
+    <title>Shops of the {{$route->route_name}} Route</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <style type="text/css">
         #right-panel {
@@ -53,7 +54,25 @@
             const map = new google.maps.Map(document.getElementById("map"), {
                 zoom: 4,
                 center: { lat: 6.9, lng: 79 },
+                mapTypeId: "terrain",
             });
+
+
+            const rectangle = new google.maps.Rectangle({
+                strokeColor: "#ff0000",
+                strokeOpacity: 0.8,
+                strokeWeight: 2,
+                fillColor: "#FF0000",
+                fillOpacity: 0.35,
+                map,
+                bounds: {
+                    north: 6.938,
+                    south: 6.900,
+                    east: 79.880,
+                    west: 79.838,
+                },
+            });
+
             const directionsService = new google.maps.DirectionsService();
             const directionsRenderer = new google.maps.DirectionsRenderer({
                 draggable: true,
@@ -64,8 +83,8 @@
                 computeTotalDistance(directionsRenderer.getDirections());
             });
             displayRoute(
-                {{ $route->start_lat }}"6.921215720773966, {{ $route->start_lng }}79.84635294669383",
-                {{ $route->end_lat }}"6.906008772681582, {{ $route->end_lng }}79.91032383776876",
+                "{{ $route->start_lat }}, {{ $route->start_lng }}",
+                "{{ $route->end_lat }}, {{ $route->end_lng }}",
                 directionsService,
                 directionsRenderer
             );
@@ -77,12 +96,9 @@
                     origin: origin,
                     destination: destination,
                     waypoints: [
-                        { location: "6.910194224371244, 79.85917172445397" },
-                        { location: "6.9160024073925115, 79.8587750655634" },
-                        { location: "6.918266594989434, 79.85837840667284" },
-                        { location: "6.92200740288371, 79.85808091250492" },
-                        { location: "6.921712077022503, 79.86135334835207" },
-                        { location: "6.943467253667741, 79.86611325503887" }
+                            @foreach($route->shops as $shop)
+                        { location: "{{$shop->lat}}, {{$shop->lng}}" },
+                        @endforeach
                     ],
                     travelMode: google.maps.TravelMode.DRIVING,
                     avoidTolls: true,
@@ -110,13 +126,24 @@
             }
             total = total / 1000;
             document.getElementById("total").innerHTML = total + " km";
+
+
+
+
+
+
+
+
+
         }
     </script>
 </head>
-<body>
+<body style="height:100vh">
 <div id="map"></div>
-<div id="right-panel">
+<div id="right-panel" style="overflow-y: scroll">
+    <a class="btn btn-primary float-right"  href="{{route('route.index')}}">Back</a>
     <p>Total Distance: <span id="total"></span></p>
+
 </div>
 
 <!-- Async script executes immediately and must be after any DOM elements used in callback. -->

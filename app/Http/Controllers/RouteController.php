@@ -27,9 +27,9 @@ class RouteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Route $route)
     {
-        return view('Route.create');
+        return view('Route.create')->with('route', $route);
     }
 
     /**
@@ -102,21 +102,36 @@ class RouteController extends Controller
 
 
 
+    public function routereport()
+    {
+        $route = route::get();
+        return view('reports.routereport',compact('route'));
+    }
+
+
+
+
+
+
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Route  $route
+     * @param  \App\Models\Route  $rout,compact('route')e
      * @return \Illuminate\Http\Response
      */
     public function show2($id)
     {
         $route = Route::find($id);
-        dd($route);
-        return view('maps.mapview')->with($route, 'route');
+        return view('maps.mapview')->with('route', $route);
     }
 
 
+    public function getlatlng()
+    {
+
+        return view('maps.getlatlng');
+    }
 
 
 }

@@ -20,7 +20,8 @@
                         <div class="card-body">
 
                             <form action="{{route('shop.store')}}" method="POST">
-           @csrf
+
+                                @csrf
 
 
                 <div class="form-group row">
@@ -156,6 +157,7 @@
                                     <label class="col-md-2 col-form-label">Route ID:</label>
                                     <div class="col-sm-10">
                                         <input type="text" class="form-control" placeholder="Enter route ID" name="RouteID">
+
                                     </div>
                                 </div>
 

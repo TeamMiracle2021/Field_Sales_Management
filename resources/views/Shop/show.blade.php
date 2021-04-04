@@ -100,7 +100,13 @@
 
                                         <tr>
                                             <td>User</td>
-                                            <td>{{$shop->user_id}}</td>
+                                            <td>{{$shop->user->first_name}}</td>
+                                        </tr>
+
+
+                                        <tr>
+                                            <td>Route</td>
+                                            <td>{{$shop->route->route_name}}</td>
                                         </tr>
 
                                         <td>Created At</td>
@@ -113,7 +119,6 @@
                                         </tr>
 
 
-{{--                                        @endsection--}}
 
                                     </table>
                                 </div>

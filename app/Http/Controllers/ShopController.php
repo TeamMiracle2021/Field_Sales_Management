@@ -121,11 +121,12 @@ class ShopController extends Controller
 
 
 
-//    public function gmap()
-//    {
-//        return view('maps.mapview');
-////        return DB::select("select lat,lng from shops where shopID=5");
-//
-//    }
+    public function shopreport()
+    {
+        $Shop =Shop::get();
+        return view('reports.shopreport')->with (compact('Shop')); // blade eka open krpnko
+
+
+    }
 
 }

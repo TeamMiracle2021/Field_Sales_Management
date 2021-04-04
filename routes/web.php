@@ -26,23 +26,21 @@ use App\Http\Controllers\ReportController;
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-});
+})->name('dashboard');
 
 Route::resource('product',ProductController::class);
 Route::resource('category',CategoryController::class);
 Route::delete('product',[ProductController::class,'destroy']);
-
-
 Route::resource('shop',ShopController::class);
 Route::resource('route',RouteController::class);
-
-
 Route::resource('report',\App\Http\Controllers\ReportController::class);
 Route::get('/show2/{id}', [RouteController::class, 'show2'])->name('route.show2');
+Route::get('/route/create/getlatlng', [RouteController::class, 'getlatlng'])->name('route.getlatlng');
+Route::get('/rep/shops', [ShopController::class, 'shopreport'])->name('shop.shopreport');
+Route::get('/rep/product', [ProductController::class, 'productreport'])->name('product.productreport');
+Route::get('/rep/route', [RouteController::class, 'routereport'])->name('route.routereport');
 
 
-Route::get('/report/product', [RouteController::class, 'productreport'])->name('report.productreport');
-Route::get('/rep/product', [ProductController::class, 'index1'])->name('product.index1');
 
 
 

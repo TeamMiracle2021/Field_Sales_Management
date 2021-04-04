@@ -23,4 +23,10 @@ class Route extends Model
     public function shops(){
         return $this->hasMany(Shop::class, 'RouteID', 'RouteID');
     }
+
+
+
+    public function user(){
+        return $this->belongsTo(User::class, 'user_id', 'userID');
+    }
 }

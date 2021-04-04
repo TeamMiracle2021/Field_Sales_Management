@@ -34,7 +34,6 @@
                                 <thead>
                                 <tr>
                                     <th>Route Name</th>
-                                    <th>Shop Name</th>
                                     <th>User Name</th>
                                     <th>Action</th>
                                 </tr>
@@ -43,14 +42,13 @@
                                 @foreach($route as $data)
                                     <tr>
                                         <td>{{$data->route_name}}</td>
-                                        <td>{{$data->shop_ID}}</td>
-                                        <td>{{$data->user_id}}</td>
+                                        <td>{{$data->user->first_name}}</td>
                                         <td>
 
                                                 <a class="btn btn-primary" href="{{route('route.edit',$data->RouteID)}}">Edit</a>
                                                 <button type="button" data-toggle="modal" class="btn btn-danger" data-target="#exampleModal" >Delete</button>
                                                 <a class="btn btn-primary" href="{{route('route.show',$data->RouteID)}}">View</a>
-                                                <a class="btn btn-primary" href="{{route('route.show2', $data->RouteID)}}">View om Map</a>
+                                                <a class="btn btn-primary" href="{{route('route.show2', $data->RouteID)}}" target="_blank">View on Map</a>
 
                                         </td>
                                     </tr>

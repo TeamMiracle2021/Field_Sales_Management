@@ -10,9 +10,12 @@
                     <div class="card">
                         <div class="card-header">
                             <div class="row">
-                                <div class="col-xl-12">
+                                <div class="col-md-12">
                                     <h3 class="float-left"><b>Add Route</b></h3>
-                                    <a class="btn btn-primary float-right" href="{{route('shop.index')}}">Back</a>
+
+                                    <a class="btn btn-secondary float-left" href="{{route('route.getlatlng')}}" target="_blank">Get lat,lng From map</a>
+                                        <a class="btn btn-primary float-right" href="{{route('shop.index')}}">Back</a>
+
                                 </div>
                             </div>
                         </div>
@@ -62,7 +65,12 @@
         <div class="form-group row">
             <label class="col-md-2 col-form-label">User ID:</label>
             <div class="col-sm-10">
-                    <input type="text" class="form-control" placeholder="enter User name" name="user_id">
+                <select  name="RouteID" >
+                    @foreach($route as $data)
+                        <option value="{{$data->userID}}">{{$data->first_name}}</option>
+                    @endforeach
+                </select>
+{{--                    <input type="text" class="form-control" placeholder="enter User name" name="user_id">--}}
                 </div>
             </div>
 
