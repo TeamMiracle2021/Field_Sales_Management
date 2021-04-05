@@ -2,9 +2,9 @@
     <strong>
         Field Sales Management System
     </strong>
-    All rights reserved.
+
     <div class="float-right d-none d-sm-inline-block">
-        <b>Miracle inc.</b>
+        <b>Team Miracle</b>
     </div>
 </footer>
 

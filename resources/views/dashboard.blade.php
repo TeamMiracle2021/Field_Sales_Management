@@ -1,5 +1,11 @@
 @extends('layouts.app')
 
+
+@section('title')
+    FSM | Dashboard
+    @endsection
+
+
 @section('content')
 <!-- Main content -->
 <section class="content">

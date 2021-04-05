@@ -51,7 +51,20 @@ class ShopController extends Controller
         $Shop->owner_NIC=$request->owner_NIC;
         $Shop->lat=$request->lat;
         $Shop->lng=$request->lng;
-        $Shop->image=$request->file('file');
+
+
+        if($request->hasfile('avatar')){
+            $file=$request->file('avatar');
+            $extension=$file->getClientOriginalExtension();//get image extension
+            $filename= time().'.'.$extension;
+            $file->move('uploads/shop',$filename);
+            $Shop->image=$filename;
+        }else{
+            return $request;
+            $Shop->image='';
+        }
+
+
         $Shop->address_no=$request->address_no;
         $Shop->suburb=$request->suburb;
         $Shop->city=$request->city;
@@ -103,6 +116,25 @@ class ShopController extends Controller
     public function update(Request $request, Shop $shop)
     {
         $shop->update($request->all());
+
+        if($request->avatar != '') {
+            $path = public_path() . '/uploads/shop/';
+
+            //code for remove old file
+            if ($shop->image != '' && $shop->image != null) {
+                $file_old = $path . $shop->image;
+                unlink($file_old);
+            }
+
+            //upload new file
+            $file = $request->avatar;
+            $filename = $file->getClientOriginalName();
+            $file->move($path, $filename);
+
+            //for update in table
+            $shop->update(['image' => $filename]);
+
+        }
         return redirect()->route('shop.index')->with('add','Record Updated');
     }
 

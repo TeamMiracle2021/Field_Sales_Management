@@ -35,7 +35,7 @@
                                 <tr>
                                     <th>Shop Name</th>
                                     <th>Owner Name</th>
-                                    <th>Suburb</th>
+                                    <th>Image</th>
                                     <th>City</th>
                                     <th>Action</th>
                                 </tr>
@@ -45,7 +45,8 @@
                                     <tr>
                                         <td>{{$data->shop_name}}</td>
                                         <td>{{$data->owner_name}}</td>
-                                        <td>{{$data->suburb}}</td>
+                                        <td><img src="{{asset('uploads/shop/'.$data->image)  }}"
+                                                 class="img-bordered-sm" width="100px;" height="100px;" alt="Shop-Image"></td>
                                         <td>{{$data->city}}</td>
                                         <td>
 

@@ -19,7 +19,7 @@
                         <!-- /.card-header -->
                         <div class="card-body">
 
-                            <form action="{{route('shop.store')}}" method="POST">
+                            <form action="{{route('shop.store')}}" method="POST" enctype="multipart/form-data">
 
                                 @csrf
 
@@ -64,8 +64,9 @@
                     <div class="form-group row">
                         <label class="col-md-2 col-form-label" >Image:</label>
                         <div class="col-sm-10">
-                        <input type="file" class="form-control" onchange="previewFile(this)" name="file">
+                        <input type="file" class="form-control" name="avatar">
 {{--                        <img id="previewImg" alt="shop image" style="max-width: 130px;margin-top: 20px;">--}}
+
                     </div>
                 </div>
 

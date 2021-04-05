@@ -19,7 +19,7 @@
                         <div class="card-body">
 
 
-    <form action="{{route('shop.update',$shop->ShopID)}}" method="POST">
+    <form action="{{route('shop.update',$shop->ShopID)}}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
 
@@ -75,13 +75,15 @@
             </div>
 
 
-                <div class="form-group row">
-                    <label class="col-md-2 col-form-label">Image:</label>
-                    <div class="col-sm-10">
-                    <input type="file" class="form-control" onchange="previewFile(this)" name="file">
-{{--                    <img id="previewImg" alt="shop image" style="max-width: 130px;margin-top: 20px;">--}}
-                </div>
+        <div class="form-group row">
+            <label class="col-md-2 col-form-label" >Image:</label>
+            <div class="col-sm-10">
+                <input type="file"  class="form-control" name="avatar">
+                {{--                        <img id="previewImg" alt="shop image" style="max-width: 130px;margin-top: 20px;">--}}
+
             </div>
+        </div>
+
 
 
                 <div class="form-group row">
@@ -167,9 +169,19 @@
                 <div class="form-group row">
                     <label class="col-md-2 col-form-label">User ID:</label>
                     <div class="col-sm-10">
-                    <input type="text" class="form-control" value="{{$shop->user_id}}" placeholder="Enter user ID" name="user_id">
+                    <input type="text" class="form-control" value="{{$shop->user_id}}" placeholder="Enter user ID" name="user_id" required>
                 </div>
             </div>
+
+
+        <div class="form-group row">
+            <label class="col-md-2 col-form-label">Route ID:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" value="{{$shop->RouteID}}" placeholder="Enter route ID" name="RouteID" required>
+
+            </div>
+        </div>
+
 
         </div>
 
