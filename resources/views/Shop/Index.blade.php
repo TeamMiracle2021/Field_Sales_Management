@@ -38,6 +38,8 @@
             <th>Owner Name</th>
             <th>Suburb</th>
             <th>City</th>
+            <th>User Name</th>
+            <th>Image</th>
             <th>Action</th>
         </tr>
 @foreach($Shop as $data)
@@ -46,6 +48,9 @@
             <td>{{$data->owner_name}}</td>
             <td>{{$data->suburb}}</td>
             <td>{{$data->city}}</td>
+            <td>{{$data->user_id}}</td>
+{{--            <td>{{$data->image}}</td>--}}
+{{--            <td> <img src="{{asset('uploads/Shop/'.$data->image)}}" class="img-circle" width="100px;" height="100px;" alt="shop-Image">  </td>--}}
             <td>
                 <form action="{{route('shop.destroy',$data->ShopID)}}" method="POST">
                 <a class="btn btn-primary" href="{{route('shop.edit',$data->ShopID)}}">Edit</a>
@@ -59,6 +64,7 @@
         </tr>
 @endforeach
     </table>
+
 
 @endsection
 

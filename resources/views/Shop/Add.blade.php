@@ -7,7 +7,7 @@
         </div>
     </div>
 
-   < <form action="{{route('shop.store')}}" method="POST">
+   < <form action="{{route('shop.store')}}" method="POST" enctype="multipart/form-data">
            @csrf
 
         <div class="row">
@@ -44,15 +44,15 @@
                 <div class="col-md-12">
                     <div class="form-group">
                         <label>Longitude:</label>
-                        <input type="text" class="from-control" placeholder="Enter longitude of shop" name="lat">
+                        <input type="text" class="from-control" placeholder="Enter longitude of shop" name="lan">
                     </div>
                 </div>
 
                 <div class="col-md-12">
                     <div class="form-group">
                         <label>Image:</label>
-                        <input type="file" class="form-control" onchange="previewFile(this)" name="file">
-                        <img id="previewImg" alt="shop image" style="max-width: 130px;margin-top: 20px;">
+                        <input type="file" class="form-control" name="image">
+{{--                        <img id="previewImg" alt="shop image" style="max-width: 130px;margin-top: 20px;">--}}
                     </div>
                 </div>
 
@@ -125,6 +125,13 @@
                         <input type="text" class="from-control" placeholder="Enter user ID" name="user_id">
                     </div>
                 </div>
+
+{{--            <div class="col-md-12">--}}
+{{--                <div class="form-group">--}}
+{{--                    <label>User Name:</label>--}}
+{{--                    <input type="text" class="from-control" placeholder="Enter user Name" name="user_name">--}}
+{{--                </div>--}}
+{{--            </div>--}}
         </div>
 
                     <div class="text-right">
@@ -134,18 +141,18 @@
 
     </form>
 
-    <script>
-        function previewFile(input){
-            var file=$("input[type=file]").get(0).files[0];
-            if(file){
-                var reader = new FileReader();
-                reader.onload = function (){
-                    $('previewImg').attr("src",reader.result);
-                }
-                reader.readAsDataURL(file);
-            }
-        }
-    </script>
+{{--    <script>--}}
+{{--        function previewFile(input){--}}
+{{--            var file=$("input[type=file]").get(0).files[0];--}}
+{{--            if(file){--}}
+{{--                var reader = new FileReader();--}}
+{{--                reader.onload = function (){--}}
+{{--                    $('previewImg').attr("src",reader.result);--}}
+{{--                }--}}
+{{--                reader.readAsDataURL(file);--}}
+{{--            }--}}
+{{--        }--}}
+{{--    </script>--}}
 
 @endsection
 

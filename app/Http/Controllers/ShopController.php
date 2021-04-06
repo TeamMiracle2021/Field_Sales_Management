@@ -4,8 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\Shop;
 use Database\Seeders\DatabaseSeeder;
+use http\Client\Curl\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+//use DB;
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
+use phpDocumentor\Reflection\DocBlock\Tags\Uses;
+
+
 
 
 class ShopController extends Controller
@@ -17,6 +24,12 @@ class ShopController extends Controller
      */
     public function index()
     {
+//        return DB::table('shops')
+//            ->join('users','shops.user_id',"=",'users.userID')
+//            //->join('products','products.ProductID',"=",'order_details.ProductID')
+//            ->select('shops.*','users.first_name')
+//            //->where('shops.user_id')
+//            ->get();
 
         $Shop =Shop::get();
         return view('shop.Index')->with (compact('Shop'));
@@ -40,15 +53,28 @@ class ShopController extends Controller
      */
     public function store(Request $request)
     {
+
+
         $Shop=new Shop();
         $Shop->shop_name=$request->shop_name;
         $Shop->owner_name=$request->owner_name;
         $Shop->owner_NIC=$request->owner_NIC;
         $Shop->lat=$request->lat;
-        $Shop->Lng=$request->Lng;
-        $Shop->image=$request->file('file');
-//        $Shop->imageName=time();
-//        $Shop->move(public_path('image'));
+        $Shop->lng=$request->lng;
+        $Shop->image=$request->image;
+
+
+//        if($request->hasfile('image')){
+//            $file=$request->file('image');
+//            $extension=$file->getClientOriginalExtension();//get image extension
+//            $filename= time().'.'.$extension;
+//            $file->move('/uploads/shop/',$filename);
+//            $Shop->image=$filename;
+//        }else{
+//            return $request;
+//            $Shop->image='';
+//        }
+
         $Shop->address_no=$request->address_no;
         $Shop->suburb=$request->suburb;
         $Shop->city=$request->city;
@@ -72,6 +98,10 @@ class ShopController extends Controller
      */
     public function show(Shop $shop)
     {
+//        $Shop = DB::table('shops')
+//            ->join('users','shops.user_id','=','users.userID')
+//            ->select('shops.*','users.first_name')
+//            ->get();
         return view('shop.show',compact('shop'));
     }
 
@@ -112,22 +142,16 @@ class ShopController extends Controller
         return redirect()->route('shop.index')->with('add','Record Deleted');
     }
 
-//    public function search( ){
-//
-//        $search_text=$_GET['query'];
-//        $data= DB::table('shops')
-//
-//            ->where('shop_name','LIKE','%'.$search_text.'%')
-//            ->orWhere('owner_name','LIKE','%'.$search_text.'%')
-//            ->orWhere('owner_NIC','LIKE','%'.$search_text.'%')
-//
-//
-//
+
+
+//    public function joinuser(User $user)
+//    {
+//        // return DB::table('orders')->get();
+//        return DB::table('shops')
+//            ->join('users','shops.user_id',"=",'users.userID')
+//            //->join('products','products.ProductID',"=",'order_details.ProductID')
+//            ->select('users.first_name')
+//            ->where('shops.user_id')
 //            ->get();
-//
-//        return view('shop',compact('data'));
-//
-//
-//
 //    }
 }

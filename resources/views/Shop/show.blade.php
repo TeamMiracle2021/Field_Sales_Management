@@ -46,7 +46,7 @@
         <div class="col-lg-12">
             <div class="form-group">
                 <strong>Longitude: </strong>
-                {{$shop->Lng}}
+                {{$shop->lng}}
             </div>
         </div>
 
@@ -110,6 +110,13 @@
             <div class="form-group">
                 <strong>User ID :</strong>
                 {{$shop->user_id}}
+            </div>
+        </div>
+
+        <div class="col-lg-12">
+            <div class="form-group">
+                <strong>User Name :</strong>
+                {{$shop->user_name}}
             </div>
         </div>
 

@@ -43,7 +43,7 @@
             <div class="col-md-12">
                 <div class="form-group">
                     <label>Longitude:</label>
-                    <input type="text" class="from-control" value="{{$shop->Lng}}" placeholder="Enter longitude of shop" name="Lng">
+                    <input type="text" class="from-control" value="{{$shop->lng}}" placeholder="Enter longitude of shop" name="lng">
                 </div>
             </div>
 

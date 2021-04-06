@@ -22,4 +22,4 @@ Route::get('/', function () {
 Route::resource('route',RouteController::class);
 
 Route::resource('shop',ShopController::class);
-Route::get("search",[ShopController::class,'search']);
+Route::get('joinuser', [App\Http\Controllers\ShopController::class,'joinuser']);
