@@ -1,7 +1,7 @@
 @extends("layouts.app")
 
 @section('title')
-Product-Edit | Sales Automation system
+Product-Add | Sales Automation system
 @endsection
 
 

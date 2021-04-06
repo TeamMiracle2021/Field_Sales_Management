@@ -23,6 +23,7 @@ class ProductController extends Controller
     public function index()
     {
         $product = Product::get();
+//        dd($product);
         return view('product.index')->with(compact('product'));
     }
     //**************************************************************************************************************************************************************************
@@ -96,6 +97,7 @@ class ProductController extends Controller
     //********************************************************************************   show  ********************************************************************************
     public function show(Product $product)
     {
+//        dd($product->categories->category_name);
         return view('product.showProduct', compact('product'));
     }
     //**************************************************************************************************************************************************************************
