@@ -64,7 +64,6 @@ class ShopController extends Controller
             $Shop->image='';
         }
 
-
         $Shop->address_no=$request->address_no;
         $Shop->suburb=$request->suburb;
         $Shop->city=$request->city;

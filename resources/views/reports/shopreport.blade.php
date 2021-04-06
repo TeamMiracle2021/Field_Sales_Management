@@ -44,6 +44,7 @@
                                     <th>User</th>
                                     <th>Created At</th>
                                     <th>Updated At</th>
+                                    <th>Image</th>
 
                                 </tr>
                                 </thead>
@@ -68,6 +69,8 @@
                                         <td>{{$data->user_id}}</td>
                                         <td>{{$data->created_at}}</td>
                                         <td>{{$data->updated_at}}</td>
+                                        <td><img src="{{asset('uploads/shop/'.$data->image)  }}"
+                                                 class="img-bordered-sm" width="75px;" height="75px;" alt="Product-Image"></td>
 
                                     </tr>
 
