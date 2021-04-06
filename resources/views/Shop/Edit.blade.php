@@ -1,84 +1,118 @@
-@extends("Shop.layout")
+@extends("layouts.app")
 
 @section("content")
-    <div class="form-group row">
-        <div class="col-lg-12 margin-tb">
-            <center><h2 class="modal-title"><b>Edit Shop Details</b></h2></center>
-        </div>
-    </div>
+    <br>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="row">
+                                <div class="col-xl-12">
+                                    <h3 class="float-left"><b>Shop Edit</b></h3>
+                                    <a class="btn btn-primary float-right" href="{{route('shop.index')}}">back</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
 
-    <form action="{{route('shop.update',$shop->ShopID)}}" method="POST">
+
+    <form action="{{route('shop.update',$shop->ShopID)}}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
-        <div class="row">
 
-            <div class="col-md-12">
-                <div class="form-group">
-                    <label>Shop Name:</label>
-                    <input type="text" class="from-control" value="{{$shop->shop_name}}" placeholder="Enter shop name" name="shop_name" required>
+
+
+{{--            <div class="form-group row">--}}
+{{--                <label class="col-md-2 col-form-label">Shop Name:</label>--}}
+{{--                <div class="col-sm-10">--}}
+{{--                    <input type="text" class="form-control" placeholder="Enter shop name" name="shop_name" required>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+
+
+
+
+                <div class="form-group row">
+                    <label class="col-md-2 col-form-label">Shop Name:</label>
+                    <div class="col-sm-10">
+                    <input type="text" class="form-control" value="{{$shop->shop_name}}" placeholder="Enter shop name" name="shop_name" required>
                 </div>
             </div>
 
-            <div class="col-md-12">
-                <div class="form-group">
-                    <label>Owner Name:</label>
-                    <input type="text" class="from-control" value="{{$shop->owner_name}}" placeholder="Enter owner name" name="owner_name" required>
+
+                <div class="form-group row">
+                    <label class="col-md-2 col-form-label">Owner Name:</label>
+                    <div class="col-sm-10">
+                    <input type="text" class="form-control" value="{{$shop->owner_name}}" placeholder="Enter owner name" name="owner_name" required>
                 </div>
             </div>
 
-            <div class="col-md-12">
-                <div class="form-group">
-                    <label>Owner NIC:</label>
-                    <input type="text" class="from-control" value="{{$shop->owner_NIC}}" placeholder="Enter owner NIC" name="owner_NIC" required>
+
+                <div class="form-group row">
+                    <label class="col-md-2 col-form-label">Owner NIC:</label>
+                    <div class="col-sm-10">
+                    <input type="text" class="form-control" value="{{$shop->owner_NIC}}" placeholder="Enter owner NIC" name="owner_NIC" required>
                 </div>
             </div>
 
-            <div class="col-md-12">
-                <div class="form-group">
-                    <label>Latitude:</label>
-                    <input type="text" class="from-control" value="{{$shop->lat}}" placeholder="Enter latitude of shop" name="lat">
+
+                <div class="form-group row">
+                    <label class="col-md-2 col-form-label">Latitude:</label>
+                    <div class="col-sm-10">
+                    <input type="text" class="form-control" value="{{$shop->lat}}" placeholder="Enter latitude of shop" name="lat">
                 </div>
             </div>
 
-            <div class="col-md-12">
-                <div class="form-group">
-                    <label>Longitude:</label>
-                    <input type="text" class="from-control" value="{{$shop->lng}}" placeholder="Enter longitude of shop" name="lng">
+
+                <div class="form-group row">
+                    <label class="col-md-2 col-form-label">Longitude:</label>
+                    <div class="col-sm-10">
+                    <input type="text" class="form-control" value="{{$shop->lng}}" placeholder="Enter longitude of shop" name="lng">
                 </div>
             </div>
 
-            <div class="col-md-12">
-                <div class="form-group">
-                    <label>Image:</label>
-                    <input type="file" class="form-control" onchange="previewFile(this)" name="file">
-                    <img id="previewImg" alt="shop image" style="max-width: 130px;margin-top: 20px;">
+
+        <div class="form-group row">
+            <label class="col-md-2 col-form-label" >Image:</label>
+            <div class="col-sm-10">
+                <input type="file"  class="form-control" name="avatar">
+                {{--                        <img id="previewImg" alt="shop image" style="max-width: 130px;margin-top: 20px;">--}}
+
+            </div>
+        </div>
+
+
+
+                <div class="form-group row">
+                    <label class="col-md-2 col-form-label">Address No:</label>
+                    <div class="col-sm-10">
+                    <input type="text" class="form-control" value="{{$shop->address_no}}" placeholder="Enter address No." name="address_no.">
                 </div>
             </div>
 
-            <div class="col-md-12">
-                <div class="form-group">
-                    <label>Address No:</label>
-                    <input type="text" class="from-control" value="{{$shop->address_no}}" placeholder="Enter address No." name="address_no.">
+
+                <div class="form-group row">
+                    <label class="col-md-2 col-form-label">Suburb:</label>
+                    <div class="col-sm-10">
+                    <input type="text" class="form-control" value="{{$shop->suburb}}" placeholder="Enter suburb" name="suburb">
                 </div>
             </div>
 
-            <div class="col-md-12">
-                <div class="form-group">
-                    <label>Suburb:</label>
-                    <input type="text" class="from-control" value="{{$shop->suburb}}" placeholder="Enter suburb" name="suburb">
+
+                <div class="form-group row">
+                    <label class="col-md-2 col-form-label">City:</label>
+                    <div class="col-sm-10">
+                    <input type="text" class="form-control" value="{{$shop->city}}" placeholder="Enter city" name="city">
                 </div>
             </div>
 
-            <div class="col-md-12">
-                <div class="form-group">
-                    <label>City:</label>
-                    <input type="text" class="from-control" value="{{$shop->city}}" placeholder="Enter city" name="city">
-                </div>
-            </div>
 
-            <div class="col-md-12">
-                <div class="form-group">
-                    <label>Province:</label>
+                <div class="form-group row">
+                    <label class="col-md-2 col-form-label">Province:</label>
+                    <div class="col-sm-10">
                     <select  name="province" >
                         <option value="Select">Select</option>
                         <option value="Central Province">Central Province</option>
@@ -94,9 +128,10 @@
                 </div>
             </div>
 
-            <div class="col-md-12">
-                <div class="form-group">
-                    <label>Country:</label>
+
+                <div class="form-group row">
+                    <label class="col-md-2 col-form-label">Country:</label>
+                    <div class="col-sm-10">
                     <select  name="country" >
                         <option value="Select">Select</option>
                         <option value="Sri Lanka">Sri Lanka</option>
@@ -104,48 +139,68 @@
                 </div>
             </div>
 
-            <div class="col-md-12">
-                <div class="form-group">
-                    <label>Register Date:</label>
-                    <input type="date" class="from-control" value="{{$shop->registered_date}}" placeholder="Register Date" name="registered_date">
+
+        <div class="form-group row">
+            <label class="col-md-2 col-form-label">Telephone Number:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" value="{{$shop->telephone_numbers}}" placeholder="Telephone Number" name="telephone_numbers">
+            </div>
+        </div>
+
+
+
+
+        <div class="form-group row">
+                    <label class="col-md-2 col-form-label">Register Date:</label>
+                    <div class="col-sm-10">
+                    <input type="date" class="form-control" value="{{$shop->registered_date}}" placeholder="Register Date" name="registered_date">
                 </div>
             </div>
 
-            <div class="col-md-12">
-                <div class="form-group">
-                    <label>Due Date:</label>
-                    <input type="text" class="from-control" value="{{$shop->due_dates}}" placeholder="Enter due Date" name="due_dates">
+
+                <div class="form-group row">
+                    <label class="col-md-2 col-form-label">Due Date:</label>
+                    <div class="col-sm-10">
+                    <input type="text" class="form-control" value="{{$shop->due_dates}}" placeholder="Enter due Date" name="due_dates">
                 </div>
             </div>
 
-            <div class="col-md-12">
-                <div class="form-group">
-                    <label>User ID:</label>
-                    <input type="text" class="from-control" value="{{$shop->user_id}}" placeholder="Enter user ID" name="user_id">
+
+                <div class="form-group row">
+                    <label class="col-md-2 col-form-label">User ID:</label>
+                    <div class="col-sm-10">
+                    <input type="text" class="form-control" value="{{$shop->user_id}}" placeholder="Enter user ID" name="user_id" required>
                 </div>
             </div>
+
+
+        <div class="form-group row">
+            <label class="col-md-2 col-form-label">Route ID:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" value="{{$shop->RouteID}}" placeholder="Enter route ID" name="RouteID" required>
+
+            </div>
+        </div>
+
 
         </div>
 
-        <div class="text-right">
-            <button type="submit"  Value="Save" class="btn btn-primary">Save</button>
-            <a class="btn btn-primary" href="{{route('shop.index')}}">Cancel</a>
-        </div>
+                        <div class="text-right">
+                            <button type="submit"  Value="Save" class="btn btn-primary">Save</button>
+                            <a class="btn btn-secondary" href="{{route('shop.index')}}">Cancel</a>
+                        </div>
 
     </form>
 
-    <script>
-        function previewFile(input){
-            var file=$("input[type=file]").get(0).files[0];
-            if(file){
-                var reader = new FileReader();
-                reader.onload = function (){
-                    $('previewImg').attr("src",reader.result);
-                }
-                reader.readAsDataURL(file);
-            }
-        }
-    </script>
 
-
+                            <!-- /.card-body -->
+                        </div>
+                            <!-- /.card -->
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.container-fluid -->
+    </section>
 @endsection

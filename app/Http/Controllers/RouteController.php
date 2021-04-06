@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Route;
 use Illuminate\Http\Request;
+use function Couchbase\defaultDecoder;
+use App\Http\Controllers\DB;
 
 class RouteController extends Controller
 {
@@ -14,7 +16,10 @@ class RouteController extends Controller
      */
     public function index()
     {
-        return view('Route.index');
+        $route = route::get();
+//        $route = route::paginate(6);
+        return view('Route.index')->with(compact('route'));
+//        return view('Route.index',compact('route'));
     }
 
     /**
@@ -38,10 +43,11 @@ class RouteController extends Controller
         $request->validate([
            'route_name'=>'required'
         ]);
-//        dd($request);
+
        Route::create($request->all());
 
-        return view('Route.index');
+        return redirect()->route('route.index')->with('add','Record Added');
+      //  return view('Route.index');
 
 
     }
@@ -54,7 +60,8 @@ class RouteController extends Controller
      */
     public function show(Route $route)
     {
-        //
+        return view('route.show',compact('route'));
+//        return view('reports.productreport');
     }
 
     /**
@@ -65,7 +72,7 @@ class RouteController extends Controller
      */
     public function edit(Route $route)
     {
-        //
+        return view('route.edit',compact('route'));
     }
 
     /**
@@ -77,7 +84,8 @@ class RouteController extends Controller
      */
     public function update(Request $request, Route $route)
     {
-        //
+        $route->update($request->all());
+        return redirect()->route('route.index')->with('add','Record Updated');
     }
 
     /**
@@ -88,16 +96,42 @@ class RouteController extends Controller
      */
     public function destroy(Route $route)
     {
-        //
+        $route->delete();
+        return redirect()->route('route.index')->with('add','Record Deleted');
     }
 
 
-    public function addData(Request $request)
+
+    public function routereport()
     {
-        //
+        $route = route::get();
+        return view('reports.routereport',compact('route'));
     }
 
 
+
+
+
+
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Route  $rout,compact('route')e
+     * @return \Illuminate\Http\Response
+     */
+    public function show2($id)
+    {
+        $route = Route::find($id);
+        return view('maps.mapview')->with('route', $route);
+    }
+
+
+    public function getlatlng()
+    {
+
+        return view('maps.getlatlng');
+    }
 
 
 }

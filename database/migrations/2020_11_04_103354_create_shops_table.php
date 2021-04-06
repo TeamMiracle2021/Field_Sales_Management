@@ -18,20 +18,24 @@ class CreateShopsTable extends Migration
             $table->string('shop_name');
             $table->string('owner_name');
             $table->string('owner_NIC');
-            $table->float('lat')->nullable();
-            $table->float('lng')->nullable();
+            $table->decimal('lat',16,14)->nullable();
+            $table->decimal('lng',16,14)->nullable();
             $table->string('image')->nullable();
             $table->string('address_no');
             $table->string('suburb');
             $table->string('city');
             $table->string('province');
-            $table->string('country');
-            $table->datetime('registered_date');
+            $table->string('country')->nullable();
+            $table->integer('telephone_numbers');
+            $table->datetime('registered_date')->nullable();
             $table->integer('due_dates')->nullable();
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('userID')->on('users');
+            $table->unsignedBigInteger('RouteID')->nullable();
+            $table->foreign('RouteID')->references('RouteID')->on('routes');
             $table->timestamps();
         });
+
 
 
     }

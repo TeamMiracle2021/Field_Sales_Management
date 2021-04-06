@@ -4,15 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Shop;
 use Database\Seeders\DatabaseSeeder;
-use http\Client\Curl\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-//use DB;
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
-use phpDocumentor\Reflection\DocBlock\Tags\Uses;
-
-
 
 
 class ShopController extends Controller
@@ -24,12 +17,6 @@ class ShopController extends Controller
      */
     public function index()
     {
-//        return DB::table('shops')
-//            ->join('users','shops.user_id',"=",'users.userID')
-//            //->join('products','products.ProductID',"=",'order_details.ProductID')
-//            ->select('shops.*','users.first_name')
-//            //->where('shops.user_id')
-//            ->get();
 
         $Shop =Shop::get();
         return view('shop.Index')->with (compact('Shop'));
@@ -43,6 +30,10 @@ class ShopController extends Controller
     public function create()
     {
         return view('shop.Add');
+//        return DB::select("select lat,lng from shops where shopID=4");
+//        $users = DB::table('users')
+//            ->where('lat', '>', 6)
+//            ->get();
     }
 
     /**
@@ -54,26 +45,24 @@ class ShopController extends Controller
     public function store(Request $request)
     {
 
-
         $Shop=new Shop();
         $Shop->shop_name=$request->shop_name;
         $Shop->owner_name=$request->owner_name;
         $Shop->owner_NIC=$request->owner_NIC;
         $Shop->lat=$request->lat;
         $Shop->lng=$request->lng;
-        $Shop->image=$request->image;
 
 
-//        if($request->hasfile('image')){
-//            $file=$request->file('image');
-//            $extension=$file->getClientOriginalExtension();//get image extension
-//            $filename= time().'.'.$extension;
-//            $file->move('/uploads/shop/',$filename);
-//            $Shop->image=$filename;
-//        }else{
-//            return $request;
-//            $Shop->image='';
-//        }
+        if($request->hasfile('avatar')){
+            $file=$request->file('avatar');
+            $extension=$file->getClientOriginalExtension();//get image extension
+            $filename= time().'.'.$extension;
+            $file->move('uploads/shop',$filename);
+            $Shop->image=$filename;
+        }else{
+            return $request;
+            $Shop->image='';
+        }
 
         $Shop->address_no=$request->address_no;
         $Shop->suburb=$request->suburb;
@@ -82,8 +71,9 @@ class ShopController extends Controller
         $Shop->country=$request->country;
         $Shop->registered_date=$request->registered_date;
         $Shop->due_dates=$request->due_dates;
-        //$Shop->telephone_numbers->telephone_numbers;
+        $Shop->telephone_numbers=$request->telephone_numbers;
         $Shop->user_id=$request->user_id;
+        $Shop->RouteID=$request->RouteID;
         //shop::create($request->all());
         $Shop->save();
         return redirect()->route('shop.index')->with('add','Record Added');
@@ -98,11 +88,10 @@ class ShopController extends Controller
      */
     public function show(Shop $shop)
     {
-//        $Shop = DB::table('shops')
-//            ->join('users','shops.user_id','=','users.userID')
-//            ->select('shops.*','users.first_name')
-//            ->get();
         return view('shop.show',compact('shop'));
+//        return view('maps.mapview');
+//        return DB::select("select lat from shops where shopID=4");
+
     }
 
     /**
@@ -126,6 +115,25 @@ class ShopController extends Controller
     public function update(Request $request, Shop $shop)
     {
         $shop->update($request->all());
+
+        if($request->avatar != '') {
+            $path = public_path() . '/uploads/shop/';
+
+            //code for remove old file
+            if ($shop->image != '' && $shop->image != null) {
+                $file_old = $path . $shop->image;
+                unlink($file_old);
+            }
+
+            //upload new file
+            $file = $request->avatar;
+            $filename = $file->getClientOriginalName();
+            $file->move($path, $filename);
+
+            //for update in table
+            $shop->update(['image' => $filename]);
+
+        }
         return redirect()->route('shop.index')->with('add','Record Updated');
     }
 
@@ -144,14 +152,12 @@ class ShopController extends Controller
 
 
 
-//    public function joinuser(User $user)
-//    {
-//        // return DB::table('orders')->get();
-//        return DB::table('shops')
-//            ->join('users','shops.user_id',"=",'users.userID')
-//            //->join('products','products.ProductID',"=",'order_details.ProductID')
-//            ->select('users.first_name')
-//            ->where('shops.user_id')
-//            ->get();
-//    }
+    public function shopreport()
+    {
+        $Shop =Shop::get();
+        return view('reports.shopreport')->with (compact('Shop')); // blade eka open krpnko
+
+
+    }
+
 }
