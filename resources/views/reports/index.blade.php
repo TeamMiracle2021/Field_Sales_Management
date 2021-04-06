@@ -71,15 +71,15 @@
                             </div>
                             </div>
 
-                            <div class="col-md-4 col-6">
-                                <!-- small box -->
-                                <div class="small-box bg-gradient-teal">
-                                    <div class="inner"><a href="{{route('product.productreport')}}">
-                                            <h4><center><b>User Reports</b></center></h4>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
+{{--                            <div class="col-md-4 col-6">--}}
+{{--                                <!-- small box -->--}}
+{{--                                <div class="small-box bg-gradient-teal">--}}
+{{--                                    <div class="inner"><a href="{{route('product.userreports')}}">--}}
+{{--                                            <h4><center><b>User Reports</b></center></h4>--}}
+{{--                                        </a>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
 
                             <div class="col-md-4 col-6">
                                 <!-- small box -->
@@ -101,25 +101,25 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-4 col-6">
-                                <!-- small box -->
-                                <div class="small-box bg-gradient-teal">
-                                    <div class="inner"><a href="{{route('product.productreport')}}">
-                                            <h4><center><b>Shop Reports</b></center></h4>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
+{{--                            <div class="col-md-4 col-6">--}}
+{{--                                <!-- small box -->--}}
+{{--                                <div class="small-box bg-gradient-teal">--}}
+{{--                                    <div class="inner"><a href="{{route('product.productreport')}}">--}}
+{{--                                            <h4><center><b>Shop Reports</b></center></h4>--}}
+{{--                                        </a>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
 
-                            <div class="col-md-4 col-6">
-                                <!-- small box -->
-                                <div class="small-box bg-gradient-teal">
-                                    <div class="inner"><a href="{{route('product.productreport')}}">
-                                            <h4><center><b>Shop Reports</b></center></h4>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div></center>
+{{--                            <div class="col-md-4 col-6">--}}
+{{--                                <!-- small box -->--}}
+{{--                                <div class="small-box bg-gradient-teal">--}}
+{{--                                    <div class="inner"><a href="{{route('product.productreport')}}">--}}
+{{--                                            <h4><center><b>Shop Reports</b></center></h4>--}}
+{{--                                        </a>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div></center>--}}
 
                                 <!-- ./col -->
 

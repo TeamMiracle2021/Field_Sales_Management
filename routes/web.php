@@ -22,7 +22,9 @@ use App\Http\Controllers\ReportController;
 |
 */
 
-
+Route::get('/', function () {
+    return view('welcome');
+})->name('welcome');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -39,6 +41,7 @@ Route::get('/route/create/getlatlng', [RouteController::class, 'getlatlng'])->na
 Route::get('/rep/shops', [ShopController::class, 'shopreport'])->name('shop.shopreport');
 Route::get('/rep/product', [ProductController::class, 'productreport'])->name('product.productreport');
 Route::get('/rep/route', [RouteController::class, 'routereport'])->name('route.routereport');
+//Route::get('/rep/user', [UserController::class, 'userreports'])->name('ser.userreports');
 
 
 

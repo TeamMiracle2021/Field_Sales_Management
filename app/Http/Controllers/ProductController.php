@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Models\User;
+use App\Models\Category;
 
 class ProductController extends Controller
 {
@@ -42,7 +44,8 @@ class ProductController extends Controller
     //********************************************************************************   create  *******************************************************************************
     public function create()
     {
-        return view('product.createProduct');
+        $categories = Category::all();
+        return view('product.createProduct')->with('categories', $categories);
     }
     //**************************************************************************************************************************************************************************
 

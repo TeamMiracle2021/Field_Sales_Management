@@ -6,6 +6,7 @@ use App\Models\Route;
 use Illuminate\Http\Request;
 use function Couchbase\defaultDecoder;
 use App\Http\Controllers\DB;
+Use App\Models\User;
 
 class RouteController extends Controller
 {
@@ -29,7 +30,8 @@ class RouteController extends Controller
      */
     public function create()
     {
-        return view('Route.create');
+        $users = User::all();
+        return view('Route.create')->with('users', $users);
     }
 
     /**

@@ -149,16 +149,24 @@
                     <div class="form-group row">
                         <label class="col-md-2 col-form-label">User ID:</label>
                         <div class="col-sm-10">
-                        <input type="text" class="form-control" placeholder="Enter user ID" name="user_id">
-                    </div>
+                            <select class="form-control"  name="user_id" >
+                                @foreach ($users as $user)
+                                    <option value="{{$user->userID}}">{{$user->userID}} -  {{$user->first_name}} {{$user->last_name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
                 </div>
 
 
                                 <div class="form-group row">
                                     <label class="col-md-2 col-form-label">Route ID:</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" placeholder="Enter route ID" name="RouteID">
-
+{{--                                        <input type="text" class="form-control" placeholder="Enter route ID" name="RouteID">--}}
+                                        <select class="form-control"  name="RouteID" >
+                                            @foreach ($routes as $route)
+                                                <option value="{{$route->RouteID}}"> {{$route->RouteID}} - {{$route->route_name}}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
 

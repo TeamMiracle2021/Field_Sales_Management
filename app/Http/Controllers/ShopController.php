@@ -6,6 +6,8 @@ use App\Models\Shop;
 use Database\Seeders\DatabaseSeeder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\User;
+use App\Models\Route;
 
 
 class ShopController extends Controller
@@ -29,11 +31,11 @@ class ShopController extends Controller
      */
     public function create()
     {
-        return view('shop.Add');
-//        return DB::select("select lat,lng from shops where shopID=4");
-//        $users = DB::table('users')
-//            ->where('lat', '>', 6)
-//            ->get();
+        $users = User::all();
+        $routes = Route::all();
+
+        return view('shop.Add')->with('users', $users)->with('routes',$routes);
+
     }
 
     /**
@@ -159,5 +161,25 @@ class ShopController extends Controller
 
 
     }
+
+
+
+
+
+
+
+//    public function Validator(array $data){
+//        return Validator::make($data, [
+//            'fname' => ['required', 'string', 'max:255'],
+//            'mname' => ['required', 'string', 'max:255'],
+//            'lname' => ['required', 'string', 'max:255'],
+//            'contact' => ['required', 'numeric', 'digits:10'],
+//            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+//            'password' => ['required', 'string', 'min:8', 'confirmed'],
+//            'avatar' => ['sometimes', 'image', 'mimes:jpg,jpeg,bmp,svg,png' ,'max:5000'],
+//        ]);
+//
+//
+//    }
 
 }
