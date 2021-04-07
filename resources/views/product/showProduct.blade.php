@@ -65,7 +65,7 @@
 
             <tr>
                 <td>Category Id</td>
-                <td> {{$product->category_id}}</td>
+                <td> {{$product->categories->category_name}}</td>
             </tr>
 
             <tr>

@@ -5,13 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+
 class Product extends Model
 {
     use HasFactory;
     protected$table='products';
     protected $primaryKey = 'productID';
     protected $fillable=[
-        'product_Name',  //ProductControler ekeeta gaththa data tika data base ekee save kara gannawa
+        'product_Name',
         'cost_price',
         'sales_price',
         'labled_price',
@@ -19,7 +20,11 @@ class Product extends Model
         'Expire_date',
         //'user_id',
         'category_id'
-    
+
     ];
+
+    public function categories(){
+        return $this->belongsTo(Category::class, 'category_id', 'categoryID');
+    }
 }
 

@@ -11,6 +11,13 @@ class Category extends Model
     protected $table = 'categories';
     protected $primaryKey = 'categoryID ';
     protected $fillable = [
-        'category_name'  //CategoryControler ekeeta gaththa data tika data base ekee save kara gannawa
+        'category_name'
     ];
+
+
+
+
+    public function product(){
+        return $this->hasMany(Product::class, 'category_id', 'categoryID');
+    }
 }

@@ -1,7 +1,7 @@
 @extends("layouts.app")
 
 @section('title')
-Product-Edit | Sales Automation system
+Product-Add | Sales Automation system
 @endsection
 
 
@@ -91,18 +91,26 @@ Product-Edit | Sales Automation system
                         </div>
 
 
-                        <div class="form-group row">
-                            <label class="col-md-2 col-form-label">User Id</label>
-                            <div class="col-sm-10">
-                            <input type="text" class="form-control" name="user_id" placeholder="Enter user id">
-                            </div>
-                        </div>
+{{--                        <div class="form-group row">--}}
+{{--                            <label class="col-md-2 col-form-label">User Id</label>--}}
+{{--                            <div class="col-sm-10">--}}
+{{--                                <select class="form-control"  name="user_id" >--}}
+{{--                                    @foreach ($users as $user)--}}
+{{--                                        <option value="{{$user->userID}}">{{$user->userID}} -  {{$user->first_name}} {{$user->last_name}}</option>--}}
+{{--                                    @endforeach--}}
+{{--                                </select>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
 
 
                         <div class="form-group row">
                             <label class="col-md-2 col-form-label">Category ID</label>
                             <div class="col-sm-10">
-                            <input type="text" class="form-control" name="category_id" placeholder="Enter category name" required>
+                                <select class="form-control"  name="category_id" >
+                                    @foreach ($categories as $category)
+                                        <option value="{{$category->categoryID}}">{{$category->categoryID}} -  {{$category->category_name}} </option>
+                                    @endforeach
+                                </select>
                         </div>
                         </div>
 

@@ -1,5 +1,10 @@
 @extends("layouts.app")
 
+@section('title')
+    FSM | Product
+@endsection
+
+
 @section('content')
 
 @if($msg=Session::get('alert'))
