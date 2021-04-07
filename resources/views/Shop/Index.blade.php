@@ -49,11 +49,17 @@
                                                  class="img-bordered-sm" width="100px;" height="100px;" alt="Shop-Image"></td>
                                         <td>{{$data->city}}</td>
                                         <td>
+                                            <form action="{{route('shop.destroy',$data->ShopID)}}" method="POST">
+
+
 
                                                 <a class="btn btn-primary" href="{{route('shop.edit',$data->ShopID)}}">Edit</a>
-                                                <button type="button" data-toggle="modal" class="btn btn-danger" data-target="#exampleModal" >Delete</button>
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit"  class="btn btn-danger">Delete</button>
+{{--                                                <button type="button" data-toggle="modal" class="btn btn-danger" data-target="#exampleModal" >Delete</button>--}}
                                                 <a class="btn btn-success" href="{{route('shop.show',$data->ShopID)}}">View</a>
-
+                                                </form>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -75,11 +81,7 @@
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 
-                                            <form action="{{route('shop.destroy',$data->ShopID)}}" method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit"  class="btn btn-danger">Delete</button>
-                                            </form>
+
                                         </div>
                                     </div>
                                 </div>

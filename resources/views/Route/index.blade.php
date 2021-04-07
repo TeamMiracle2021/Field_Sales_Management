@@ -39,21 +39,28 @@
                                 </tr>
                                 </thead>
                                 <tbody>
+                                <tr>
                                 @foreach($route as $data)
-                                    <tr>
+
+
                                         <td>{{$data->route_name}}</td>
                                         <td>{{$data->user->first_name}}</td>
                                         <td>
+                                            <form action="{{route('route.destroy',$data->RouteID)}}" method="POST">
 
                                                 <a class="btn btn-primary" href="{{route('route.edit',$data->RouteID)}}">Edit</a>
-                                                <button type="button" data-toggle="modal" class="btn btn-danger" data-target="#exampleModal" >Delete</button>
+{{--                                                <button type="button" data-toggle="modal" class="btn btn-danger" data-target="#exampleModal" >Delete</button>--}}
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit"  class="btn btn-danger">Delete</button>
                                                 <a class="btn btn-primary" href="{{route('route.show',$data->RouteID)}}">View</a>
-                                                <a class="btn btn-primary" href="{{route('route.show2', $data->RouteID)}}" target="_blank">View on Map</a>
+                                                <a class="btn btn-primary" href="{{route('route.show2', $data->RouteID)}}" target="_blank">View on Map <i class="fas fa-map-marker-alt"></i></a>
 
+                                            </form>
                                         </td>
-                                    </tr>
+                                </tr>
                                 @endforeach
-                                </tbody>
+                                 </tbody>
                             </table>
 
                             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -71,11 +78,9 @@
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 
-                                            <form action="{{route('route.destroy',$data->RouteID)}}" method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                            <button type="submit"  class="btn btn-danger">Delete</button>
-                                            </form>
+
+
+
                                         </div>
                                     </div>
                                 </div>
