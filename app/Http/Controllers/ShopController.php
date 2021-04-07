@@ -38,6 +38,25 @@ class ShopController extends Controller
 
     }
 
+
+
+
+
+
+
+    public function Validator(array $data){
+        return Validator::make($data, [
+            'fname' => ['required', 'string', 'max:255'],
+            'mname' => ['required', 'string', 'max:255'],
+            'lname' => ['required', 'string', 'max:255'],
+            'contact' => ['required', 'numeric', 'digits:10'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'avatar' => ['sometimes', 'image', 'mimes:jpg,jpeg,bmp,svg,png' ,'max:5000'],
+        ]);
+
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -46,6 +65,7 @@ class ShopController extends Controller
      */
     public function store(Request $request)
     {
+
 
         $Shop=new Shop();
         $Shop->shop_name=$request->shop_name;
