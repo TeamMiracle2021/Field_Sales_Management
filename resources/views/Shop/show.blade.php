@@ -121,7 +121,7 @@
                                         <tr>
                                             <td>Image</td>
                                             <td> <img src="{{asset('uploads/shop/'.$shop->image)  }}"
-                                                        class="img-bordered-sm" width="100px;" height="100px;" alt="Product-Image"> </td>
+                                                        class="img-bordered-sm" width="300px;" height="300px;" alt="Product-Image"> </td>
                                         </tr>
 
 

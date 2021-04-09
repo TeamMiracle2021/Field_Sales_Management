@@ -52,7 +52,7 @@
 
                                         </td>
                                     </tr>
-                                @endforeach
+
                                 </tbody>
                             </table>
 
@@ -75,7 +75,7 @@
                                                 @csrf
                                                 @method('DELETE')
                                             <button type="submit"  class="btn btn-danger">Delete</button>
-                                            </form>
+                                            </form>                   @endforeach
                                         </div>
                                     </div>
                                 </div>

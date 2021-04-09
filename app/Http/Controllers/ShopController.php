@@ -39,23 +39,20 @@ class ShopController extends Controller
     }
 
 
+//    public function Validator(array $data){
+//        return Validator::make($data, [
+//            'fname' => ['required', 'string', 'max:255'],
+//            'mname' => ['required', 'string', 'max:255'],
+//            'lname' => ['required', 'string', 'max:255'],
+//            'contact' => ['required', 'numeric', 'digits:10'],
+//            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+//            'password' => ['required', 'string', 'min:8', 'confirmed'],
+//            'avatar' => ['sometimes', 'image', 'mimes:jpg,jpeg,bmp,svg,png' ,'max:5000'],
+//        ]);
+//
+//    }
 
 
-
-
-
-    public function Validator(array $data){
-        return Validator::make($data, [
-            'fname' => ['required', 'string', 'max:255'],
-            'mname' => ['required', 'string', 'max:255'],
-            'lname' => ['required', 'string', 'max:255'],
-            'contact' => ['required', 'numeric', 'digits:10'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'avatar' => ['sometimes', 'image', 'mimes:jpg,jpeg,bmp,svg,png' ,'max:5000'],
-        ]);
-
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -67,7 +64,7 @@ class ShopController extends Controller
     {
 
 
-        $Shop=new Shop();
+       $Shop=new Shop();
         $Shop->shop_name=$request->shop_name;
         $Shop->owner_name=$request->owner_name;
         $Shop->owner_NIC=$request->owner_NIC;
