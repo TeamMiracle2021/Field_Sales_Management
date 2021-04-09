@@ -51,17 +51,18 @@
                                         <td>
                                             <form action="{{route('shop.destroy',$data->ShopID)}}" method="POST">
 
-                                                <a class="btn btn-primary" href="{{route('shop.edit',$data->ShopID)}}">Edit</a>
 
+
+                                                <a class="btn btn-primary" href="{{route('shop.edit',$data->ShopID)}}">Edit</a>
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit"  class="btn btn-danger">Delete</button>
 {{--                                                <button type="button" data-toggle="modal" class="btn btn-danger" data-target="#exampleModal" >Delete</button>--}}
                                                 <a class="btn btn-success" href="{{route('shop.show',$data->ShopID)}}">View</a>
-                                            </form>
+                                                </form>
                                         </td>
                                     </tr>
-@endforeach
+                                @endforeach
                                 </tbody>
                             </table>
 
@@ -79,7 +80,6 @@
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-
 
 
                                         </div>
