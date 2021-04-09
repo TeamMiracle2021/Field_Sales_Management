@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+    FSM | RouteAdd
+@endsection
+
 @section('content')
 
     <br>
@@ -14,7 +18,7 @@
                                     <h3 class="float-left"><b>Add Route</b></h3>
 
                                     <a class="btn btn-secondary float-left" href="{{route('route.getlatlng')}}" target="_blank">Get lat,lng From map</a>
-                                        <a class="btn btn-primary float-right" href="{{route('shop.index')}}">Back</a>
+                                        <a class="btn btn-primary float-right" href="{{route('route.index')}}">Back</a>
 
                                 </div>
                             </div>

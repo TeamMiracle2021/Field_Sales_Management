@@ -42,13 +42,11 @@ class RouteController extends Controller
      */
     public function store(Request $request)
     {
-        $validateData = $request->validate([
-           'route_name'=>'required'
-        ],[
-            'name.required' => 'Name is required'
-        ]);
-        $route = Route::create($validateData);
-      // Route::create($request->all());
+//        $request->validate([
+//           'route_name'=>'required'
+//        ]);
+
+       Route::create($request->all());
 
         return redirect()->route('route.index')->with('add','Record Added');
       //  return view('Route.index');

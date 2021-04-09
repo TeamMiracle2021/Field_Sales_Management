@@ -35,6 +35,8 @@ Route::resource('category',CategoryController::class);
 //Route::delete('product',[ProductController::class,'destroy']);
 Route::resource('shop',ShopController::class);
 Route::resource('route',RouteController::class);
+
+
 Route::resource('report',\App\Http\Controllers\ReportController::class);
 
 
