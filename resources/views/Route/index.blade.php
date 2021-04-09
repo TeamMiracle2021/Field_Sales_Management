@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    Route | FSM
+    FSM | Route
 @endsection
 
 

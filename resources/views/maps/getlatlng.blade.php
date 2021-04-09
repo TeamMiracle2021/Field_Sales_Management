@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>get lat lng on click</title>
+    <title>Get LatLng From Map</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <style type="text/css">
         /* Always set the map height explicitly to define the size of the div
          * element that contains the map. */
-        #map2 {
+        #map {
             height: 100%;
         }
 
@@ -20,8 +20,8 @@
     </style>
     <script>
         function initMap() {
-            const myLatlng = { lat: 6.5, lng: 79.5 };
-            const map = new google.maps.Map(document.getElementById("map2"), {
+            const myLatlng = { lat: 7.3, lng: 80};
+            const map = new google.maps.Map(document.getElementById("map"), {
                 zoom: 8,
                 center: myLatlng,
             });
@@ -30,7 +30,7 @@
                 content: "Click the map to get Lat/Lng!",
                 position: myLatlng,
             });
-            infoWindow.open(map2);
+            infoWindow.open(map);
             // Configure the click listener.
             map.addListener("click", (mapsMouseEvent) => {
                 // Close the current InfoWindow.
@@ -42,13 +42,13 @@
                 infoWindow.setContent(
                     JSON.stringify(mapsMouseEvent.latLng.toJSON(), null, 2)
                 );
-                infoWindow.open(map2);
+                infoWindow.open(map);
             });
         }
     </script>
 </head>
 <body>
-<div id="map2"></div>
+<div id="map"></div>
 
 <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
 <script
@@ -57,5 +57,3 @@
 ></script>
 </body>
 </html>
-
-

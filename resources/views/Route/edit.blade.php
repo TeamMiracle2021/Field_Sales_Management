@@ -1,5 +1,10 @@
 @extends('layouts.app')
 
+
+@section('title')
+    FSM | RouteEdit {{$route->route_name}}
+@endsection
+
 @section('content')
 
     <br>
@@ -12,7 +17,7 @@
                             <div class="row">
                                 <div class="col-xl-12">
                                     <h3 class="float-left"><b>Route Edit</b></h3>
-                                    <a class="btn btn-primary float-right" href="{{route('shop.index')}}">back</a>
+                                    <a class="btn btn-primary float-right" href="{{route('route.index')}}">back</a>
                                 </div>
                             </div>
                         </div>
@@ -83,6 +88,7 @@
 
 
     </form>
+                        </div>
                             <!-- /.card-body -->
                         </div>
                         <!-- /.card -->

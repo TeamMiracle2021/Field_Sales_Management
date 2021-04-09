@@ -42,9 +42,9 @@ class RouteController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-           'route_name'=>'required'
-        ]);
+//        $request->validate([
+//           'route_name'=>'required'
+//        ]);
 
        Route::create($request->all());
 

@@ -33,6 +33,7 @@
                                     <th>Start Longitude</th>
                                     <th>End Latitude</th>
                                     <th>End Longitude</th>
+                                    <th>User</th>
 {{--                                    <th>USer</th>--}}
 {{--                                    <th>Shops</th>--}}
 
@@ -44,11 +45,12 @@
 
                                     <tr>
                                         <td>{{$data->RouteID}}</td>
+                                        <td>{{$data->route_name}}</td>
                                         <td>{{$data->start_lat}}</td>
                                         <td>{{$data->start_lng}}</td>
                                         <td>{{$data->end_lat}}</td>
                                         <td>{{$data->end_lng}}</td>
-                                        <td>{{$data->user_id}}</td>
+                                        <td>{{$data->user->first_name}}</td>
 {{--                                        <td>{{$data->address_no}}</td>--}}
 
 

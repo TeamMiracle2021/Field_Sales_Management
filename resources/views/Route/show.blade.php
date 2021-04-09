@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+    FSM | RouteView of {{$route->route_name}} route
+@endsection
+
 @section('content')
     <br>
     <section class="content">
