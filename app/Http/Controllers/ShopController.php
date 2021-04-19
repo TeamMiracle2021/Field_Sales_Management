@@ -202,26 +202,13 @@ class ShopController extends Controller
 //
 //    }
         //__________________________________________________________API__________________________________________________________________
-                public function saveShop(Request $request, $id){
+                public function saveShop(Request $request){
 
                     $Shop=new Shop();
                     $Shop->shop_name=$request->shop_name;
                     $Shop->owner_name=$request->owner_name;
                     $Shop->owner_NIC=$request->owner_NIC;
-                    $Shop->lat=$request->lat;
-                    $Shop->lng=$request->lng;
 
-
-                    if($request->hasfile('avatar')){
-                        $file=$request->file('avatar');
-                        $extension=$file->getClientOriginalExtension();//get image extension
-                        $filename= time().'.'.$extension;
-                        $file->move('uploads/shop',$filename);
-                        $Shop->image=$filename;
-                    }else{
-                        return $request;
-                        $Shop->image='';
-                    }
 
                     $Shop->address_no=$request->address_no;
                     $Shop->suburb=$request->suburb;

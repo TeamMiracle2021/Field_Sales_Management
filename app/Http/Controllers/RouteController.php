@@ -131,14 +131,27 @@ class RouteController extends Controller
 
 
 
-
-
-
     public function getlatlng()
     {
 
         return view('maps.getlatlng');
     }
 
+
+
+
+//    -------------------------API----------------------------
+    public function show3($id)
+    {
+        $route = Route::find($id);
+//        return response()->json($route);
+        return response()->json($route->shops);
+    }
+
+
+    public function storemobile(Request $request)
+    {
+        Route::create($request->all());
+    }
 
 }

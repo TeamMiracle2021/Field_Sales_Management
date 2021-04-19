@@ -2,6 +2,10 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RouteController;
+use App\Http\Controllers\ShopController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +25,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 
-Route::post('/shopadd/{id}',[ShopController::class,'saveShop']);
+Route::post('/shopadd',[ShopController::class,'saveShop']);
+
+Route::get('/show3/{id}', [RouteController::class, 'show3'])->name('route.show3');
+
+Route::post('/route/cre',[RouteController::class, 'storemobile'])->name('route.storemobile');
 
 
