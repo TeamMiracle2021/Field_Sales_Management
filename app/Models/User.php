@@ -64,4 +64,8 @@ class User extends Authenticatable
         return $this->hasMany(Route::class, 'user_id', 'userID');
     }
 
+    public function product() {
+        return $this->hasMany(Route::class, 'user_id', 'userID');
+    }
+
 }

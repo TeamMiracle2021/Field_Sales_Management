@@ -35,7 +35,8 @@
                                 <thead>
                                 <tr>
                                     <th>user Name</th>
-{{--                                    <th>User Name</th>--}}
+                                    <th>Middle Name</th>
+                                    <th>Last Name</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
@@ -46,6 +47,8 @@
 
 {{--                                        <td>{{$data->route_name}}</td>--}}
                                         <td>{{$data->first_name}}</td>
+                                        <td>{{$data->middle_name}}</td>
+                                        <td>{{$data->last_name}}</td>
                                         <td>
                                             <form action="{{route('user.destroy',$data->userID )}}" method="POST">
 

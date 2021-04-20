@@ -58,15 +58,18 @@
                 <td> {{$product->weight}}</td>
             </tr>
 
-            <tr>
-                <td>Expire Date</td>
-                <td> {{$product->Expire_date}}</td>
-            </tr>
 
             <tr>
-                <td>Category Id</td>
+                <td>Category </td>
                 <td> {{$product->categories->category_name}}</td>
             </tr>
+
+
+            <tr>
+                <td>Created By </td>
+                <td> {{$product->user->first_name}} {{$product->user->last_name}}</td>
+            </tr>
+
 
             <tr>
                 <td>Created At</td>

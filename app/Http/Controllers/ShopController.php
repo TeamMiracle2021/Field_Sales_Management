@@ -54,6 +54,24 @@ class ShopController extends Controller
      */
     public function store(Request $request)
     {
+        $this->Validate($request,[
+            'shop_name'=>'required',
+            'owner_name'=>'required',
+            'owner_NIC'=>'required|max:10<=12',
+            'lat'=>'numeric',
+            'lng'=>'numeric',
+            'image'=>'nullable|mimes:jpg,jpeg,bmp,svg,png',
+            'address_no' => 'required',
+            'suburb'=> 'required',
+            'city' => 'required',
+            'telephone_numbers' => 'numeric|max:10=10',
+            'user_id'=> 'required',
+            'RouteID'=>'required'
+
+        ],[
+            'owner_NIC.required'=>'NIC should be 10 or 12 characteristics',
+            'telephone_numbers'=>'Telephone number should be 10 numbers'
+        ]);
 
 
         $Shop=new Shop();
@@ -99,6 +117,7 @@ class ShopController extends Controller
      */
     public function show(Shop $shop)
     {
+
         return view('Shop.show',compact('shop'));
 //        return view('maps.mapview');
 //        return DB::select("select lat from shops where shopID=4");
@@ -113,7 +132,12 @@ class ShopController extends Controller
      */
     public function edit(Shop $shop)
     {
-        return view('Shop.Edit',compact('shop'));
+        $users = User::all();
+        $routes = Route::all();
+
+        return view('shop.Edit',compact('shop'))->with('users', $users)->with('routes',$routes);
+
+//        return view('Shop.Edit',compact('shop'));
     }
 
     /**
@@ -125,6 +149,25 @@ class ShopController extends Controller
      */
     public function update(Request $request, Shop $shop)
     {
+        $this->Validate($request,[
+            'shop_name'=>'required',
+            'owner_name'=>'required',
+            'owner_NIC'=>'required|max:10<=12',
+            'lat'=>'numeric',
+            'lng'=>'numeric',
+            'image'=>'nullable|mimes:jpg,jpeg,bmp,svg,png',
+            'address_no' => 'required',
+            'suburb'=> 'required',
+            'city' => 'required',
+            'telephone_numbers' => 'numeric|max:10=10',
+            'user_id'=> 'required',
+            'RouteID'=>'required'
+
+        ],[
+            'owner_NIC.required'=>'NIC should be 10 or 12 characteristics',
+            'telephone_numbers'=>'Telephone number should be 10 numbers'
+        ]);
+
         $shop->update($request->all());
 
         if($request->avatar != '') {

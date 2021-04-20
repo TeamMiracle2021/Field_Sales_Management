@@ -53,8 +53,8 @@
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit"  class="btn btn-danger">Delete</button>
-                                                <a class="btn btn-primary" href="{{route('route.show',$data->RouteID)}}">View</a>
-                                                <a class="btn btn-primary" href="{{route('route.show2', $data->RouteID)}}" target="_blank">View on Map <i class="fas fa-map-marker-alt"></i></a>
+                                                <a class="btn btn-success" href="{{route('route.show',$data->RouteID)}}">View</a>
+                                                <a class="btn btn-info" href="{{route('route.show2', $data->RouteID)}}" target="_blank">View on Map <i class="fas fa-map-marker-alt"></i></a>
 
                                             </form>
                                         </td>
