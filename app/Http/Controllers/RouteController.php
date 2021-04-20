@@ -62,7 +62,7 @@ class RouteController extends Controller
      */
     public function show(Route $route)
     {
-        return view('route.show',compact('route'));
+        return view('Route.show',compact('route'));
 //        return view('reports.productreport');
     }
 
@@ -74,7 +74,7 @@ class RouteController extends Controller
      */
     public function edit(Route $route)
     {
-        return view('route.edit',compact('route'));
+        return view('Route.edit',compact('route'));
     }
 
     /**

@@ -34,7 +34,7 @@ class ShopController extends Controller
         $users = User::all();
         $routes = Route::all();
 
-        return view('shop.Add')->with('users', $users)->with('routes',$routes);
+        return view('Shop.Add')->with('users', $users)->with('routes',$routes);
 
     }
 
@@ -99,7 +99,7 @@ class ShopController extends Controller
      */
     public function show(Shop $shop)
     {
-        return view('shop.show',compact('shop'));
+        return view('Shop.show',compact('shop'));
 //        return view('maps.mapview');
 //        return DB::select("select lat from shops where shopID=4");
 
@@ -113,7 +113,7 @@ class ShopController extends Controller
      */
     public function edit(Shop $shop)
     {
-        return view('shop.Edit',compact('shop'));
+        return view('Shop.Edit',compact('shop'));
     }
 
     /**
