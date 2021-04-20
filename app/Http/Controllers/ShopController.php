@@ -21,7 +21,7 @@ class ShopController extends Controller
     {
 
         $Shop =Shop::get();
-        return view('shop.Index')->with (compact('Shop'));
+        return view('shop.index')->with (compact('Shop'));
     }
 
     /**
@@ -185,43 +185,11 @@ class ShopController extends Controller
 
 
 
-
-
-
-//    public function Validator(array $data){
-//        return Validator::make($data, [
-//            'fname' => ['required', 'string', 'max:255'],
-//            'mname' => ['required', 'string', 'max:255'],
-//            'lname' => ['required', 'string', 'max:255'],
-//            'contact' => ['required', 'numeric', 'digits:10'],
-//            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-//            'password' => ['required', 'string', 'min:8', 'confirmed'],
-//            'avatar' => ['sometimes', 'image', 'mimes:jpg,jpeg,bmp,svg,png' ,'max:5000'],
-//        ]);
-//
-//
-//    }
         //__________________________________________________________API__________________________________________________________________
-                public function saveShop(Request $request){
+    public function shop1($id)
+    {
+        $shop = Shop::find($id);
+        return response()->json($shop);
 
-                    $Shop=new Shop();
-                    $Shop->shop_name=$request->shop_name;
-                    $Shop->owner_name=$request->owner_name;
-                    $Shop->owner_NIC=$request->owner_NIC;
-
-
-                    $Shop->address_no=$request->address_no;
-                    $Shop->suburb=$request->suburb;
-                    $Shop->city=$request->city;
-                    $Shop->province=$request->province;
-                    $Shop->country=$request->country;
-                    $Shop->registered_date=$request->registered_date;
-                    $Shop->due_dates=$request->due_dates;
-                    $Shop->telephone_numbers=$request->telephone_numbers;
-                    $Shop->RouteID=$request->RouteID;
-                    //shop::create($request->all());
-                    $Shop->save();
-                    return ;
-
-                }
+    }
 }

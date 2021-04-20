@@ -6,6 +6,8 @@ use App\Http\Controllers\ShopController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserTypeController;
 
 
 
@@ -35,6 +37,8 @@ Route::resource('category',CategoryController::class);
 //Route::delete('product',[ProductController::class,'destroy']);
 Route::resource('shop',ShopController::class);
 Route::resource('route',RouteController::class);
+Route::resource('user',UserController::class);
+Route::resource('usertype',UserTypeController::class);
 
 
 Route::resource('report',\App\Http\Controllers\ReportController::class);
