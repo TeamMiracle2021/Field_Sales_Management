@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Route;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use function Couchbase\defaultDecoder;
-use App\Http\Controllers\DB;
 Use App\Models\User;
 
 class RouteController extends Controller
@@ -168,9 +168,10 @@ class RouteController extends Controller
 
 
 
+
+
     public function getlatlng()
     {
-
         return view('maps.getlatlng');
     }
 
@@ -189,6 +190,25 @@ class RouteController extends Controller
     public function storemobile(Request $request)
     {
         Route::create($request->all());
+    }
+
+    public function viewroutes($id){
+        $routes  = DB::table('routes')->where('user_id',$id)->get();
+        return $routes;
+    }
+
+    public function viewroute($id){
+        $route = new Route();
+        $route->details  = DB::table('routes')->where('RouteID',$id)->get();
+        $route->waypoints = DB::table('shops')
+            ->where('RouteID',$id)
+            ->select('shop_name','lat','lng')
+            ->get();
+//        $route->waypoints->lat = DB::table('shops')->where('RouteID',$id)->value('lat');
+//        $route->waypoints->lng = DB::table('shops')->where('RouteID',$id)->value('lng');
+
+
+        return $route;
     }
 
 }

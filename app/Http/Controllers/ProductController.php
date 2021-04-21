@@ -6,6 +6,7 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Category;
+use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
@@ -249,5 +250,17 @@ class ProductController extends Controller
         return view('reports.productreport')->with(compact('product'));
     }
 
+    //==============================================================API=======================================================
+
+    public function viewcategories(){
+        $categories = Category::get();
+        return $categories;
+    }
+
+    public function viewcategoryproducts($id){
+        $products = DB::table('products')->where('category_id',$id)->get();
+        return $products;
+
+    }
 
 }

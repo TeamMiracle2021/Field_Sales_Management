@@ -38,4 +38,22 @@ Route::get('/fut/{id}', [UserTypeController::class, 'fut'])->name('usertype.fut'
 
 Route::post('/route/cre',[RouteController::class, 'storemobile'])->name('route.storemobile');
 
+Route::get('/routeview/{id}',[RouteController::class,'viewroutes']);
 
+Route::get('/routewaypoints/{id}',[RouteController::class,'viewroute']);
+
+Route::get('/viewshops/{id}',[ShopController::class,'viewshops']);
+
+Route::get('/viewshopdetails/{id}',[ShopController::class,'viewshopdetails']);
+
+Route::get('/viewcategories',[ProductController::class,'viewcategories']);
+
+Route::get('/viewcategoryproducts/{id}',[ProductController::class,'viewcategoryproducts']);
+
+Route::post('/attendancecheckin/{id}',[\App\Http\Controllers\AttendenceController::class,'store']);
+
+Route::put('/attendancecheckout/{id}',[\App\Http\Controllers\AttendenceController::class,'update']);
+
+Route::get('/orderlist/{id}',[ShopController::class,'orderlist']);
+
+Route::get('/orderdetails/{id}',[ShopController::class,'orderdetails']);
