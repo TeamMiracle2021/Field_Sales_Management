@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use App\Models\Shop;
 use Database\Seeders\DatabaseSeeder;
 use Illuminate\Http\Request;
@@ -21,7 +22,8 @@ class ShopController extends Controller
     {
 
         $Shop =Shop::get();
-        return view('shop.Index')->with (compact('Shop'));
+//        $type = DB::table('users')->where('userID',$Shop->user_id)->value('user_typeID');
+        return view('Shop.Index')->with (compact('Shop'));
     }
 
     /**
@@ -34,9 +36,16 @@ class ShopController extends Controller
         $users = User::all();
         $routes = Route::all();
 
-        return view('shop.Add')->with('users', $users)->with('routes',$routes);
+        return view('Shop.Add')->with('users', $users)->with('routes',$routes);
 
     }
+
+
+
+
+
+
+
 
 
     /**
@@ -47,8 +56,7 @@ class ShopController extends Controller
      */
     public function store(Request $request)
     {
-
-         $this->Validate($request,[
+        $this->Validate($request,[
             'shop_name'=>'required',
             'owner_name'=>'required',
             'owner_NIC'=>'required|max:10<=12',
@@ -63,9 +71,10 @@ class ShopController extends Controller
             'RouteID'=>'required'
 
         ],[
-             'owner_NIC.required'=>'NIC should be 10 or 12 characteristics',
-             'telephone_numbers'=>'Telephone number should be 10 numbers'
-         ]);
+            'owner_NIC.required'=>'NIC should be 10 or 12 characteristics',
+            'telephone_numbers'=>'Telephone number should be 10 numbers'
+        ]);
+
 
         $Shop=new Shop();
         $Shop->shop_name=$request->shop_name;
@@ -110,7 +119,8 @@ class ShopController extends Controller
      */
     public function show(Shop $shop)
     {
-        return view('shop.show',compact('shop'));
+
+        return view('Shop.show',compact('shop'));
 //        return view('maps.mapview');
 //        return DB::select("select lat from shops where shopID=4");
 
@@ -127,7 +137,9 @@ class ShopController extends Controller
         $users = User::all();
         $routes = Route::all();
 
-        return view('shop.Edit',compact('shop'))->with('users', $users)->with('routes',$routes);;
+        return view('Shop.Edit',compact('shop'))->with('users', $users)->with('routes',$routes);
+
+//        return view('Shop.Edit',compact('shop'));
     }
 
     /**
@@ -207,56 +219,86 @@ class ShopController extends Controller
 
 
 
-
-
-
-//    public function Validator(array $data){
-//        return Validator::make($data, [
-//            'fname' => ['required', 'string', 'max:255'],
-//            'mname' => ['required', 'string', 'max:255'],
-//            'lname' => ['required', 'string', 'max:255'],
-//            'contact' => ['required', 'numeric', 'digits:10'],
-//            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-//            'password' => ['required', 'string', 'min:8', 'confirmed'],
-//            'avatar' => ['sometimes', 'image', 'mimes:jpg,jpeg,bmp,svg,png' ,'max:5000'],
-//        ]);
-//
-//
-//    }
         //__________________________________________________________API__________________________________________________________________
-                public function saveShop(Request $request, $id){
+    public function shop1($id)
+    {
+        $shop = Shop::find($id);
+        return response()->json($shop);
 
-                    $Shop=new Shop();
-                    $Shop->shop_name=$request->shop_name;
-                    $Shop->owner_name=$request->owner_name;
-                    $Shop->owner_NIC=$request->owner_NIC;
-                    $Shop->lat=$request->lat;
-                    $Shop->lng=$request->lng;
+    }
+
+    public function viewshops($id){
+        $shops = DB::table('shops')->where('user_id',$id)->get();
+//        $shop = DB::table('shops')->where('user_id',$id)->select('','')->get();
+        return $shops;
+
+    }
+
+    public function viewshopdetails($id){
+        $shop = DB::table('shops')->where('ShopID',$id)->get();
+        return $shop;
+    }
 
 
-                    if($request->hasfile('avatar')){
-                        $file=$request->file('avatar');
-                        $extension=$file->getClientOriginalExtension();//get image extension
-                        $filename= time().'.'.$extension;
-                        $file->move('uploads/shop',$filename);
-                        $Shop->image=$filename;
-                    }else{
-                        return $request;
-                        $Shop->image='';
-                    }
+        public function addshopmob(Request $request){
 
-                    $Shop->address_no=$request->address_no;
-                    $Shop->suburb=$request->suburb;
-                    $Shop->city=$request->city;
-                    $Shop->province=$request->province;
-                    $Shop->country=$request->country;
-                    $Shop->registered_date=$request->registered_date;
-                    $Shop->due_dates=$request->due_dates;
-                    $Shop->telephone_numbers=$request->telephone_numbers;
-                    $Shop->RouteID=$request->RouteID;
-                    //shop::create($request->all());
-                    $Shop->save();
-                    return ;
 
-                }
+            $Shop=new Shop();
+            $Shop->shop_name=$request->shop_name;
+            $Shop->owner_name=$request->owner_name;
+            $Shop->owner_NIC=$request->owner_NIC;
+            $Shop->lat=$request->lat;
+            $Shop->lng=$request->lng;
+
+
+            if($request->hasfile('avatar')){
+                $file=$request->file('avatar');
+                $extension=$file->getClientOriginalExtension();//get image extension
+                $filename= time().'.'.$extension;
+                $file->move('uploads/shop',$filename);
+                $Shop->image=$filename;
+            }else{
+                return $request;
+                $Shop->image='';
+            }
+
+            $Shop->address_no=$request->address_no;
+            $Shop->suburb=$request->suburb;
+            $Shop->city=$request->city;
+            $Shop->province=$request->province;
+            $Shop->country=$request->country;
+            $Shop->registered_date=$request->registered_date;
+            $Shop->due_dates=$request->due_dates;
+            $Shop->telephone_numbers=$request->telephone_numbers;
+            $Shop->user_id=$request->user_id;
+            $Shop->RouteID=$request->RouteID;
+            //shop::create($request->all());
+            $Shop->save();
+            return redirect()->route('shop.index')->with('add','Record Added');
+        }
+
+        public function orderlist($id){
+            $order = DB::table('orders')->where('shop_ID',$id)->get();
+
+            return response()->json([
+                'status code'=> 200,
+                'data' =>$order,
+                ]);
+        }
+
+        public function orderdetails($id){
+
+            $order = DB::table('order_products')
+                ->join('products','order_products.product_ID','=','products.productID')
+                ->where('order_products.OrderID',$id)
+                ->select('order_products.OrderID','products.product_Name','order_products.quantity_per_product','order_products.discount_per_product')
+                ->get();
+
+            return response()->json([
+                'status code'=> 200,
+                'data' =>$order,
+
+            ]);
+
+        }
 }

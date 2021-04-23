@@ -83,8 +83,7 @@
                                             <th>Product Name</th>
                                             <th>Cost Price</th>
                                             <th>Sales Price</th>
-                                            <th>Weight</th>
-                                            <th width="200px">Category Id</th>
+                                            <th width="200px">Category</th>
                                             <th class="text-center" width="380px">Action</th>
                                         </tr>
                                         </thead>
@@ -95,8 +94,7 @@
                                                 <td>{{$data->product_Name}}</td>
                                                 <td>{{$data->cost_price}}</td>
                                                 <td>{{$data->sales_price}}</td>
-                                                <td>{{$data->weight}}</td>
-                                                <td>{{$data->category_id}}</td>
+                                                <td>{{$data->categories->category_name}}</td>
                                                 <td>
                                                     <form action="{{route('product.destroy',$data->productID)}}" method="POST">
                                                         <a class="btn btn-primary" href="{{route('product.edit',$data->productID)}}">Edit</a>

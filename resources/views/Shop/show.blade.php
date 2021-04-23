@@ -99,7 +99,7 @@
                                         </tr>
 
                                         <tr>
-                                            <td>User</td>
+                                            <td>Assigned User</td>
                                             <td>{{$shop->user->first_name}}</td>
                                         </tr>
 

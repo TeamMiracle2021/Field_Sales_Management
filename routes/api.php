@@ -2,6 +2,13 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RouteController;
+use App\Http\Controllers\ShopController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserTypeController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +28,32 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 
-Route::post('/shopadd/{id}',[ShopController::class,'saveShop']);
+Route::post('/shopadd',[ShopController::class,'saveShop']);
 
+Route::get('/show3/{id}', [RouteController::class, 'show3'])->name('route.show3');
 
+Route::get('/shop1/{id}', [ShopController::class, 'shop1'])->name('shop.shop1');
+
+Route::get('/fut/{id}', [UserTypeController::class, 'fut'])->name('usertype.fut');
+
+Route::post('/route/cre',[RouteController::class, 'storemobile'])->name('route.storemobile');
+
+Route::get('/routeview/{id}',[RouteController::class,'viewroutes']);
+
+Route::get('/routewaypoints/{id}',[RouteController::class,'viewroute']);
+
+Route::get('/viewshops/{id}',[ShopController::class,'viewshops']);
+
+Route::get('/viewshopdetails/{id}',[ShopController::class,'viewshopdetails']);
+
+Route::get('/viewcategories',[ProductController::class,'viewcategories']);
+
+Route::get('/viewcategoryproducts/{id}',[ProductController::class,'viewcategoryproducts']);
+
+Route::post('/attendancecheckin/{id}',[\App\Http\Controllers\AttendenceController::class,'store']);
+
+Route::put('/attendancecheckout/{id}',[\App\Http\Controllers\AttendenceController::class,'update']);
+
+Route::get('/orderlist/{id}',[ShopController::class,'orderlist']);
+
+Route::get('/orderdetails/{id}',[ShopController::class,'orderdetails']);

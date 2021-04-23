@@ -24,100 +24,100 @@
                         <!-- /.card-header -->
                         <div class="card-body">
 
-    <form action="{{route('route.update',$route->RouteID)}}" method="POST">
-        @csrf
-        @method('PUT')
+                            <form action="{{route('route.update',$route->RouteID)}}" method="POST">
+                                @csrf
+                                @method('PUT')
 
 
 
 
-            <div class="form-group row">
-                <label class="col-md-2 col-form-label">Route Name:</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" value="{{$route->route_name}}" placeholder="enter route name" name="route_name" value="{{old('route_name')}}">
-                    @if ($errors->has('route_name'))
-                        <span class="text-danger">{{ $errors->first('route_name') }}</span>
-                    @endif
-                </div>
-            </div>
+                                <div class="form-group row">
+                                    <label class="col-md-2 col-form-label">Route Name:</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" value="{{$route->route_name}}" placeholder="enter route name" name="route_name" value="{{old('route_name')}}">
+                                        @if ($errors->has('route_name'))
+                                            <span class="text-danger">{{ $errors->first('route_name') }}</span>
+                                        @endif
+                                    </div>
+                                </div>
 
-            <div class="form-group row">
-                <label class="col-md-2 col-form-label">Starting point latitude:</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" value="{{$route->start_lat}}" placeholder="enter start point latitude" name="start_lat" value="{{old('start_lat')}}">
-                    @if ($errors->has('start_lat'))
-                        <span class="text-danger">{{ $errors->first('start_lat') }}</span>
-                    @endif
-                </div>
-            </div>
+                                <div class="form-group row">
+                                    <label class="col-md-2 col-form-label">Starting point latitude:</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" value="{{$route->start_lat}}" placeholder="enter start point latitude" name="start_lat" value="{{old('start_lat')}}">
+                                        @if ($errors->has('start_lat'))
+                                            <span class="text-danger">{{ $errors->first('start_lat') }}</span>
+                                        @endif
+                                    </div>
+                                </div>
 
-            <div class="form-group row">
-                <label class="col-md-2 col-form-label">Starting point longitude:</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" value="{{$route->start_lng}}" placeholder="enter start point latitude" name="start_lng" value="{{old('start_lng')}}">
-                    @if ($errors->has('start_lng'))
-                        <span class="text-danger">{{ $errors->first('start_lng') }}</span>
-                    @endif
-                </div>
-            </div>
+                                <div class="form-group row">
+                                    <label class="col-md-2 col-form-label">Starting point longitude:</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" value="{{$route->start_lng}}" placeholder="enter start point latitude" name="start_lng" value="{{old('start_lng')}}">
+                                        @if ($errors->has('start_lng'))
+                                            <span class="text-danger">{{ $errors->first('start_lng') }}</span>
+                                        @endif
+                                    </div>
+                                </div>
 
-            <div class="form-group row">
-                <label class="col-md-2 col-form-label">Ending point latitude:</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" value="{{$route->end_lat}}" placeholder="enter start point latitude" name="end_lat" value="{{old('end_lat')}}">
-                    @if ($errors->has('end_lat'))
-                        <span class="text-danger">{{ $errors->first('end_lat') }}</span>
-                    @endif
-                </div>
-            </div>
+                                <div class="form-group row">
+                                    <label class="col-md-2 col-form-label">Ending point latitude:</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" value="{{$route->end_lat}}" placeholder="enter start point latitude" name="end_lat" value="{{old('end_lat')}}">
+                                        @if ($errors->has('end_lat'))
+                                            <span class="text-danger">{{ $errors->first('end_lat') }}</span>
+                                        @endif
+                                    </div>
+                                </div>
 
-            <div class="form-group row">
-                <label class="col-md-2 col-form-label">Ending point longitude:</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" value="{{$route->end_lng}}" placeholder="enter start point latitude" name="end_lng" value="{{old('end_lng')}}">
-                    @if ($errors->has('end_lng'))
-                        <span class="text-danger">{{ $errors->first('end_lng') }}</span>
-                    @endif
-                </div>
-            </div>
-
-
-            <div class="form-group row">
-                <label class="col-md-2 col-form-label">User ID:</label>
-                <div class="col-sm-10">
-                    <select class="form-control"  name="user_id" >
-                        <option value="Select">Select</option>
-                        @foreach ($users as $user)
-                            <option value="{{$user->userID}}">{{$user->userID}} -  {{$user->first_name}} {{$user->last_name}}</option>
-                        @endforeach
-                    </select>
-                </div>
-            </div>
+                                <div class="form-group row">
+                                    <label class="col-md-2 col-form-label">Ending point longitude:</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" value="{{$route->end_lng}}" placeholder="enter start point latitude" name="end_lng" value="{{old('end_lng')}}">
+                                        @if ($errors->has('end_lng'))
+                                            <span class="text-danger">{{ $errors->first('end_lng') }}</span>
+                                        @endif
+                                    </div>
+                                </div>
 
 
+                                <div class="form-group row">
+                                    <label class="col-md-2 col-form-label">Assign To:</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-control"  name="user_id" >
+                                            <option value="Select">Select User</option>
+                                            @foreach ($users as $user)
+                                                <option value="{{$user->userID}}">{{$user->userID}} -  {{$user->first_name}} {{$user->last_name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
 
 
 
-            <div class="col-md-12">
-                <div class="form-group">
-                    <button  type="submit" class="btn btn-primary">save</button>
-                    <a class="btn btn-secondary" href="{{route('route.index')}}">Cancel</a>
-
-                </div>
-            </div>
 
 
-    </form>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <button  type="submit" class="btn btn-primary">save</button>
+                                        <a class="btn btn-secondary" href="{{route('route.index')}}">Cancel</a>
+
+                                    </div>
+                                </div>
+
+
+                            </form>
                         </div>
-                            <!-- /.card-body -->
-                        </div>
-                        <!-- /.card -->
+                        <!-- /.card-body -->
                     </div>
-                    <!-- /.col -->
+                    <!-- /.card -->
                 </div>
-                <!-- /.row -->
+                <!-- /.col -->
             </div>
-            <!-- /.container-fluid -->
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
     </section>
 
 

@@ -17,9 +17,23 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name',
+//        'name',
+//        'email',
+//        'password',
+        'first_name',
+        'middle_name',
+        'last_name',
+        'NIC',
+        'Address',
+        'Gender',
+        'Date_Of_Birth',
+        'telephone_numbers',
         'email',
+        'username',
         'password',
+        'branch_name',
+        'approvel_state',
+        'user_typeID'
     ];
 
     /**
@@ -49,5 +63,14 @@ class User extends Authenticatable
     public function route() {
         return $this->hasMany(Route::class, 'user_id', 'userID');
     }
+
+    public function product() {
+        return $this->hasMany(Route::class, 'user_id', 'userID');
+    }
+
+    public function att() {
+        return $this->hasMany(Attendance::class, 'user_id', 'userID');
+    }
+
 
 }
