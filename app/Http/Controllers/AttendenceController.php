@@ -108,4 +108,12 @@ class AttendenceController extends Controller
     {
         //
     }
+
+    public function attreport(){
+        $att =Attendance::get();
+        return view('reports.attreport')->with (compact('att'));
+    }
+
+
+
 }

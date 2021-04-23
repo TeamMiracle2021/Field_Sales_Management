@@ -88,32 +88,6 @@
 
 
 
-{{--                                <div class="form-group row">--}}
-{{--                                    <label class="col-md-2 col-form-label">Expire Date</label>--}}
-{{--                                    <div class="col-sm-10">--}}
-{{--                                        <input type="date" class="from-control" value="{{$product->Expire_date}}" name="Expire_date" placeholder="Enter expire date" value="{{old('Expire_date')}}">--}}
-{{--                                        @if ($errors->has('Expire_date'))--}}
-{{--                                            <span class="text-danger">{{ $errors->first('Expire_date') }}</span>--}}
-{{--                                        @endif--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-
-
-                                <!-- <div class="form-group row">
-                                    <label>User Id</label>
-                                    <input type="text" class="form-control" value="" name="user_id" placeholder="Enter user id">
-                                </div> -->
-
-
-
-{{--                                <div class="form-group row">--}}
-{{--                                    <label class="col-md-2 col-form-label">Category ID</label>--}}
-{{--                                    <div class="col-sm-10">--}}
-{{--                                        <input type="text" class="form-control" value="{{$product->category_id}}" name="category_id" placeholder="Enter category name">--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-
-
 
                                 <div class="form-group row">
                                     <label class="col-md-2 col-form-label">Category</label>

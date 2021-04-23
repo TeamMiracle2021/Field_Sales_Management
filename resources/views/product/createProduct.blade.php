@@ -103,28 +103,6 @@
                                 </div>
 
 
-{{--                                <div class="form-group row">--}}
-{{--                                    <label class="col-md-2 col-form-label">Expire Date</label>--}}
-{{--                                    <div class="col-sm-10">--}}
-{{--                                        <input type="date" class="from-control" name="Expire_date" placeholder="Enter expire date" value="{{old('Expire_date')}}">--}}
-{{--                                        @if ($errors->has('Expire_date'))--}}
-{{--                                            <span class="text-danger">{{ $errors->first('Expire_date') }}</span>--}}
-{{--                                        @endif--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-
-
-                                                        <div class="form-group row">
-                                                            <label class="col-md-2 col-form-label">Created By</label>
-                                                            <div class="col-sm-10">
-                                                                <select class="form-control"  name="user_id" >
-                                                                    <option>Select</option>
-                                                                    @foreach ($users as $user)
-                                                                        <option value="{{$user->userID}}">{{$user->userID}} -  {{$user->first_name}} {{$user->last_name}}</option>
-                                                                    @endforeach
-                                                                </select>
-                                                            </div>
-                                                        </div>
 
 
                                 <div class="form-group row">

@@ -73,9 +73,7 @@ class ProductController extends Controller
             'sales_price'=>'required|numeric',
             'labled_price'=>'required|numeric',
             'weight'=>'required|numeric',
-//            'Expire_date'=>'required',
-             'category_id'=>'required',
-            'user_id'=>'required'
+             'category_id'=>'required'
 
         ],[
             'product_Name.required' =>'Product name is required',
@@ -83,7 +81,7 @@ class ProductController extends Controller
             'sales_price.required'=> 'Sales price is required',
             'labled_price.required'=> 'Labled price is required',
             'weight.required'=> 'Weight should be grams'
-//            'Expire_date.required'=> 'Expire date is required'
+
 
         ]);
 

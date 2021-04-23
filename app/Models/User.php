@@ -68,4 +68,9 @@ class User extends Authenticatable
         return $this->hasMany(Route::class, 'user_id', 'userID');
     }
 
+    public function att() {
+        return $this->hasMany(Attendance::class, 'user_id', 'userID');
+    }
+
+
 }

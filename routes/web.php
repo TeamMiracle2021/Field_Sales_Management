@@ -8,6 +8,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserTypeController;
+use App\Http\Controllers\AttendenceController;
 
 
 
@@ -39,6 +40,7 @@ Route::resource('shop',ShopController::class);
 Route::resource('route',RouteController::class);
 Route::resource('user',UserController::class);
 Route::resource('usertype',UserTypeController::class);
+Route::resource('attendence',AttendenceController::class);
 
 
 Route::resource('report',\App\Http\Controllers\ReportController::class);
@@ -49,7 +51,7 @@ Route::get('/route/create/getlatlng', [RouteController::class, 'getlatlng'])->na
 Route::get('/rep/shops', [ShopController::class, 'shopreport'])->name('shop.shopreport');
 Route::get('/rep/product', [ProductController::class, 'productreport'])->name('product.productreport');
 Route::get('/rep/route', [RouteController::class, 'routereport'])->name('route.routereport');
-//Route::get('/rep/user', [UserController::class, 'userreports'])->name('ser.userreports');
+Route::get('/rep/att', [AttendenceController::class, 'attreport'])->name('attendence.attreport');;
 
 
 

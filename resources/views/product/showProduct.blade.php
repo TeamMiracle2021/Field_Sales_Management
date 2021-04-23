@@ -66,12 +66,6 @@
 
 
             <tr>
-                <td>Created By </td>
-                <td> {{$product->user->first_name}} {{$product->user->last_name}}</td>
-            </tr>
-
-
-            <tr>
                 <td>Created At</td>
                 <td> {{$product->created_at}}</td>
             </tr>

@@ -137,7 +137,7 @@ class ShopController extends Controller
         $users = User::all();
         $routes = Route::all();
 
-        return view('shop.Edit',compact('shop'))->with('users', $users)->with('routes',$routes);
+        return view('Shop.Edit',compact('shop'))->with('users', $users)->with('routes',$routes);
 
 //        return view('Shop.Edit',compact('shop'));
     }
