@@ -18,7 +18,7 @@ class Product extends Model
         'labled_price',
         'weight',
         'Expire_date',
-        //'user_id',
+        'user_id',
         'category_id'
 
     ];
@@ -26,5 +26,11 @@ class Product extends Model
     public function categories(){
         return $this->belongsTo(Category::class, 'category_id', 'categoryID');
     }
+
+    public function user(){
+        return $this->belongsTo(User::class, 'user_id', 'userID');
+    }
+
+
 }
 

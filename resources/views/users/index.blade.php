@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    FSM | Route
+    FSM | User
 @endsection
 
 
@@ -10,20 +10,21 @@
 
 
 
-@if($msg = Session::get('add'))
-    <div class="alert alert-default-primary">
-        <p>{{$msg}}</p>
-    </div>
-@endif
+    @if($msg = Session::get('add'))
+        <div class="alert alert-default-primary">
+            <p>{{$msg}}</p>
+        </div>
+    @endif
 
     <section class="content">
-        <h1><b><center>Routes</center></b></h1>
+        <h1><b><center>User</center></b></h1>
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <a class="btn btn-primary"  href="{{route('route.create')}}">Create Route</a>
+                            <a class="btn btn-primary"  href="{{route('user.create')}}">Create user</a>
+                            <a class="btn btn-primary"  href="{{route('usertype.create')}}">Create user type</a>
 
 
                         </div>
@@ -33,34 +34,37 @@
                             <table id="example1" class="table table-bordered table-striped display nowrap">
                                 <thead>
                                 <tr>
-                                    <th>Route Name</th>
-                                    <th>User Name</th>
+                                    <th>user Name</th>
+                                    <th>Middle Name</th>
+                                    <th>Last Name</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr>
-                                @foreach($route as $data)
+                                    @foreach($user as $data)
 
 
-                                        <td>{{$data->route_name}}</td>
-                                        <td>{{$data->user->first_name}}</td>
+{{--                                        <td>{{$data->route_name}}</td>--}}
+                                        <td>{{$data->first_name}}</td>
+                                        <td>{{$data->middle_name}}</td>
+                                        <td>{{$data->last_name}}</td>
                                         <td>
-                                            <form action="{{route('route.destroy',$data->RouteID)}}" method="POST">
+                                            <form action="{{route('user.destroy',$data->userID )}}" method="POST">
 
-                                                <a class="btn btn-primary" href="{{route('route.edit',$data->RouteID)}}">Edit</a>
-{{--                                                <button type="button" data-toggle="modal" class="btn btn-danger" data-target="#exampleModal" >Delete</button>--}}
+                                                <a class="btn btn-primary" href="{{route('user.edit',$data->userID )}}">Edit</a>
+                                                {{--                                                <button type="button" data-toggle="modal" class="btn btn-danger" data-target="#exampleModal" >Delete</button>--}}
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit"  class="btn btn-danger">Delete</button>
-                                                <a class="btn btn-success" href="{{route('route.show',$data->RouteID)}}">View</a>
-                                                <a class="btn btn-info" href="{{route('route.show2', $data->RouteID)}}" target="_blank">View on Map <i class="fas fa-map-marker-alt"></i></a>
+                                                <a class="btn btn-primary" href="{{route('user.show',$data->userID )}}">View</a>
+
 
                                             </form>
                                         </td>
                                 </tr>
                                 @endforeach
-                                 </tbody>
+                                </tbody>
                             </table>
 
                             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -86,16 +90,16 @@
                                 </div>
 
 
+                            </div>
+                            <!-- /.card-body -->
                         </div>
-                        <!-- /.card-body -->
+                        <!-- /.card -->
                     </div>
-                    <!-- /.card -->
+                    <!-- /.col -->
                 </div>
-                <!-- /.col -->
+                <!-- /.row -->
             </div>
-            <!-- /.row -->
-        </div>
-        <!-- /.container-fluid -->
+            <!-- /.container-fluid -->
         </div>
 
     </section>

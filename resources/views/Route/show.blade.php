@@ -65,7 +65,7 @@
                                         </tr>
 
                                         <tr>
-                                            <td>User</td>
+                                            <td>Assigned User</td>
                                             <td> {{$route->user->first_name}}</td>
                                         </tr>
 
