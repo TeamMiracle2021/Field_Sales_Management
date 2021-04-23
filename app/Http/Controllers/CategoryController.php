@@ -21,7 +21,7 @@ class CategoryController extends Controller
     //********************************************************************************   index  ********************************************************************************
     public function index()
     {
-        $product = Category::all();
+       // $product = Category::all();
         return view('product.viewCategory');//compact('category'));//->with(compact('category'));
     }
     //**************************************************************************************************************************************************************************
@@ -72,15 +72,16 @@ class CategoryController extends Controller
         // ]);
 
 
-        $request->validate([
-            'category_name'=>'required|max:255',
-
-
-        ]);
+  //      $validateData = $request->validate([
+//           'category_name'=>'unique:posts'
+//
+//        ],[
+//            'category_name.required'=>'Category name is already exist.'
+//        ]);
 
         Category::create($request->all()); //categoryIndex.blade.php fileekata user insert karana data CategoryControllerr eke thiyana st
 
-        return redirect()->route('product.index')->with('alert','Data added for category table successfully!');//product=product = product kiyana folder name (views wala thiyana ) category= catagory.blade.php
+        return redirect()->route('product.index')->with('alert','Data added successfully!');//product=product = product kiyana folder name (views wala thiyana ) category= catagory.blade.php
     }
 
     /**

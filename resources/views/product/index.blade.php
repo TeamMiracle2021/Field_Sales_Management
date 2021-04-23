@@ -13,69 +13,6 @@
 </div>
 @endif
 
-{{--<!-- valiodation -->--}}
-{{--@if($errors->any())--}}
-{{--@foreach($errors->all() as $error)--}}
-
-
-{{--<div class="alert alert-danger" role="alert">--}}
-{{--    {{$error}}--}}
-{{--</div>--}}
-{{--@endforeach--}}
-{{--@endif--}}
-{{--<!-- end of validation -->--}}
-
-{{--        <form action="{{route('category.store')}}" method="POST">--}}
-
-{{--            @csrf--}}
-
-
-
-{{--            <div class="modal fade" id="createCreateModel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">--}}
-
-
-{{--                <!-- hedaer of the popup form    -->--}}
-
-{{--                <div class="modal-dialog">--}}
-
-{{--                    <div class="modal-content">--}}
-
-{{--                        <div class="modal-header">--}}
-
-{{--                            <h5 class="modal-title" id="exampleModalLabel">Add new category details</h5>--}}
-
-{{--                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>--}}
-
-{{--                        </div>--}}
-
-
-
-
-{{--                        <!-- Lable and text box of Product Name: -->--}}
-
-{{--                        <div class="modal-body">--}}
-
-{{--                            <div class="form-group">--}}
-
-{{--                                <label>Category Name :</label><br>--}}
-
-{{--                                <input type="text" class="form-control" name="category_name" placeholder="Enter category name ">--}}
-
-{{--                            </div>--}}
-
-{{--                        </div>--}}
-
-{{--                        <div class="modal-footer">--}}
-{{--                            <button type="submit" class="btn btn-primary">Save</button>--}}
-{{--                            <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>--}}
-{{--                        </div>--}}
-
-{{--                    </div>--}}
-
-{{--                </div>--}}
-{{--        </form>--}}
-
-
 
 
 <section class="content">
@@ -92,7 +29,7 @@
                                         <div class="modal fade" id="createCreateModel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 
 
-                                            <!-- hedaer of the popup form    -->
+                                            <!-- header of the popup form    -->
 
                                             <div class="modal-dialog">
 
@@ -117,8 +54,10 @@
 
                                                             <label>Category Name :</label><br>
 
-                                                            <input type="text" class="form-control" name="category_name" placeholder="Enter category name" required>
-
+                                                            <input type="text" class="form-control" name="category_name" placeholder="Enter category name">
+{{--                                                            @if ($errors->has('category_name'))--}}
+{{--                                                                <span class="text-danger">{{ $errors->first('category_name') }}</span>--}}
+{{--                                                            @endif--}}
                                                         </div>
 
                                                     </div>

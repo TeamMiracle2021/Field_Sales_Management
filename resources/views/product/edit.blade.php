@@ -34,32 +34,44 @@ Product-Edit | Sales Automation system
                         <div class="form-group row">
                             <label class="col-md-2 col-form-label">Product Name:</label>
                              <div class="col-sm-10">
-                            <input type="text" class="form-control" value="{{$product->product_Name}}" name="product_Name" placeholder="Enter product name">
-                        </div>
+                            <input type="text" class="form-control" value="{{$product->product_Name}}" name="product_Name" placeholder="Enter product name" value="{{old('product_Name')}}">
+                                 @if ($errors->has('product_Name'))
+                                     <span class="text-danger">{{ $errors->first('product_Name') }}</span>
+                                 @endif
+                             </div>
                         </div>
 
 
                         <div class="form-group row">
                             <label class="col-md-2 col-form-label">Cost Price</label>
                             <div class="col-sm-10">
-                            <input type="text" class="form-control" value="{{$product->cost_price}}" name="cost_price" placeholder="Enter cost price">
-                        </div>
+                            <input type="text" class="form-control" value="{{$product->cost_price}}" name="cost_price" placeholder="Enter cost price" value="{{old('cost_price')}}">
+                                @if ($errors->has('cost_price'))
+                                    <span class="text-danger">{{ $errors->first('cost_price') }}</span>
+                                @endif
+                            </div>
                         </div>
 
 
                         <div class="form-group row">
                             <label class="col-md-2 col-form-label">Sales Price</label>
                             <div class="col-sm-10">
-                            <input type="text" class="form-control" value="{{$product->sales_price}}" name="sales_price" placeholder="Enter sales price">
-                        </div>
+                            <input type="text" class="form-control" value="{{$product->sales_price}}" name="sales_price" placeholder="Enter sales price" value="{{old('sales_price')}}">
+                                @if ($errors->has('sales_price'))
+                                    <span class="text-danger">{{ $errors->first('sales_price') }}</span>
+                                @endif
+                            </div>
                         </div>
 
 
                         <div class="form-group row">
                             <label class="col-md-2 col-form-label">Labled Price</label>
                             <div class="col-sm-10">
-                            <input type="text" class="form-control" value="{{$product->labled_price}}" name="labled_price" placeholder="Enter labled price">
-                        </div>
+                            <input type="text" class="form-control" value="{{$product->labled_price}}" name="labled_price" placeholder="Enter labled price" value="{{old('labled_price')}}">
+                                @if ($errors->has('labled_price'))
+                                    <span class="text-danger">{{ $errors->first('labled_price') }}</span>
+                                @endif
+                            </div>
                         </div>
 
 
@@ -67,8 +79,11 @@ Product-Edit | Sales Automation system
                         <div class="form-group row">
                             <label class="col-md-2 col-form-label">Weight</label>
                             <div class="col-sm-10">
-                            <input type="text" class="form-control" value="{{$product->weight}}" name="weight" placeholder="Enter weight">
-                        </div>
+                            <input type="text" class="form-control" value="{{$product->weight}}" name="weight" placeholder="Enter weight" value="{{old('weight')}}">
+                                @if ($errors->has('weight'))
+                                    <span class="text-danger">{{ $errors->first('weight') }}</span>
+                                @endif
+                            </div>
                         </div>
 
 
@@ -76,7 +91,10 @@ Product-Edit | Sales Automation system
                         <div class="form-group row">
                             <label class="col-md-2 col-form-label">Expire Date</label>
                             <div class="col-sm-10">
-                            <input type="date" class="from-control" value="{{$product->Expire_date}}" name="Expire_date" placeholder="Enter expire date">
+                            <input type="date" class="from-control" value="{{$product->Expire_date}}" name="Expire_date" placeholder="Enter expire date" value="{{old('Expire_date')}}">
+                                @if ($errors->has('Expire_date'))
+                                    <span class="text-danger">{{ $errors->first('Expire_date') }}</span>
+                                @endif
                         </div>
                         </div>
 

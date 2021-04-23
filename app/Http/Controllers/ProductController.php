@@ -46,7 +46,7 @@ class ProductController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view('product.createProduct')->with('categories', $categories);
+        return view('product.index')->with('categories', $categories);
     }
     //**************************************************************************************************************************************************************************
 
@@ -65,19 +65,27 @@ class ProductController extends Controller
     public function store(Request $request)
     {
 
-        $request->validate([
-            'product_Name'=>'required|max:255',
-            'cost_price'=>'required|max:255',
-            'sales_price'=>'required|max:255',
-            'labled_price'=>'required|max:255',
-            'weight'=>'required|max:255',
-            'Expire_date'=>'required|max:255',
+        $validateData = $request->validate([
+            'product_Name'=>'required',
+            'cost_price'=>'required|numeric',
+            'sales_price'=>'required|numeric',
+            'labled_price'=>'required|numeric',
+            'weight'=>'required|numeric',
+            'Expire_date'=>'required'
+
+        ],[
+            'product_Name.required' =>'Product name is required',
+            'cost_price.required'=> 'Cost price is required',
+            'sales_price.required'=> 'Sales price is required',
+            'labled_price.required'=> 'Labled price is required',
+            'weight.required'=> 'Weightis required',
+            'Expire_date.required'=> 'Expire date is required'
 
         ]);
 
-        Product::create($request->all()); //categoryIndex.blade.php fileekata user insert karana data CategoryControllerr eke thiyana st
+        Product::create($validateData); //categoryIndex.blade.php fileekata user insert karana data CategoryControllerr eke thiyana st
 
-        return redirect()->route('product.index')->with('alert', 'Data added for product table successfully!'); //product=product = product kiyana folder name (views wala thiyana ) category= catagory.blade.php
+        return redirect()->route('product.index')->with('alert', 'Data added successfully!'); //product=product = product kiyana folder name (views wala thiyana ) category= catagory.blade.php
         //return redirect('product.index')->with('add','Data added to product table successfully');
     }
     //**************************************************************************************************************************************************************************
@@ -144,9 +152,29 @@ class ProductController extends Controller
     //********************************************************************************   update  ********************************************************************************
     public function update(Request $request, Product $product)
     {
-        $product->update($request->all());
+        //$product->update($request->all());
         //return redirect()->route('product.index');
-        return redirect()->route('product.index')->with('alert', 'Data updated for product table successfully!');
+        $validateData = $request->validate([
+            'product_Name'=>'required',
+            'cost_price'=>'required|numeric',
+            'sales_price'=>'required|numeric',
+            'labled_price'=>'required|numeric',
+            'weight'=>'required|numeric',
+            'Expire_date'=>'required'
+
+        ],[
+            'product_Name.required' =>'Product name is required',
+            'cost_price.required'=> 'Cost price is required',
+            'sales_price.required'=> 'Sales price is required',
+            'labled_price.required'=> 'Labled price is required',
+            'weight.required'=> 'Weightis required',
+            'Expire_date.required'=> 'Expire date is required'
+
+        ]);
+
+        Product::create($validateData); //categoryIndex.blade.php fileekata user insert karana data CategoryControllerr eke thiyana st
+
+        return redirect()->back()->route('product.index')->with('alert', 'Data updated successfully!');
 
         //dd($product);
     }

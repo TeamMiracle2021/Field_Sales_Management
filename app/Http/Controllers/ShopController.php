@@ -39,21 +39,6 @@ class ShopController extends Controller
     }
 
 
-//    public function Validator(array $data){
-//        return Validator::make($data, [
-//            'fname' => ['required', 'string', 'max:255'],
-//            'mname' => ['required', 'string', 'max:255'],
-//            'lname' => ['required', 'string', 'max:255'],
-//            'contact' => ['required', 'numeric', 'digits:10'],
-//            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-//            'password' => ['required', 'string', 'min:8', 'confirmed'],
-//            'avatar' => ['sometimes', 'image', 'mimes:jpg,jpeg,bmp,svg,png' ,'max:5000'],
-//        ]);
-//
-//    }
-
-
-
     /**
      * Store a newly created resource in storage.
      *
@@ -63,8 +48,26 @@ class ShopController extends Controller
     public function store(Request $request)
     {
 
+         $this->Validate($request,[
+            'shop_name'=>'required',
+            'owner_name'=>'required',
+            'owner_NIC'=>'required|max:10<=12',
+            'lat'=>'numeric',
+            'lng'=>'numeric',
+            'image'=>'nullable|mimes:jpg,jpeg,bmp,svg,png',
+            'address_no' => 'required',
+            'suburb'=> 'required',
+            'city' => 'required',
+            'telephone_numbers' => 'numeric|max:10=10',
+            'user_id'=> 'required',
+            'RouteID'=>'required'
 
-       $Shop=new Shop();
+        ],[
+             'owner_NIC.required'=>'NIC should be 10 or 12 characteristics',
+             'telephone_numbers'=>'Telephone number should be 10 numbers'
+         ]);
+
+        $Shop=new Shop();
         $Shop->shop_name=$request->shop_name;
         $Shop->owner_name=$request->owner_name;
         $Shop->owner_NIC=$request->owner_NIC;
@@ -121,7 +124,10 @@ class ShopController extends Controller
      */
     public function edit(Shop $shop)
     {
-        return view('shop.Edit',compact('shop'));
+        $users = User::all();
+        $routes = Route::all();
+
+        return view('shop.Edit',compact('shop'))->with('users', $users)->with('routes',$routes);;
     }
 
     /**
@@ -133,6 +139,25 @@ class ShopController extends Controller
      */
     public function update(Request $request, Shop $shop)
     {
+        $this->Validate($request,[
+            'shop_name'=>'required',
+            'owner_name'=>'required',
+            'owner_NIC'=>'required|max:10<=12',
+            'lat'=>'numeric',
+            'lng'=>'numeric',
+            'image'=>'nullable|mimes:jpg,jpeg,bmp,svg,png',
+            'address_no' => 'required',
+            'suburb'=> 'required',
+            'city' => 'required',
+            'telephone_numbers' => 'numeric|max:10=10',
+            'user_id'=> 'required',
+            'RouteID'=>'required'
+
+        ],[
+            'owner_NIC.required'=>'NIC should be 10 or 12 characteristics',
+            'telephone_numbers'=>'Telephone number should be 10 numbers'
+        ]);
+
         $shop->update($request->all());
 
         if($request->avatar != '') {

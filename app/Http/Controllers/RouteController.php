@@ -42,12 +42,29 @@ class RouteController extends Controller
      */
     public function store(Request $request)
     {
-//        $request->validate([
-//           'route_name'=>'required'
-//        ]);
+       $validateData = $request->validate([
+           'route_name'=>'required',
+           'start_lat' =>'required|numeric',
+           'start_lng'=>'required|numeric',
+           'end_lat'=>'required|numeric',
+           'end_lng'=>'required|numeric',
+           'user_id' =>'required'
 
-       Route::create($request->all());
+        ],[
+            'route_name.required' => 'Route name is required',
+           'start_lat.required' => 'Start point latitude is required',
+           'start_lng.required' => 'Start point latitude is required',
+           'end_lat.required' => 'End point latitude is required',
+           'end_lng.required' => 'End point longitude is required',
+           'user_id.required' => 'User is required'
 
+       ]);
+
+        Route:: create($validateData);
+       //Route::create($request->all());
+
+
+        //return back()->with('success', 'User created successfully.');
         return redirect()->route('route.index')->with('add','Record Added');
       //  return view('Route.index');
 
@@ -74,7 +91,8 @@ class RouteController extends Controller
      */
     public function edit(Route $route)
     {
-        return view('route.edit',compact('route'));
+        $users = User::all();
+        return view('route.edit',compact('route'))->with('users', $users);;
     }
 
     /**
@@ -84,9 +102,29 @@ class RouteController extends Controller
      * @param  \App\Models\Route  $route
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Route $route)
+    public function update(Request $request)
     {
-        $route->update($request->all());
+        //$route->update($request->all());
+        $validateData = $request->validate([
+            'route_name'=>'required',
+            'start_lat' =>'required|numeric',
+            'start_lng'=>'required|numeric',
+            'end_lat'=>'required|numeric',
+            'end_lng'=>'required|numeric',
+            'user_id' =>'required'
+
+        ],[
+            'route_name.required' => 'Route name is required',
+            'start_lat.required' => 'Start point latitude is required',
+            'start_lng.required' => 'Start point latitude is required',
+            'end_lat.required' => 'End point latitude is required',
+            'end_lng.required' => 'End point longitude is required',
+            'user_id.required' => 'User is required'
+
+        ]);
+
+
+        Route:: create($validateData);
         return redirect()->route('route.index')->with('add','Record Updated');
     }
 

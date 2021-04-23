@@ -27,21 +27,30 @@
                 <div class="form-group row">
                     <label class="col-md-2 col-form-label">Shop Name:</label>
                     <div class="col-sm-10">
-                    <input type="text" class="form-control" placeholder="Enter shop name" name="shop_name" required>
+                    <input type="text" class="form-control" placeholder="Enter shop name" name="shop_name" value="{{old('shop_name')}}">
+                        @if ($errors->has('shop_name'))
+                            <span class="text-danger">{{ $errors->first('shop_name') }}</span>
+                        @endif
                 </div>
             </div>
 
                     <div class="form-group row">
                         <label class="col-md-2 col-form-label">Owner Name:</label>
                         <div class="col-sm-10">
-                        <input type="text" class="form-control" placeholder="Enter owner name" name="owner_name" required>
+                        <input type="text" class="form-control" placeholder="Enter owner name" name="owner_name" value="{{old('owner_name')}}">
+                            @if ($errors->has('owner_name'))
+                                <span class="text-danger">{{ $errors->first('owner_name') }}</span>
+                            @endif
                     </div>
                 </div>
 
                     <div class="form-group row">
                         <label class="col-md-2 col-form-label" >Owner NIC:</label>
                         <div class="col-sm-10">
-                        <input type="text" class="form-control" placeholder="Enter owner NIC" name="owner_NIC" required>
+                        <input type="text" class="form-control" placeholder="Enter owner NIC" name="owner_NIC" value="{{old('owner_NIC')}}">
+                            @if ($errors->has('owner_NIC'))
+                                <span class="text-danger">{{ $errors->first('owner_NIC') }}</span>
+                            @endif
                     </div>
                 </div>
 
@@ -49,7 +58,10 @@
                     <div class="form-group row">
                         <label class="col-md-2 col-form-label" >Latitude:</label>
                         <div class="col-sm-10">
-                        <input type="text" class="form-control" placeholder="Enter latitude of shop" name="lat">
+                        <input type="text" class="form-control" placeholder="Enter latitude of shop" name="lat" value="{{old('lat')}}">
+                            @if ($errors->has('lat'))
+                                <span class="text-danger">{{ $errors->first('lat') }}</span>
+                            @endif
                     </div>
                 </div>
 
@@ -57,14 +69,20 @@
                     <div class="form-group row">
                         <label class="col-md-2 col-form-label">Longitude:</label>
                         <div class="col-sm-10">
-                        <input type="text" class="form-control" placeholder="Enter longitude of shop" name="lng">
+                        <input type="text" class="form-control" placeholder="Enter longitude of shop" name="lng" value="{{old('lng')}}">
+                            @if ($errors->has('lng'))
+                                <span class="text-danger">{{ $errors->first('lng') }}</span>
+                            @endif
                     </div>
                 </div>
 
                     <div class="form-group row">
                         <label class="col-md-2 col-form-label" >Image:</label>
                         <div class="col-sm-10">
-                        <input type="file" class="form-control" name="avatar">
+                        <input type="file" class="form-control" name="avatar" value="{{old('avatar')}}">
+                            @if ($errors->has('avatar'))
+                                <span class="text-danger">{{ $errors->first('avatar') }}</span>
+                            @endif
 {{--                        <img id="previewImg" alt="shop image" style="max-width: 130px;margin-top: 20px;">--}}
 
                     </div>
@@ -74,7 +92,10 @@
                     <div class="form-group row">
                         <label class="col-md-2 col-form-label">Address No:</label>
                         <div class="col-sm-10">
-                        <input type="text" class="form-control" placeholder="Enter address No." name="address_no">
+                        <input type="text" class="form-control" placeholder="Enter address No." name="address_no" value="{{old('address_no')}}">
+                            @if ($errors->has('address_no'))
+                                <span class="text-danger">{{ $errors->first('address_no') }}</span>
+                            @endif
                     </div>
                     </div>
 
@@ -82,7 +103,10 @@
                     <div class="form-group row">
                         <label class="col-md-2 col-form-label">Suburb:</label>
                         <div class="col-sm-10">
-                        <input type="text" class="form-control" placeholder="Enter suburb" name="suburb">
+                        <input type="text" class="form-control" placeholder="Enter suburb" name="suburb" value="{{old('suburb')}}">
+                            @if ($errors->has('suburb'))
+                                <span class="text-danger">{{ $errors->first('suburb') }}</span>
+                            @endif
                     </div>
                 </div>
 
@@ -90,7 +114,10 @@
                     <div class="form-group row">
                         <label class="col-md-2 col-form-label">City:</label>
                         <div class="col-sm-10">
-                        <input type="text" class="form-control" placeholder="Enter city" name="city">
+                        <input type="text" class="form-control" placeholder="Enter city" name="city" value="{{old('city')}}">
+                            @if ($errors->has('city'))
+                                <span class="text-danger">{{ $errors->first('city') }}</span>
+                            @endif
                     </div>
                 </div>
 
@@ -126,7 +153,10 @@
                                 <div class="form-group row">
                                     <label class="col-md-2 col-form-label">Telephone Number:</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" placeholder="Telephone Number" name="telephone_numbers">
+                                        <input type="text" class="form-control" placeholder="Telephone Number" name="telephone_numbers" value="{{old('telephone_numbers')}}">
+                                        @if ($errors->has('telephone_numbers'))
+                                            <span class="text-danger">{{ $errors->first('telephone_numbers') }}</span>
+                                        @endif
                                     </div>
                                 </div>
 
@@ -150,6 +180,7 @@
                         <label class="col-md-2 col-form-label">User ID:</label>
                         <div class="col-sm-10">
                             <select class="form-control"  name="user_id" >
+                                <option value="Select">Select</option>
                                 @foreach ($users as $user)
                                     <option value="{{$user->userID}}">{{$user->userID}} -  {{$user->first_name}} {{$user->last_name}}</option>
                                 @endforeach
@@ -163,6 +194,7 @@
                                     <div class="col-sm-10">
 {{--                                        <input type="text" class="form-control" placeholder="Enter route ID" name="RouteID">--}}
                                         <select class="form-control"  name="RouteID" >
+                                            <option value="Select">Select</option>
                                             @foreach ($routes as $route)
                                                 <option value="{{$route->RouteID}}"> {{$route->RouteID}} - {{$route->route_name}}</option>
                                             @endforeach
