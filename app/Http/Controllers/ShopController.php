@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use App\Models\Shop;
+use Carbon\Carbon;
 use Database\Seeders\DatabaseSeeder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -240,42 +241,48 @@ class ShopController extends Controller
     }
 
 
-        public function addshopmob(Request $request){
+    public function mobileshopadd(Request $request){
 
 
             $Shop=new Shop();
             $Shop->shop_name=$request->shop_name;
             $Shop->owner_name=$request->owner_name;
             $Shop->owner_NIC=$request->owner_NIC;
-            $Shop->lat=$request->lat;
-            $Shop->lng=$request->lng;
-
-
-            if($request->hasfile('avatar')){
-                $file=$request->file('avatar');
-                $extension=$file->getClientOriginalExtension();//get image extension
-                $filename= time().'.'.$extension;
-                $file->move('uploads/shop',$filename);
-                $Shop->image=$filename;
-            }else{
-                return $request;
-                $Shop->image='';
-            }
+//            $Shop->lat=$request->lat;
+//            $Shop->lng=$request->lng;
+////
+//
+//            if($request->hasfile('avatar')){
+//                $file=$request->file('avatar');
+//                $extension=$file->getClientOriginalExtension();//get image extension
+//                $filename= time().'.'.$extension;
+//                $file->move('uploads/shop',$filename);
+//                $Shop->image=$filename;
+//            }else{
+//                return $request;
+//                $Shop->image='';
+//            }
 
             $Shop->address_no=$request->address_no;
             $Shop->suburb=$request->suburb;
             $Shop->city=$request->city;
             $Shop->province=$request->province;
             $Shop->country=$request->country;
-            $Shop->registered_date=$request->registered_date;
-            $Shop->due_dates=$request->due_dates;
+            $Shop->registered_date= Carbon::now();
+            $Shop->due_dates=11;
             $Shop->telephone_numbers=$request->telephone_numbers;
             $Shop->user_id=$request->user_id;
-            $Shop->RouteID=$request->RouteID;
-            //shop::create($request->all());
+//            $Shop->RouteID=$request->RouteID;
             $Shop->save();
-            return redirect()->route('shop.index')->with('add','Record Added');
+        if ($Shop) {
+            return ["Result" => "Data has been saved"];
+        } else {
+            return ["Result" => "Operation failed"];
         }
+
+        }
+
+
 
         public function orderlist($id){
             $order = DB::table('orders')->where('shop_ID',$id)->get();
