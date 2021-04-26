@@ -51,7 +51,8 @@ Route::get('/route/create/getlatlng', [RouteController::class, 'getlatlng'])->na
 Route::get('/rep/shops', [ShopController::class, 'shopreport'])->name('shop.shopreport');
 Route::get('/rep/product', [ProductController::class, 'productreport'])->name('product.productreport');
 Route::get('/rep/route', [RouteController::class, 'routereport'])->name('route.routereport');
-Route::get('/rep/att', [AttendenceController::class, 'attreport'])->name('attendence.attreport');;
+Route::get('/rep/att', [AttendenceController::class, 'attreport'])->name('attendence.attreport');
+Route::get('/rep/unproductive', [ShopController::class, 'unpreport'])->name('shop.unpreport');;
 
 
 

@@ -59,3 +59,5 @@ Route::get('/orderlist/{id}',[ShopController::class,'orderlist']);
 Route::get('/orderdetails/{id}',[ShopController::class,'orderdetails']);
 
 Route::post('/mobileshopadd',[ShopController::class,'mobileshopadd']);
+
+Route::post('/shopclosereason/{id}',[ShopController::class,'shopclosereason']);

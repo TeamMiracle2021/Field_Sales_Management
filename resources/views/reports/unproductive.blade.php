@@ -2,7 +2,7 @@
 
 
 @section('title')
-    Route Report
+    Unproductive Report
 @endsection
 
 @section('content')
@@ -10,7 +10,7 @@
 
 
     <section class="content">
-        <h4><b><center>Reports of Routes</center></b></h4>
+        <h4><b><center>Reports of Unproductive Shops</center></b></h4>
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
@@ -27,31 +27,20 @@
                             <table id="example" class="table table-bordered table-striped ">
                                 <thead>
                                 <tr>
-                                    <th>Route ID</th>
-                                    <th>Route Name</th>
-                                    <th>Start Latitude</th>
-                                    <th>Start Longitude</th>
-                                    <th>End Latitude</th>
-                                    <th>End Longitude</th>
-                                    <th>User</th>
-
-
+                                    <th>Shop Name</th>
+                                    <th>Reason</th>
+                                    <th>Date</th>
+                                    <th>User Name</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($route as $data)
+                                @foreach($unp as $data)
 
                                     <tr>
-                                        <td>{{$data->RouteID}}</td>
-                                        <td>{{$data->route_name}}</td>
-                                        <td>{{$data->start_lat}}</td>
-                                        <td>{{$data->start_lng}}</td>
-                                        <td>{{$data->end_lat}}</td>
-                                        <td>{{$data->end_lng}}</td>
-                                        <td>{{$data->user->first_name}}</td>
-{{--                                        <td>{{$data->address_no}}</td>--}}
-
-
+                                        <td>{{$data->shop_name}}</td>
+                                        <td>{{$data->unproductive_reason}}</td>
+                                        <td>{{$data->unproductive_date}}</td>
+                                        <td>{{$data->first_name}} {{$data->last_name}} </td>
                                     </tr>
 
                                 @endforeach

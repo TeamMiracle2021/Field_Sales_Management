@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\Route;
+use App\Models\Unproductive;
 
 
 class ShopController extends Controller
@@ -202,7 +203,6 @@ class ShopController extends Controller
      */
     public function destroy(Shop $shop)
     {
-        //
         $shop->delete();
         return redirect()->route('shop.index')->with('add','Record Deleted');
     }
@@ -212,10 +212,23 @@ class ShopController extends Controller
     public function shopreport()
     {
         $Shop =Shop::get();
-        return view('reports.shopreport')->with (compact('Shop')); // blade eka open krpnko
+        return view('reports.shopreport')->with (compact('Shop'));
+    }
 
+
+    public function unpreport()
+    {
+
+        $unp = DB::table('shop_unproductives')
+            ->join('shops','shop_unproductives.shop_ID','=','shops.ShopID')
+            ->join('users','shops.user_id','=','users.userID')
+            ->select('shop_unproductives.unproductive_reason','shop_unproductives.unproductive_date','shops.shop_name','users.first_name','users.last_name')
+            ->get();
+        return view('reports.unproductive')->with (compact('unp',$unp));
 
     }
+
+
 
 
 
@@ -308,4 +321,25 @@ class ShopController extends Controller
             ]);
 
         }
+
+
+
+    public function shopclosereason(Request $request,$id)
+    {
+        $unproductive = new Unproductive();
+        $unproductive->unproductive_reason=$request->unproductive_reason;
+        $unproductive->unproductive_date=Carbon::now();
+        $unproductive->shop_ID=$id;
+        $unproductive->save();
+
+        return response()->json([
+            'status code'=> 200,
+            'message'=>'unproductive save successfully'
+        ]);
+    }
+
+
+
+
+
 }
