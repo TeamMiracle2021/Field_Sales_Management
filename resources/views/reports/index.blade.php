@@ -71,6 +71,17 @@
                                 </div>
                             </div>
 
+                            <div class="col-md-4 col-6">
+                                <!-- small box -->
+                                <div class="small-box bg-gradient-teal">
+                                    <div class="inner"><a href="{{route('shop.orderreport')}}">
+                                            <h4><center><b>Orders Reports</b></center></h4>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+
 
 
 </center>

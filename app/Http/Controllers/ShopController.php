@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\OrderProduct;
 use App\Models\Shop;
 use Carbon\Carbon;
 use Database\Seeders\DatabaseSeeder;
@@ -230,10 +231,26 @@ class ShopController extends Controller
 
 
 
+    public function orderreport()
+    {
+        $ordrep = DB::table('orders')
+            ->join('order_products','orders.OrderID','=','order_products.OrderID')
+            ->join('shops','orders.shop_ID','=','shops.ShopID')
+            ->join('users','orders.user_id','=','users.userID')
+            ->join('products','order_products.product_ID','=','products.productID')
+            ->select('orders.OrderID','orders.bill_value','orders.placed_date','shops.shop_name','users.first_name')
+            ->get();
+//        return $ordrep;
+        return view('reports.oderreport')->with (compact('ordrep',$ordrep));
+    }
 
 
 
-        //__________________________________________________________API__________________________________________________________________
+
+
+
+
+    //__________________________________________________________API__________________________________________________________________
     public function shop1($id)
     {
         $shop = Shop::find($id);
@@ -338,8 +355,38 @@ class ShopController extends Controller
         ]);
     }
 
+        public function order(Request $request){
+        $order = new Order();
+        $order->placed_date=Carbon::now();
+        $user_id=$request-> input('userId');
+        $order->bill_value=$request-> input('grandTotal');
+        $order->discount=$request-> input('discount');
+        $order->user_id=$request-> input('userId');
+        $order->shop_ID=$request-> input('shopId');
+        $order->save();
+
+        $o_id=DB::table('orders')->where('user_id',$user_id)->value('OrderID');
+
+
+
+            $productDetails=$request->input('productDetails');
+
+            $i=0;
+            for($i=0;$i<count($productDetails);$i++){
+                $orderprd = new OrderProduct();
+                $orderprd->OrderID=$o_id;
+                $orderprd->product_ID=$productDetails[$i]->productId;
+                $orderprd->quantity_per_product=$productDetails[$i]->productQuantity;
+                $orderprd->save();
+            }
+
+        }
 
 
 
 
 }
+
+
+
+
