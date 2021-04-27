@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+<<<<<<< HEAD
+=======
+use App\Models\Product;
+>>>>>>> cf79acdaf153af19eeac55680b2711c462775f5d
 
 class CategoryController extends Controller
 {
@@ -39,7 +43,11 @@ class CategoryController extends Controller
 
 
 
+<<<<<<< HEAD
     //********************************************************************************   create  ******************************************************************************* 
+=======
+    //********************************************************************************   create  *******************************************************************************
+>>>>>>> cf79acdaf153af19eeac55680b2711c462775f5d
     public function create()
     {
         return view('product.create');
@@ -61,7 +69,11 @@ class CategoryController extends Controller
 
 
 
+<<<<<<< HEAD
     //********************************************************************************   store  ********************************************************************************  
+=======
+    //********************************************************************************   store  ********************************************************************************
+>>>>>>> cf79acdaf153af19eeac55680b2711c462775f5d
     public function store(Request $request)
     {
 
@@ -73,7 +85,11 @@ class CategoryController extends Controller
 
         $request->validate([
             'category_name'=>'required|max:255',
+<<<<<<< HEAD
             
+=======
+
+>>>>>>> cf79acdaf153af19eeac55680b2711c462775f5d
 
         ]);
 

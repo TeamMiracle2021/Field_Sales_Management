@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+<<<<<<< HEAD
     'App\\Actions\\Fortify\\CreateNewUser' => $baseDir . '/app/Actions/Fortify/CreateNewUser.php',
     'App\\Actions\\Fortify\\PasswordValidationRules' => $baseDir . '/app/Actions/Fortify/PasswordValidationRules.php',
     'App\\Actions\\Fortify\\ResetUserPassword' => $baseDir . '/app/Actions/Fortify/ResetUserPassword.php',
@@ -14,15 +15,25 @@ return array(
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
     'App\\Http\\Controllers\\Admin\\UserController' => $baseDir . '/app/Http/Controllers/Admin/UserController.php',
+=======
+    'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
+    'App\\DataTables\\routeDataTable' => $baseDir . '/app/DataTables/routeDataTable.php',
+    'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
+>>>>>>> cf79acdaf153af19eeac55680b2711c462775f5d
     'App\\Http\\Controllers\\CategoryController' => $baseDir . '/app/Http/Controllers/CategoryController.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
     'App\\Http\\Controllers\\ProductController' => $baseDir . '/app/Http/Controllers/ProductController.php',
     'App\\Http\\Controllers\\ReportController' => $baseDir . '/app/Http/Controllers/ReportController.php',
+<<<<<<< HEAD
     'App\\Http\\Controllers\\RoleController' => $baseDir . '/app/Http/Controllers/RoleController.php',
     'App\\Http\\Controllers\\RouteController' => $baseDir . '/app/Http/Controllers/RouteController.php',
     'App\\Http\\Controllers\\ShopController' => $baseDir . '/app/Http/Controllers/ShopController.php',
     'App\\Http\\Controllers\\UserCreateController' => $baseDir . '/app/Http/Controllers/UserCreateController.php',
     'App\\Http\\Controllers\\UserTypeController' => $baseDir . '/app/Http/Controllers/UserTypeController.php',
+=======
+    'App\\Http\\Controllers\\RouteController' => $baseDir . '/app/Http/Controllers/RouteController.php',
+    'App\\Http\\Controllers\\ShopController' => $baseDir . '/app/Http/Controllers/ShopController.php',
+>>>>>>> cf79acdaf153af19eeac55680b2711c462775f5d
     'App\\Http\\Kernel' => $baseDir . '/app/Http/Kernel.php',
     'App\\Http\\Middleware\\Authenticate' => $baseDir . '/app/Http/Middleware/Authenticate.php',
     'App\\Http\\Middleware\\EncryptCookies' => $baseDir . '/app/Http/Middleware/EncryptCookies.php',
@@ -33,6 +44,7 @@ return array(
     'App\\Http\\Middleware\\TrustProxies' => $baseDir . '/app/Http/Middleware/TrustProxies.php',
     'App\\Http\\Middleware\\VerifyCsrfToken' => $baseDir . '/app/Http/Middleware/VerifyCsrfToken.php',
     'App\\Models\\Category' => $baseDir . '/app/Models/Category.php',
+<<<<<<< HEAD
     'App\\Models\\CreateUser' => $baseDir . '/app/Models/CreateUser.php',
     'App\\Models\\Product' => $baseDir . '/app/Models/Product.php',
     'App\\Models\\Report' => $baseDir . '/app/Models/Report.php',
@@ -41,11 +53,21 @@ return array(
     'App\\Models\\Shop' => $baseDir . '/app/Models/Shop.php',
     'App\\Models\\User' => $baseDir . '/app/Models/User.php',
     'App\\Models\\UserType' => $baseDir . '/app/Models/UserType.php',
+=======
+    'App\\Models\\Product' => $baseDir . '/app/Models/Product.php',
+    'App\\Models\\Report' => $baseDir . '/app/Models/Report.php',
+    'App\\Models\\Route' => $baseDir . '/app/Models/Route.php',
+    'App\\Models\\Shop' => $baseDir . '/app/Models/Shop.php',
+    'App\\Models\\User' => $baseDir . '/app/Models/User.php',
+>>>>>>> cf79acdaf153af19eeac55680b2711c462775f5d
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',
     'App\\Providers\\AuthServiceProvider' => $baseDir . '/app/Providers/AuthServiceProvider.php',
     'App\\Providers\\BroadcastServiceProvider' => $baseDir . '/app/Providers/BroadcastServiceProvider.php',
     'App\\Providers\\EventServiceProvider' => $baseDir . '/app/Providers/EventServiceProvider.php',
+<<<<<<< HEAD
     'App\\Providers\\FortifyServiceProvider' => $baseDir . '/app/Providers/FortifyServiceProvider.php',
+=======
+>>>>>>> cf79acdaf153af19eeac55680b2711c462775f5d
     'App\\Providers\\RouteServiceProvider' => $baseDir . '/app/Providers/RouteServiceProvider.php',
     'Asm89\\Stack\\Cors' => $vendorDir . '/asm89/stack-cors/src/Cors.php',
     'Asm89\\Stack\\CorsService' => $vendorDir . '/asm89/stack-cors/src/CorsService.php',
@@ -219,6 +241,7 @@ return array(
     'DASPRiD\\Enum\\Exception\\SerializeNotSupportedException' => $vendorDir . '/dasprid/enum/src/Exception/SerializeNotSupportedException.php',
     'DASPRiD\\Enum\\Exception\\UnserializeNotSupportedException' => $vendorDir . '/dasprid/enum/src/Exception/UnserializeNotSupportedException.php',
     'DASPRiD\\Enum\\NullValue' => $vendorDir . '/dasprid/enum/src/NullValue.php',
+<<<<<<< HEAD
     'Database\\Factories\\RoleFactory' => $baseDir . '/database/factories/RoleFactory.php',
     'Database\\Factories\\UserFactory' => $baseDir . '/database/factories/UserFactory.php',
     'Database\\Seeders\\AdminUserSeeder' => $baseDir . '/database/seeders/AdminUserSeeder.php',
@@ -226,6 +249,10 @@ return array(
     'Database\\Seeders\\RoleSeeder' => $baseDir . '/database/seeders/RoleSeeder.php',
     'Database\\Seeders\\RoleUserSeeder' => $baseDir . '/database/seeders/RoleUserSeeder.php',
     'Database\\Seeders\\UserSeeder' => $baseDir . '/database/seeders/UserSeeder.php',
+=======
+    'Database\\Factories\\UserFactory' => $baseDir . '/database/factories/UserFactory.php',
+    'Database\\Seeders\\DatabaseSeeder' => $baseDir . '/database/seeders/DatabaseSeeder.php',
+>>>>>>> cf79acdaf153af19eeac55680b2711c462775f5d
     'DeepCopy\\DeepCopy' => $vendorDir . '/myclabs/deep-copy/src/DeepCopy/DeepCopy.php',
     'DeepCopy\\Exception\\CloneException' => $vendorDir . '/myclabs/deep-copy/src/DeepCopy/Exception/CloneException.php',
     'DeepCopy\\Exception\\PropertyException' => $vendorDir . '/myclabs/deep-copy/src/DeepCopy/Exception/PropertyException.php',

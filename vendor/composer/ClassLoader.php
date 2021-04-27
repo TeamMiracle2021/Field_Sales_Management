@@ -42,6 +42,11 @@ namespace Composer\Autoload;
  */
 class ClassLoader
 {
+<<<<<<< HEAD
+=======
+    private $vendorDir;
+
+>>>>>>> cf79acdaf153af19eeac55680b2711c462775f5d
     // PSR-4
     private $prefixLengthsPsr4 = array();
     private $prefixDirsPsr4 = array();
@@ -57,6 +62,16 @@ class ClassLoader
     private $missingClasses = array();
     private $apcuPrefix;
 
+<<<<<<< HEAD
+=======
+    private static $registeredLoaders = array();
+
+    public function __construct($vendorDir = null)
+    {
+        $this->vendorDir = $vendorDir;
+    }
+
+>>>>>>> cf79acdaf153af19eeac55680b2711c462775f5d
     public function getPrefixes()
     {
         if (!empty($this->prefixesPsr0)) {
@@ -300,6 +315,18 @@ class ClassLoader
     public function register($prepend = false)
     {
         spl_autoload_register(array($this, 'loadClass'), true, $prepend);
+<<<<<<< HEAD
+=======
+
+        if (null === $this->vendorDir) {
+            //no-op
+        } elseif ($prepend) {
+            self::$registeredLoaders = array($this->vendorDir => $this) + self::$registeredLoaders;
+        } else {
+            unset(self::$registeredLoaders[$this->vendorDir]);
+            self::$registeredLoaders[$this->vendorDir] = $this;
+        }
+>>>>>>> cf79acdaf153af19eeac55680b2711c462775f5d
     }
 
     /**
@@ -308,6 +335,13 @@ class ClassLoader
     public function unregister()
     {
         spl_autoload_unregister(array($this, 'loadClass'));
+<<<<<<< HEAD
+=======
+
+        if (null !== $this->vendorDir) {
+            unset(self::$registeredLoaders[$this->vendorDir]);
+        }
+>>>>>>> cf79acdaf153af19eeac55680b2711c462775f5d
     }
 
     /**
@@ -367,6 +401,19 @@ class ClassLoader
         return $file;
     }
 
+<<<<<<< HEAD
+=======
+    /**
+     * Returns the currently registered loaders indexed by their corresponding vendor directories.
+     *
+     * @return self[]
+     */
+    public static function getRegisteredLoaders()
+    {
+        return self::$registeredLoaders;
+    }
+
+>>>>>>> cf79acdaf153af19eeac55680b2711c462775f5d
     private function findFileWithExtension($class, $ext)
     {
         // PSR-4 lookup

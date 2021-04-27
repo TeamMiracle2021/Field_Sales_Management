@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Models\User;
+use App\Models\Category;
+use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
@@ -21,6 +24,7 @@ class ProductController extends Controller
     public function index()
     {
         $product = Product::get();
+//        $category= Category::all();
         return view('product.index')->with(compact('product'));
     }
     //**************************************************************************************************************************************************************************
@@ -42,7 +46,9 @@ class ProductController extends Controller
     //********************************************************************************   create  *******************************************************************************
     public function create()
     {
-        return view('product.createProduct');
+        $users=User::all();
+        $categories = Category::all();
+        return view('product.createProduct')->with('categories', $categories)->with('users',$users);
     }
     //**************************************************************************************************************************************************************************
 
@@ -61,17 +67,26 @@ class ProductController extends Controller
     public function store(Request $request)
     {
 
-        $request->validate([
-            'product_Name'=>'required|max:255',
-            'cost_price'=>'required|max:255',
-            'sales_price'=>'required|max:255',
-            'labled_price'=>'required|max:255',
-            'weight'=>'required|max:255',
-            'Expire_date'=>'required|max:255',
+        $validateData = $request->validate([
+            'product_Name'=>'required',
+            'cost_price'=>'required|numeric',
+            'sales_price'=>'required|numeric',
+            'labled_price'=>'required|numeric',
+            'weight'=>'required|numeric',
+             'category_id'=>'required'
+
+        ],[
+            'product_Name.required' =>'Product name is required',
+            'cost_price.required'=> 'Cost price is required',
+            'sales_price.required'=> 'Sales price is required',
+            'labled_price.required'=> 'Labled price is required',
+            'weight.required'=> 'Weight should be grams'
+
 
         ]);
 
-        Product::create($request->all()); //categoryIndex.blade.php fileekata user insert karana data CategoryControllerr eke thiyana st
+        Product::create($validateData);
+//        Product::create($request->all());
 
         return redirect()->route('product.index')->with('alert', 'Data added for product table successfully!'); //product=product = product kiyana folder name (views wala thiyana ) category= catagory.blade.php
         //return redirect('product.index')->with('add','Data added to product table successfully');
@@ -93,7 +108,8 @@ class ProductController extends Controller
     //********************************************************************************   show  ********************************************************************************
     public function show(Product $product)
     {
-        return view('product.showProduct', compact('product'));
+        $user = User::all();
+        return view('product.showProduct', compact('product'))->with('user',$user);
     }
     //**************************************************************************************************************************************************************************
 
@@ -114,7 +130,8 @@ class ProductController extends Controller
     //********************************************************************************   edit  ********************************************************************************
     public function edit(Product $product)
     {
-        return view('product.edit', compact('product')); //product=folder name in views, edit=edit.blade.php
+        $categories=Category::all();
+        return view('product.edit', compact('product'))->with('categories',$categories);
 
         //dd($product);
     }
@@ -139,11 +156,36 @@ class ProductController extends Controller
     //********************************************************************************   update  ********************************************************************************
     public function update(Request $request, Product $product)
     {
-        $product->update($request->all());
+//        $product->update($request->all());
         //return redirect()->route('product.index');
+
+
+        $this->Validate($request,[
+            'product_Name'=>'required',
+            'cost_price'=>'required|numeric',
+            'sales_price'=>'required|numeric',
+            'labled_price'=>'required|numeric',
+            'weight'=>'required|numeric',
+//            'Expire_date'=>'required',
+            'category_id'=>'required'
+
+        ],[
+            'product_Name.required' =>'Product name is required',
+            'cost_price.required'=> 'Cost price is required',
+            'sales_price.required'=> 'Sales price is required',
+            'labled_price.required'=> 'Labled price is required',
+            'weight.required'=> 'Weightis required',
+//            'Expire_date.required'=> 'Expire date is required',
+            'category_id.required'=> 'category is required'
+
+        ]);
+
+
+                $product->update($request->all());
+
         return redirect()->route('product.index')->with('alert', 'Data updated for product table successfully!');
 
-        //dd($product);
+
     }
     //***************************************************************************************************************************************************************************
 
@@ -206,5 +248,17 @@ class ProductController extends Controller
         return view('reports.productreport')->with(compact('product'));
     }
 
+    //==============================================================API=======================================================
+
+    public function viewcategories(){
+        $categories = Category::get();
+        return $categories;
+    }
+
+    public function viewcategoryproducts($id){
+        $products = DB::table('products')->where('category_id',$id)->get();
+        return $products;
+
+    }
 
 }

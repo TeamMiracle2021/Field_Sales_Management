@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Route;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use function Couchbase\defaultDecoder;
-use App\Http\Controllers\DB;
+Use App\Models\User;
 
 class RouteController extends Controller
 {
@@ -29,7 +30,8 @@ class RouteController extends Controller
      */
     public function create()
     {
-        return view('Route.create');
+        $users = User::all();
+        return view('Route.create')->with('users', $users);
     }
 
     /**
@@ -40,14 +42,30 @@ class RouteController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-           'route_name'=>'required'
+
+        $validateData = $request->validate([
+            'route_name'=>'required',
+            'start_lat' =>'required|numeric',
+            'start_lng'=>'required|numeric',
+            'end_lat'=>'required|numeric',
+            'end_lng'=>'required|numeric',
+            'user_id' =>'required'
+
+        ],[
+            'route_name.required' => 'Route name is required',
+            'start_lat.required' => 'Start point latitude is required',
+            'start_lng.required' => 'Start point latitude is required',
+            'end_lat.required' => 'End point latitude is required',
+            'end_lng.required' => 'End point longitude is required',
+            'user_id.required' => 'User is required'
+
         ]);
 
-       Route::create($request->all());
+        Route:: create($validateData);
+//       Route::create($request->all());
 
         return redirect()->route('route.index')->with('add','Record Added');
-      //  return view('Route.index');
+
 
 
     }
@@ -60,7 +78,7 @@ class RouteController extends Controller
      */
     public function show(Route $route)
     {
-        return view('route.show',compact('route'));
+        return view('Route.show',compact('route'));
 //        return view('reports.productreport');
     }
 
@@ -72,7 +90,8 @@ class RouteController extends Controller
      */
     public function edit(Route $route)
     {
-        return view('route.edit',compact('route'));
+        $users = User::all();
+        return view('route.edit',compact('route'))->with('users', $users);
     }
 
     /**
@@ -84,7 +103,27 @@ class RouteController extends Controller
      */
     public function update(Request $request, Route $route)
     {
-        $route->update($request->all());
+        $validateData = $request->validate([
+            'route_name'=>'required',
+            'start_lat' =>'required|numeric',
+            'start_lng'=>'required|numeric',
+            'end_lat'=>'required|numeric',
+            'end_lng'=>'required|numeric',
+            'user_id' =>'required'
+
+        ],[
+            'route_name.required' => 'Route name is required',
+            'start_lat.required' => 'Start point latitude is required',
+            'start_lng.required' => 'Start point latitude is required',
+            'end_lat.required' => 'End point latitude is required',
+            'end_lng.required' => 'End point longitude is required',
+            'user_id.required' => 'User is required'
+
+        ]);
+
+
+
+        $route->update($validateData);
         return redirect()->route('route.index')->with('add','Record Updated');
     }
 
@@ -127,11 +166,49 @@ class RouteController extends Controller
     }
 
 
+
+
+
+
     public function getlatlng()
     {
-
         return view('maps.getlatlng');
     }
 
+
+
+
+//    -------------------------API----------------------------
+    public function show3($id)
+    {
+        $route = Route::find($id);
+//        return response()->json($route);
+        return response()->json($route->shops);
+    }
+
+
+    public function storemobile(Request $request)
+    {
+        Route::create($request->all());
+    }
+
+    public function viewroutes($id){
+        $routes  = DB::table('routes')->where('user_id',$id)->get();
+        return $routes;
+    }
+
+    public function viewroute($id){
+        $route = new Route();
+        $route->details  = DB::table('routes')->where('RouteID',$id)->get();
+        $route->waypoints = DB::table('shops')
+            ->where('RouteID',$id)
+            ->select('shop_name','lat','lng')
+            ->get();
+//        $route->waypoints->lat = DB::table('shops')->where('RouteID',$id)->value('lat');
+//        $route->waypoints->lng = DB::table('shops')->where('RouteID',$id)->value('lng');
+
+
+        return $route;
+    }
 
 }

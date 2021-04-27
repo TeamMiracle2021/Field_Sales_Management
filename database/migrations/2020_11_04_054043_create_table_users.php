@@ -22,6 +22,7 @@ class CreateTableUsers extends Migration
             $table->string('Address');
             $table->string('Gender');
             $table->date('Date_Of_Birth');
+            $table->integer('telephone_numbers');
             $table->string('email');
             $table->string('username');
             $table->string('password');
@@ -32,21 +33,7 @@ class CreateTableUsers extends Migration
             $table->timestamps();
         });
 
-        DB::table('users')->insert([
-            'first_name'=>'Nirmala',
-            'middle_name'=>'Dinujaya',
-            'last_name'=>'Disanayaka',
-            'NIC'=>'972802522V',
-            'Address'=>'Welipennagahamulla',
-            'Gender'=>'Male',
-            'Date_Of_Birth'=>'1997-10-06',
-            'email'=>'ndisanayaka1997@gmail.com',
-            'username'=>'dinu123',
-            'password'=>'dinu321',
-            'branch_name'=>'Kuliyapitiya',
-            'approvel_state'=>'1',
-            'user_typeID'=>'1'
-        ]);
+
 
     }
 
