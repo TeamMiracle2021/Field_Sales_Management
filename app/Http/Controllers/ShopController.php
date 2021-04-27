@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\OrderProduct;
 use App\Models\Shop;
+use Carbon\Carbon;
 use Database\Seeders\DatabaseSeeder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\Route;
+use App\Models\Unproductive;
 
 
 class ShopController extends Controller
@@ -201,7 +204,6 @@ class ShopController extends Controller
      */
     public function destroy(Shop $shop)
     {
-        //
         $shop->delete();
         return redirect()->route('shop.index')->with('add','Record Deleted');
     }
@@ -211,15 +213,44 @@ class ShopController extends Controller
     public function shopreport()
     {
         $Shop =Shop::get();
-        return view('reports.shopreport')->with (compact('Shop')); // blade eka open krpnko
+        return view('reports.shopreport')->with (compact('Shop'));
+    }
 
+
+    public function unpreport()
+    {
+
+        $unp = DB::table('shop_unproductives')
+            ->join('shops','shop_unproductives.shop_ID','=','shops.ShopID')
+            ->join('users','shops.user_id','=','users.userID')
+            ->select('shop_unproductives.unproductive_reason','shop_unproductives.unproductive_date','shops.shop_name','users.first_name','users.last_name')
+            ->get();
+        return view('reports.unproductive')->with (compact('unp',$unp));
 
     }
 
 
 
+    public function orderreport()
+    {
+        $ordrep = DB::table('orders')
+            ->join('order_products','orders.OrderID','=','order_products.OrderID')
+            ->join('shops','orders.shop_ID','=','shops.ShopID')
+            ->join('users','orders.user_id','=','users.userID')
+            ->join('products','order_products.product_ID','=','products.productID')
+            ->select('orders.OrderID','orders.bill_value','orders.placed_date','shops.shop_name','users.first_name')
+            ->get();
+//        return $ordrep;
+        return view('reports.oderreport')->with (compact('ordrep',$ordrep));
+    }
 
-        //__________________________________________________________API__________________________________________________________________
+
+
+
+
+
+
+    //__________________________________________________________API__________________________________________________________________
     public function shop1($id)
     {
         $shop = Shop::find($id);
@@ -240,42 +271,48 @@ class ShopController extends Controller
     }
 
 
-        public function addshopmob(Request $request){
+    public function mobileshopadd(Request $request){
 
 
             $Shop=new Shop();
             $Shop->shop_name=$request->shop_name;
             $Shop->owner_name=$request->owner_name;
             $Shop->owner_NIC=$request->owner_NIC;
-            $Shop->lat=$request->lat;
-            $Shop->lng=$request->lng;
-
-
-            if($request->hasfile('avatar')){
-                $file=$request->file('avatar');
-                $extension=$file->getClientOriginalExtension();//get image extension
-                $filename= time().'.'.$extension;
-                $file->move('uploads/shop',$filename);
-                $Shop->image=$filename;
-            }else{
-                return $request;
-                $Shop->image='';
-            }
+//            $Shop->lat=$request->lat;
+//            $Shop->lng=$request->lng;
+////
+//
+//            if($request->hasfile('avatar')){
+//                $file=$request->file('avatar');
+//                $extension=$file->getClientOriginalExtension();//get image extension
+//                $filename= time().'.'.$extension;
+//                $file->move('uploads/shop',$filename);
+//                $Shop->image=$filename;
+//            }else{
+//                return $request;
+//                $Shop->image='';
+//            }
 
             $Shop->address_no=$request->address_no;
             $Shop->suburb=$request->suburb;
             $Shop->city=$request->city;
             $Shop->province=$request->province;
             $Shop->country=$request->country;
-            $Shop->registered_date=$request->registered_date;
-            $Shop->due_dates=$request->due_dates;
+            $Shop->registered_date= Carbon::now();
+            $Shop->due_dates=11;
             $Shop->telephone_numbers=$request->telephone_numbers;
             $Shop->user_id=$request->user_id;
-            $Shop->RouteID=$request->RouteID;
-            //shop::create($request->all());
+//            $Shop->RouteID=$request->RouteID;
             $Shop->save();
-            return redirect()->route('shop.index')->with('add','Record Added');
+        if ($Shop) {
+            return ["Result" => "Data has been saved"];
+        } else {
+            return ["Result" => "Operation failed"];
         }
+
+        }
+
+
 
         public function orderlist($id){
             $order = DB::table('orders')->where('shop_ID',$id)->get();
@@ -301,4 +338,55 @@ class ShopController extends Controller
             ]);
 
         }
+
+
+
+    public function shopclosereason(Request $request,$id)
+    {
+        $unproductive = new Unproductive();
+        $unproductive->unproductive_reason=$request->unproductive_reason;
+        $unproductive->unproductive_date=Carbon::now();
+        $unproductive->shop_ID=$id;
+        $unproductive->save();
+
+        return response()->json([
+            'status code'=> 200,
+            'message'=>'unproductive save successfully'
+        ]);
+    }
+
+        public function order(Request $request){
+        $order = new Order();
+        $order->placed_date=Carbon::now();
+        $user_id=$request-> input('userId');
+        $order->bill_value=$request-> input('grandTotal');
+        $order->discount=$request-> input('discount');
+        $order->user_id=$request-> input('userId');
+        $order->shop_ID=$request-> input('shopId');
+        $order->save();
+
+        $o_id=DB::table('orders')->where('user_id',$user_id)->value('OrderID');
+
+
+
+            $productDetails=$request->input('productDetails');
+
+            $i=0;
+            for($i=0;$i<count($productDetails);$i++){
+                $orderprd = new OrderProduct();
+                $orderprd->OrderID=$o_id;
+                $orderprd->product_ID=$productDetails[$i]->productId;
+                $orderprd->quantity_per_product=$productDetails[$i]->productQuantity;
+                $orderprd->save();
+            }
+
+        }
+
+
+
+
 }
+
+
+
+

@@ -36,6 +36,11 @@ class Shop extends Model
     public function user(){
         return $this->belongsTo(User::class, 'user_id', 'userID');
     }
+
+    public function unproductive(){
+        return $this->hasMany(Unproductive::class, 'shop_ID', 'Shop_ID');
+    }
+
 }
 
 

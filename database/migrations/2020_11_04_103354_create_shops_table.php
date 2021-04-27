@@ -18,8 +18,8 @@ class CreateShopsTable extends Migration
             $table->string('shop_name');
             $table->string('owner_name');
             $table->string('owner_NIC');
-            $table->decimal('lat',16,14)->nullable();
-            $table->decimal('lng',16,14)->nullable();
+            $table->float('lat',16,14)->nullable();
+            $table->float('lng',16,14)->nullable();
             $table->string('image')->nullable();
             $table->string('address_no');
             $table->string('suburb');
