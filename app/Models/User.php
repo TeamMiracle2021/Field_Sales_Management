@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+use Illuminate\Database\Eloquent\Model;
+
 class User extends Authenticatable
 {
     use HasFactory, Notifiable;
@@ -17,7 +19,16 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name',
+        'first_name',
+        'middle_name',
+        'last_name',
+        'NIC',
+        'Address',
+        'telephone_number',
+        'Gender',
+        'Date_Of_Birth',
+        'branch_name',
+        'user_typeID',
         'email',
         'password',
     ];
@@ -31,6 +42,12 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+
+    protected $dates = [
+        'Date_Of_Birth'
+        ];
+
+        protected $primaryKey = 'userID';
 
     /**
      * The attributes that should be cast to native types.

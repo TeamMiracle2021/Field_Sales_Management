@@ -22,11 +22,6 @@ class CreateAttendancesTable extends Migration
             $table->timestamps();
         });
 
-        DB::table('attendances')->insert([
-            'check_in_time'=>'2021-03-10 18:52:31',
-            'check_out_time'=>'2021-03-10 18:52:35',
-            'user_id'=>'1'
-        ]);
 
     }
 
