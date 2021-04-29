@@ -234,14 +234,27 @@ class ShopController extends Controller
     public function orderreport()
     {
         $ordrep = DB::table('orders')
-            ->join('order_products','orders.OrderID','=','order_products.OrderID')
+//            ->join('order_products','orders.OrderID','=','order_products.OrderID')
             ->join('shops','orders.shop_ID','=','shops.ShopID')
             ->join('users','orders.user_id','=','users.userID')
-            ->join('products','order_products.product_ID','=','products.productID')
+//            ->join('products','order_products.product_ID','=','products.productID')
             ->select('orders.OrderID','orders.bill_value','orders.placed_date','shops.shop_name','users.first_name')
             ->get();
 //        return $ordrep;
-        return view('reports.oderreport')->with (compact('ordrep',$ordrep));
+        return view('reports.oderreport')->with ('ordrep',$ordrep);
+    }
+
+
+    public function orderdetailreport($id){
+
+        $order = DB::table('order_products')
+            ->join('products','order_products.product_ID','=','products.productID')
+            ->where('order_products.OrderID',$id)
+            ->select('order_products.OrderID','products.product_Name','order_products.quantity_per_product','order_products.discount_per_product')
+            ->get();
+
+        return view('reports.ord2')->with (compact('order',$order));
+
     }
 
 
@@ -282,16 +295,16 @@ class ShopController extends Controller
 //            $Shop->lng=$request->lng;
 ////
 //
-//            if($request->hasfile('avatar')){
-//                $file=$request->file('avatar');
-//                $extension=$file->getClientOriginalExtension();//get image extension
-//                $filename= time().'.'.$extension;
-//                $file->move('uploads/shop',$filename);
-//                $Shop->image=$filename;
-//            }else{
-//                return $request;
-//                $Shop->image='';
-//            }
+            if($request->hasfile('avatar')){
+                $file=$request->file('avatar');
+                $extension=$file->getClientOriginalExtension();//get image extension
+                $filename= time().'.'.$extension;
+                $file->move('uploads/shop',$filename);
+                $Shop->image=$filename;
+            }else{
+                return $request;
+                $Shop->image='';
+            }
 
             $Shop->address_no=$request->address_no;
             $Shop->suburb=$request->suburb;
@@ -305,7 +318,7 @@ class ShopController extends Controller
 //            $Shop->RouteID=$request->RouteID;
             $Shop->save();
         if ($Shop) {
-            return ["Result" => "Data has been saved"];
+            return ["Result" => "Shop has been saved"];
         } else {
             return ["Result" => "Operation failed"];
         }
@@ -365,7 +378,10 @@ class ShopController extends Controller
         $order->shop_ID=$request-> input('shopId');
         $order->save();
 
-        $o_id=DB::table('orders')->where('user_id',$user_id)->value('OrderID');
+        $o_id=DB::table('orders')
+            ->where('user_id',$user_id)
+            ->orderBy('OrderID','DESC')
+            ->value('OrderID');
 
 
 
@@ -373,10 +389,11 @@ class ShopController extends Controller
 
             $i=0;
             for($i=0;$i<count($productDetails);$i++){
+
                 $orderprd = new OrderProduct();
                 $orderprd->OrderID=$o_id;
-                $orderprd->product_ID=$productDetails[$i]->productId;
-                $orderprd->quantity_per_product=$productDetails[$i]->productQuantity;
+                $orderprd->product_ID=$productDetails[$i]['productId'];
+                $orderprd->quantity_per_product=$productDetails[$i]['productQuantity'];
                 $orderprd->save();
             }
 
