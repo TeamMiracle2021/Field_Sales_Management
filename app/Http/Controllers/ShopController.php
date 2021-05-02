@@ -295,16 +295,16 @@ class ShopController extends Controller
 //            $Shop->lng=$request->lng;
 ////
 //
-            if($request->hasfile('avatar')){
-                $file=$request->file('avatar');
-                $extension=$file->getClientOriginalExtension();//get image extension
-                $filename= time().'.'.$extension;
-                $file->move('uploads/shop',$filename);
-                $Shop->image=$filename;
-            }else{
-                return $request;
-                $Shop->image='';
-            }
+//            if($request->hasfile('avatar')){
+//                $file=$request->file('avatar');
+//                $extension=$file->getClientOriginalExtension();//get image extension
+//                $filename= time().'.'.$extension;
+//                $file->move('uploads/shop',$filename);
+//                $Shop->image=$filename;
+//            }else{
+//                return $request;
+//                $Shop->image='';
+//            }
 
             $Shop->address_no=$request->address_no;
             $Shop->suburb=$request->suburb;
@@ -324,6 +324,52 @@ class ShopController extends Controller
         }
 
         }
+
+
+
+
+    public function mobileshopaddwi(Request $request){
+
+
+        $Shop=new Shop();
+        $Shop->shop_name=$request->shop_name;
+        $Shop->owner_name=$request->owner_name;
+        $Shop->owner_NIC=$request->owner_NIC;
+//            $Shop->lat=$request->lat;
+//            $Shop->lng=$request->lng;
+//
+
+            if($request->hasfile('avatar')){
+                $file=$request->file('avatar');
+                $extension=$file->getClientOriginalExtension();//get image extension
+                $filename= time().'.'.$extension;
+                $file->move('uploads/shop',$filename);
+                $Shop->image=$filename;
+            }else{
+                return $request;
+                $Shop->image='';
+            }
+
+        $Shop->address_no=$request->address_no;
+        $Shop->suburb=$request->suburb;
+        $Shop->city=$request->city;
+        $Shop->province=$request->province;
+        $Shop->country=$request->country;
+        $Shop->registered_date= Carbon::now();
+        $Shop->due_dates=11;
+        $Shop->telephone_numbers=$request->telephone_numbers;
+        $Shop->user_id=$request->user_id;
+//            $Shop->RouteID=$request->RouteID;
+        $Shop->save();
+        if ($Shop) {
+            return ["Result" => "Shop has been saved"];
+        } else {
+            return ["Result" => "Operation failed"];
+        }
+
+    }
+
+
 
 
 

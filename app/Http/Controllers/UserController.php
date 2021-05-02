@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\UserType;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -133,6 +134,32 @@ class UserController extends Controller
     }
 
 
+public function loginview(){
+        return view('users.loginweb');
+}
+
+
+
+
+    public function loginweb(Request $request){
+
+        $user = User::where('email', request('email'))->first();
+
+        if(Hash::check(request('password'), $user->password)) {
+            return view('dashboard')->with('user',$user);
+        } else {
+            return response()->json(['status'=>'false', 'message'=>'password is wrong']);
+        }
+
+    }
+
+
+
+
+
+
+
+
 
 
 
@@ -147,6 +174,28 @@ class UserController extends Controller
     }
 
 
+    public function mobilelogin(Request $request){
+
+
+//        $user = User::where('email', request('email'))->first();
+//
+//        if($user->username==$request->input('username')) {
+//            return response()->json(['status'=>'true','message'=>'Email is correct']);
+//        } else {
+//            return response()->json(['status'=>'false', 'message'=>'password is wrong']);
+//        }
+
+
+        $user = User::where('email', request('email'))->first();
+
+        if(Hash::check(request('password'), $user->password)) {
+            return response()->json([$user,'Login Successfully']);
+        } else {
+            return response()->json(['status'=>'false', 'message'=>'password is wrong']);
+        }
+
+
+    }
 
 
 
