@@ -197,6 +197,33 @@ public function loginview(){
 
     }
 
+    public function mobilelogin2(Request $request){
+
+        $user = User::where('email', request('email'))->first();
+
+        if(Hash::check(request('password'), $user->password)) {
+            return response()->json('ok');
+        } else {
+            return response()->json(['status'=>'false', 'message'=>'password is wrong']);
+        }
+
+
+    }
+
+
+    public function mobilelogin3(Request $request){
+
+        $user = User::where('email', request('email'))->first();
+
+        if(Hash::check(request('password'), $user->password)) {
+            return response()->json(['ok']);
+        } else {
+            return response()->json(['status'=>'false', 'message'=>'password is wrong']);
+        }
+
+
+    }
+
 
 
 

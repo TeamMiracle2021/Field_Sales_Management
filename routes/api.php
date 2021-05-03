@@ -67,3 +67,7 @@ Route::post('/shopclosereason/{id}',[ShopController::class,'shopclosereason']);
 Route::post('/order',[ShopController::class,'order']);
 
 Route::post('/mobilelogin',[UserController::class,'mobilelogin']);
+
+Route::post('/mobilelogin2',[UserController::class,'mobilelogin2']);
+
+Route::post('/mobilelogin3',[UserController::class,'mobilelogin3']);
