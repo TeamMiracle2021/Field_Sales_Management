@@ -177,15 +177,6 @@ public function loginview(){
     public function mobilelogin(Request $request){
 
 
-//        $user = User::where('email', request('email'))->first();
-//
-//        if($user->username==$request->input('username')) {
-//            return response()->json(['status'=>'true','message'=>'Email is correct']);
-//        } else {
-//            return response()->json(['status'=>'false', 'message'=>'password is wrong']);
-//        }
-
-
         $user = User::where('email', request('email'))->first();
 
         if(Hash::check(request('password'), $user->password)) {
