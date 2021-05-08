@@ -2,7 +2,7 @@
 
 
 @section('title')
-    Route Report
+    Order Report
 @endsection
 
 @section('content')
@@ -10,7 +10,7 @@
 
 
     <section class="content">
-        <h4><b><center>Reports of Routes</center></b></h4>
+        <h3><b><center>Reports of Orders</center></b></h3>
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
@@ -24,32 +24,28 @@
 
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <table id="example" class="table table-bordered table-striped ">
+                            <table id="example" class="table table-bordered table-striped">
                                 <thead>
                                 <tr>
-                                    <th>Route ID</th>
-                                    <th>Route Name</th>
-                                    <th>Start Latitude</th>
-                                    <th>Start Longitude</th>
-                                    <th>End Latitude</th>
-                                    <th>End Longitude</th>
+                                    <th>Order ID</th>
+                                    <th>Shop Name</th>
+                                    <th>Bill value</th>
+                                    <th>Placed Date</th>
                                     <th>User</th>
-
+                                    <th>More</th>
 
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($route as $data)
+                                @foreach($ordrep as $data)
 
                                     <tr>
-                                        <td>{{$data->RouteID}}</td>
-                                        <td>{{$data->route_name}}</td>
-                                        <td>{{$data->start_lat}}</td>
-                                        <td>{{$data->start_lng}}</td>
-                                        <td>{{$data->end_lat}}</td>
-                                        <td>{{$data->end_lng}}</td>
-                                        <td>{{$data->user->first_name}}</td>
-{{--                                        <td>{{$data->address_no}}</td>--}}
+                                        <td>{{$data->OrderID}}</td>
+                                        <td>{{$data->shop_name}}</td>
+                                        <td>{{$data->bill_value}}</td>
+                                        <td>{{$data->placed_date}}</td>
+                                        <td>{{$data->first_name}}</td>
+                                        <th> <a class="btn btn-success" href="{{route('shop.orderdetailreport',$data->OrderID)}}">View</a></th>
 
 
                                     </tr>
