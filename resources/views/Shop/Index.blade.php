@@ -30,25 +30,35 @@
 
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <table id="example1" class="table table-bordered table-striped">
+                            <table id="example1" class="table table-bordered table-striped" >
+
                                 <thead>
                                 <tr>
-                                    <th>Shop Name</th>
-                                    <th>Owner Name</th>
-                                    <th>Image</th>
-                                    <th>City</th>
-                                    <th>Action</th>
+                                    <th><center>Shop Name</center></th>
+                                    <th><center>Owner Name</center></th>
+                                    <th><center>Image</center></th>
+                                    <th><center>Source</center></th>
+                                    <th><center>Status</center></th>
+                                    <th><center>Action</center></th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($Shop as $data)
                                     <tr>
-                                        <td>{{$data->shop_name}}</td>
-                                        <td>{{$data->owner_name}}</td>
-                                        <td><img src="{{asset('uploads/shop/'.$data->image)  }}"
-                                                 class="img-bordered-sm" width="100px;" height="100px;" alt="Shop-Image"></td>
-                                        <td>{{$data->city}}</td>
-                                        <td>
+                                        <td><center>{{$data->shop_name}}</center></td>
+                                        <td><center>{{$data->owner_name}}</center></td>
+                                        <td><center><img src="{{asset('uploads/shop/'.$data->image)  }}"
+                                                 class="img-bordered-sm" width="100px;" height="100px;" alt="Shop-Image"></center></td>
+                                        <td><center>{{$data->source}}</center></td>
+                                        <td><center>
+                                            @if($data->status=='Completed')
+                                                <i class="fas fa-check-double"></i>
+
+                                            @else
+                                                <i class="fas fa-check"></i>
+                                            @endif
+                                            </center></td>
+                                        <td><center>
                                             <form action="{{route('shop.destroy',$data->ShopID)}}" method="POST">
 
 
@@ -60,10 +70,12 @@
 {{--                                                <button type="button" data-toggle="modal" class="btn btn-danger" data-target="#exampleModal" >Delete</button>--}}
                                                 <a class="btn btn-success" href="{{route('shop.show',$data->ShopID)}}">View</a>
                                                 </form>
+                                            </center>
                                         </td>
-                                    </tr>
+                                       </tr>
                                 @endforeach
-                                </tbody>
+                                </center></tbody>
+
                             </table>
 
                             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

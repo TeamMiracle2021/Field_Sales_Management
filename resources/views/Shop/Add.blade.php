@@ -11,7 +11,10 @@
                             <div class="row">
                                 <div class="col-xl-12">
                                     <h3 class="float-left"><b>Add Shop</b></h3>
-                                    <a class="btn btn-primary float-right" href="{{route('shop.index')}}">Back</a>
+                                    <a class="btn btn-primary float-right" style="margin: 5px" href="{{route('shop.index')}}">Back</a>
+                                    <a class="btn btn-primary float-right" style="margin: 5px" href="{{route('route.getlatlng')}}" target="_blank">Get lat,lng From map</a>
+{{--                                    <button class="btn btn-primary float-right" style="margin: 5px">dd</button>--}}
+
                                 </div>
                             </div>
                         </div>
@@ -90,7 +93,7 @@
 
 
                                 <div class="form-group row">
-                                    <label class="col-md-2 col-form-label">Address No:</label>
+                                    <label class="col-md-2 col-form-label">Address :</label>
                                     <div class="col-sm-10">
                                         <input type="text" class="form-control" placeholder="Enter address No." name="address_no" value="{{old('address_no')}}">
                                         @if ($errors->has('address_no'))
@@ -122,32 +125,39 @@
                                 </div>
 
                                 <div class="form-group row">
-                                    <label class="col-md-2 col-form-label">Province:</label>
+                                    <label class="col-md-2 col-form-label">District:</label>
                                     <div class="col-sm-10">
-                                        <select  name="province" >
-                                            <option value="Select">Select</option>
-                                            <option value="Central Province">Central Province</option>
-                                            <option value="Eastern Province">Eastern Province</option>
-                                            <option value="North Central Province">North Central Province</option>
-                                            <option value="Northern Province">Northern Province</option>
-                                            <option value="North Western Province">North Western Province</option>
-                                            <option value="Sabaragamuwa Province">Sabaragamuwa Province</option>
-                                            <option value="Southern Province">Southern Province</option>
-                                            <option value="Uva Province">Uva Province</option>
-                                            <option value="Western Province">Western Province</option>
+                                        <select class="form-control"  name="district" >
+                                            <option value="none">Select</option>
+                                            <option value="Jaffna">Jaffna</option>
+                                            <option value="Kilinochchi">Kilinochchi</option>
+                                            <option value="Mannar">Mannar</option>
+                                            <option value="Mullaitivu">Mullaitivu</option>
+                                            <option value="Vavuniya">Vavuniya</option>
+                                            <option value="Puttalam">Puttalam</option>
+                                            <option value="Kurunegala">Kurunegala</option>
+                                            <option value="Gampaha">Gampaha</option>
+                                            <option value="Colombo">Colombo</option>
+                                            <option value="Kalutara">Kalutara</option>
+                                            <option value="Anuradhapura">Anuradhapura</option>
+                                            <option value="Polonnaruwa">Polonnaruwa</option>
+                                            <option value="Matale">Matale</option>
+                                            <option value="Kandy">Kandy</option>
+                                            <option value="Nuwara Eliya">Nuwara Eliya</option>
+                                            <option value="Kegalle">Kegalle</option>
+                                            <option value="Ratnapura">Ratnapura</option>
+                                            <option value="Trincomalee">Trincomalee</option>
+                                            <option value="Batticaloa">Batticaloa</option>
+                                            <option value="Ampara">Ampara</option>
+                                            <option value="Badulla">Badulla</option>
+                                            <option value="Monaragala">Monaragala</option>
+                                            <option value="Hambantota">Hambantota</option>
+                                            <option value="Matara">Matara</option>
+                                            <option value="Galle">Galle</option>
                                         </select>
                                     </div>
                                 </div>
 
-                                <div class="form-group row">
-                                    <label class="col-md-2 col-form-label">Country:</label>
-                                    <div class="col-sm-10">
-                                        <select  name="country" >
-                                            <option value="Select">Select</option>
-                                            <option value="Sri Lanka">Sri Lanka</option>
-                                        </select>
-                                    </div>
-                                </div>
 
 
                                 <div class="form-group row">
@@ -164,7 +174,7 @@
                                 <div class="form-group row">
                                     <label class="col-md-2 col-form-label">Register Date:</label>
                                     <div class="col-sm-10">
-                                        <input type="date" class="from-control" placeholder="Register Date" name="registered_date">
+                                        <input type="date" class="form-control" placeholder="Register Date" name="registered_date">
                                     </div>
                                 </div>
 
@@ -203,6 +213,29 @@
                                 </div>
 
 
+
+                                <div class="form-group row">
+                                    <label class="col-md-2 col-form-label">status:</label>
+                                    <div class="col-sm-10">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="status" id="flexRadioDefault1" value="Partially Completed" checked>
+                                            <label class="form-check-label" for="flexRadioDefault1">
+                                                Partially Completed
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="status" id="flexRadioDefault2" value="Completed">
+                                            <label class="form-check-label" for="flexRadioDefault2">
+                                                Completed
+                                            </label>
+                                        </div>
+                                        </div>
+                                    </div>
+
+
+
+
+
                                 <div class="text-right">
                                     <button type="submit"  Value="Save" class="btn btn-primary">Save</button>
                                     <a class="btn btn-secondary" href="{{route('shop.index')}}">Cancel</a>
@@ -219,5 +252,4 @@
 
 
 @endsection
-
 

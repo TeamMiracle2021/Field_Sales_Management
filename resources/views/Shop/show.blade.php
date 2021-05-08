@@ -74,14 +74,10 @@
                                         </tr>
 
                                         <tr>
-                                            <td>Province</td>
-                                            <td> {{$shop->province}}</td>
+                                            <td>District</td>
+                                            <td> {{$shop->district}}</td>
                                         </tr>
 
-                                        <tr>
-                                            <td>Country</td>
-                                            <td>{{$shop->country}}</td>
-                                        </tr>
 
                                         <tr>
                                             <td>Telephone Number</td>
@@ -96,6 +92,11 @@
                                         <tr>
                                             <td>Due Dates</td>
                                             <td>{{$shop->due_dates}}</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>Status</td>
+                                            <td>{{$shop->status}}</td>
                                         </tr>
 
                                         <tr>

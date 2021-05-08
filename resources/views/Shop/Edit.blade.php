@@ -25,15 +25,6 @@
 
 
 
-                                {{--            <div class="form-group row">--}}
-                                {{--                <label class="col-md-2 col-form-label">Shop Name:</label>--}}
-                                {{--                <div class="col-sm-10">--}}
-                                {{--                    <input type="text" class="form-control" placeholder="Enter shop name" name="shop_name" required>--}}
-                                {{--                </div>--}}
-                                {{--            </div>--}}
-
-
-
 
                                 <div class="form-group row">
                                     <label class="col-md-2 col-form-label">Shop Name:</label>
@@ -94,7 +85,8 @@
                                 <div class="form-group row">
                                     <label class="col-md-2 col-form-label" >Image:</label>
                                     <div class="col-sm-10">
-                                        <input type="file"  class="form-control" name="avatar" value="{{old('avatar')}}">
+                                        <input type="file"  class="form-control" value="{{$shop->image}}" name="avatar" >
+                                        <img src="{{asset('uploads/shop/'.$shop->image)  }}" class="img-bordered float-right" width="150px;" height="100px;" alt="Shop-Image">
                                         @if ($errors->has('avatar'))
                                             <span class="text-danger">{{ $errors->first('avatar') }}</span>
                                         @endif
@@ -105,7 +97,7 @@
 
 
                                 <div class="form-group row">
-                                    <label class="col-md-2 col-form-label">Address No:</label>
+                                    <label class="col-md-2 col-form-label">Address:</label>
                                     <div class="col-sm-10">
                                         <input type="text" class="form-control" value="{{$shop->address_no}}" placeholder="Enter address No." name="address_no" value="{{old('address_no')}}">
                                         @if ($errors->has('address_no'))
@@ -138,33 +130,40 @@
 
 
                                 <div class="form-group row">
-                                    <label class="col-md-2 col-form-label">Province:</label>
+                                    <label class="col-md-2 col-form-label">District:</label>
                                     <div class="col-sm-10">
-                                        <select  name="province" >
-                                            <option value="Select">Select</option>
-                                            <option value="Central Province">Central Province</option>
-                                            <option value="Eastern Province">Eastern Province</option>
-                                            <option value="North Central Province">North Central Province</option>
-                                            <option value="Northern Province">Northern Province</option>
-                                            <option value="North Western Province">North Western Province</option>
-                                            <option value="Sabaragamuwa Province">Sabaragamuwa Province</option>
-                                            <option value="Southern Province">Southern Province</option>
-                                            <option value="Uva Province">Uva Province</option>
-                                            <option value="Western Province">Western Province</option>
+                                        <select class="form-control" value="{{$shop->district}}" name="district" >
+                                            <option value="{{$shop->district}}">{{$shop->district}}</option>
+                                            <option value="Jaffna">Jaffna</option>
+                                            <option value="Kilinochchi">Kilinochchi</option>
+                                            <option value="Mannar">Mannar</option>
+                                            <option value="Mullaitivu">Mullaitivu</option>
+                                            <option value="Vavuniya">Vavuniya</option>
+                                            <option value="Puttalam">Puttalam</option>
+                                            <option value="Kurunegala">Kurunegala</option>
+                                            <option value="Gampaha">Gampaha</option>
+                                            <option value="Colombo">Colombo</option>
+                                            <option value="Kalutara">Kalutara</option>
+                                            <option value="Anuradhapura">Anuradhapura</option>
+                                            <option value="Polonnaruwa">Polonnaruwa</option>
+                                            <option value="Matale">Matale</option>
+                                            <option value="Kandy">Kandy</option>
+                                            <option value="Nuwara Eliya">Nuwara Eliya</option>
+                                            <option value="Kegalle">Kegalle</option>
+                                            <option value="Ratnapura">Ratnapura</option>
+                                            <option value="Trincomalee">Trincomalee</option>
+                                            <option value="Batticaloa">Batticaloa</option>
+                                            <option value="Ampara">Ampara</option>
+                                            <option value="Badulla">Badulla</option>
+                                            <option value="Monaragala">Monaragala</option>
+                                            <option value="Hambantota">Hambantota</option>
+                                            <option value="Matara">Matara</option>
+                                            <option value="Galle">Galle</option>
                                         </select>
                                     </div>
                                 </div>
 
 
-                                <div class="form-group row">
-                                    <label class="col-md-2 col-form-label">Country:</label>
-                                    <div class="col-sm-10">
-                                        <select  name="country" >
-                                            <option value="Select">Select</option>
-                                            <option value="Sri Lanka">Sri Lanka</option>
-                                        </select>
-                                    </div>
-                                </div>
 
 
                                 <div class="form-group row">
@@ -183,7 +182,7 @@
                                 <div class="form-group row">
                                     <label class="col-md-2 col-form-label">Register Date:</label>
                                     <div class="col-sm-10">
-                                        <input type="date" class="form-control" value="{{$shop->registered_date}}" placeholder="Register Date" name="registered_date">
+                                        <input type="date" class="form-control" value="{{$shop->registered_date}}"  name="registered_date">
                                     </div>
                                 </div>
 
@@ -200,7 +199,7 @@
                                     <label class="col-md-2 col-form-label">Assign To:</label>
                                     <div class="col-sm-10">
                                         <select class="form-control"  name="user_id" >
-                                            <option value="Select">Select User</option>
+                                            <option value="{{$shop->user_id}}">{{$shop->user_id}} - {{$shop->user->first_name}} {{$shop->user->last_name}}</option>
                                             @foreach ($users as $user)
                                                 <option value="{{$user->userID}}">{{$user->userID}} -  {{$user->first_name}} {{$user->last_name}}</option>
                                             @endforeach
@@ -213,12 +212,32 @@
                                     <label class="col-md-2 col-form-label">Route:</label>
                                     <div class="col-sm-10">
                                         <select class="form-control"  name="RouteID" >
-                                            <option value="Select">Select Route</option>
+                                            <option value="{{$shop->RouteID}}">{{$shop->route->route_name}}</option>
                                             @foreach ($routes as $route)
                                                 <option value="{{$route->RouteID}}"> {{$route->RouteID}} - {{$route->route_name}}</option>
                                             @endforeach
                                         </select>
 
+                                    </div>
+                                </div>
+
+
+
+                                <div class="form-group row">
+                                    <label class="col-md-2 col-form-label">status:</label>
+                                    <div class="col-sm-10">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="status" id="flexRadioDefault1" value="Partially Completed" checked>
+                                            <label class="form-check-label" for="flexRadioDefault1">
+                                                Partially Completed
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="status" id="flexRadioDefault2" value="Completed" >
+                                            <label class="form-check-label" for="flexRadioDefault2">
+                                                Completed
+                                            </label>
+                                        </div>
                                     </div>
                                 </div>
 
