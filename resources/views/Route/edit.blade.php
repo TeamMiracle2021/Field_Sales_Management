@@ -86,7 +86,7 @@
                                     <label class="col-md-2 col-form-label">Assign To:</label>
                                     <div class="col-sm-10">
                                         <select class="form-control"  name="user_id" >
-                                            <option value="Select">Select User</option>
+                                            <option value="{{$route->user_id}}">{{$route->user_id}} - {{$route->user->first_name}} {{$route->user->last_name}}</option>
                                             @foreach ($users as $user)
                                                 <option value="{{$user->userID}}">{{$user->userID}} -  {{$user->first_name}} {{$user->last_name}}</option>
                                             @endforeach

@@ -60,6 +60,14 @@ Route::get('/orderdetails/{id}',[ShopController::class,'orderdetails']);
 
 Route::post('/mobileshopadd',[ShopController::class,'mobileshopadd']);
 
+Route::post('/mobileshopaddwi',[ShopController::class,'mobileshopaddwi']);
+
 Route::post('/shopclosereason/{id}',[ShopController::class,'shopclosereason']);
 
 Route::post('/order',[ShopController::class,'order']);
+
+Route::post('/mobilelogin',[UserController::class,'mobilelogin']);
+
+Route::post('/mobilelogin2',[UserController::class,'mobilelogin2']);
+
+Route::post('/mobilelogin3',[UserController::class,'mobilelogin3']);

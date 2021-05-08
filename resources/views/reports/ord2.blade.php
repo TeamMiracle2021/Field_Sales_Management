@@ -2,7 +2,7 @@
 
 
 @section('title')
-    Order Report
+    Order Details Report
 @endsection
 
 @section('content')
@@ -10,7 +10,7 @@
 
 
     <section class="content">
-        <h3><b><center>Reports of Orders</center></b></h3>
+        <h3><b><center>Reports of Order Details</center></b></h3>
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
@@ -28,25 +28,18 @@
                                 <thead>
                                 <tr>
                                     <th>Order ID</th>
-                                    <th>Shop Name</th>
-                                    <th>Bill value</th>
-                                    <th>Placed Date</th>
-                                    <th>User</th>
-                                    <th>More</th>
+                                    <th>Product Name</th>
+                                    <th>QTY</th>
 
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($ordrep as $data)
+                                @foreach($order as $data)
 
                                     <tr>
                                         <td>{{$data->OrderID}}</td>
-                                        <td>{{$data->shop_name}}</td>
-                                        <td>{{$data->bill_value}}</td>
-                                        <td>{{$data->placed_date}}</td>
-                                        <td>{{$data->first_name}}</td>
-                                        <th> <a class="btn btn-success" href="{{route('shop.orderdetailreport',$data->OrderID)}}">View</a></th>
-
+                                        <td>{{$data->product_Name}}</td>
+                                        <td>{{$data->quantity_per_product}}</td>
 
                                     </tr>
 

@@ -62,6 +62,12 @@ Route::get('/rep/unproductive', [ShopController::class, 'unpreport'])->name('sho
 
 Route::get('/rep/orderreport', [ShopController::class, 'orderreport'])->name('shop.orderreport');
 
+Route::get('/rep/orderdetailreport/{id}', [ShopController::class, 'orderdetailreport'])->name('shop.orderdetailreport');
+
+Route::post('/loginweb', [UserController::class, 'loginweb'])->name('user.loginweb');
+
+Route::get('/loginview', [UserController::class, 'loginview'])->name('user.loginview');
+
 
 
 

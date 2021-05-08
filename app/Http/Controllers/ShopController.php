@@ -67,8 +67,9 @@ class ShopController extends Controller
             'lng'=>'numeric',
             'image'=>'nullable|mimes:jpg,jpeg,bmp,svg,png',
             'address_no' => 'required',
-            'suburb'=> 'required',
-            'city' => 'required',
+//            'suburb'=> 'required',
+//            'city' => 'required',
+            'status'=>'required',
             'telephone_numbers' => 'numeric|max:10=10',
             'user_id'=> 'required',
             'RouteID'=>'required'
@@ -101,8 +102,9 @@ class ShopController extends Controller
         $Shop->address_no=$request->address_no;
         $Shop->suburb=$request->suburb;
         $Shop->city=$request->city;
-        $Shop->province=$request->province;
-        $Shop->country=$request->country;
+        $Shop->district=$request->district;
+        $Shop->source='Administrator';
+        $Shop->status=$request->status;
         $Shop->registered_date=$request->registered_date;
         $Shop->due_dates=$request->due_dates;
         $Shop->telephone_numbers=$request->telephone_numbers;
@@ -162,9 +164,10 @@ class ShopController extends Controller
             'lng'=>'numeric',
             'image'=>'nullable|mimes:jpg,jpeg,bmp,svg,png',
             'address_no' => 'required',
-            'suburb'=> 'required',
-            'city' => 'required',
-            'telephone_numbers' => 'numeric|max:10=10',
+//            'suburb'=> 'required',
+//            'city' => 'required',
+            'status'=>'required',
+//            'telephone_numbers' => 'numeric|max:10=10',
             'user_id'=> 'required',
             'RouteID'=>'required'
 
@@ -234,14 +237,27 @@ class ShopController extends Controller
     public function orderreport()
     {
         $ordrep = DB::table('orders')
-            ->join('order_products','orders.OrderID','=','order_products.OrderID')
+//            ->join('order_products','orders.OrderID','=','order_products.OrderID')
             ->join('shops','orders.shop_ID','=','shops.ShopID')
             ->join('users','orders.user_id','=','users.userID')
-            ->join('products','order_products.product_ID','=','products.productID')
+//            ->join('products','order_products.product_ID','=','products.productID')
             ->select('orders.OrderID','orders.bill_value','orders.placed_date','shops.shop_name','users.first_name')
             ->get();
 //        return $ordrep;
-        return view('reports.oderreport')->with (compact('ordrep',$ordrep));
+        return view('reports.oderreport')->with ('ordrep',$ordrep);
+    }
+
+
+    public function orderdetailreport($id){
+
+        $order = DB::table('order_products')
+            ->join('products','order_products.product_ID','=','products.productID')
+            ->where('order_products.OrderID',$id)
+            ->select('order_products.OrderID','products.product_Name','order_products.quantity_per_product','order_products.discount_per_product')
+            ->get();
+
+        return view('reports.ord2')->with (compact('order',$order));
+
     }
 
 
@@ -296,21 +312,69 @@ class ShopController extends Controller
             $Shop->address_no=$request->address_no;
             $Shop->suburb=$request->suburb;
             $Shop->city=$request->city;
-            $Shop->province=$request->province;
-            $Shop->country=$request->country;
+            $Shop->district=$request->district;
+            $Shop->source='Mobile User';
+            $Shop->status='Partially Completed';
             $Shop->registered_date= Carbon::now();
-            $Shop->due_dates=11;
+            $Shop->due_dates=15;
             $Shop->telephone_numbers=$request->telephone_numbers;
             $Shop->user_id=$request->user_id;
 //            $Shop->RouteID=$request->RouteID;
             $Shop->save();
         if ($Shop) {
-            return ["Result" => "Data has been saved"];
+            return ["Result" => "Shop has been saved"];
         } else {
             return ["Result" => "Operation failed"];
         }
 
         }
+
+
+
+
+    public function mobileshopaddwi(Request $request){
+
+
+        $Shop=new Shop();
+        $Shop->shop_name=$request->shop_name;
+        $Shop->owner_name=$request->owner_name;
+        $Shop->owner_NIC=$request->owner_NIC;
+//            $Shop->lat=$request->lat;
+//            $Shop->lng=$request->lng;
+//
+
+            if($request->hasfile('avatar')){
+                $file=$request->file('avatar');
+                $extension=$file->getClientOriginalExtension();//get image extension
+                $filename= time().'.'.$extension;
+                $file->move('uploads/shop',$filename);
+                $Shop->image=$filename;
+            }else{
+                return $request;
+                $Shop->image='';
+            }
+
+        $Shop->address_no=$request->address_no;
+        $Shop->suburb=$request->suburb;
+        $Shop->city=$request->city;
+        $Shop->district=$request->district;
+        $Shop->source='Mobile User';
+        $Shop->status='Partially Completed';
+        $Shop->registered_date= Carbon::now();
+        $Shop->due_dates=15;
+        $Shop->telephone_numbers=$request->telephone_numbers;
+        $Shop->user_id=$request->user_id;
+//            $Shop->RouteID=$request->RouteID;
+        $Shop->save();
+        if ($Shop) {
+            return ["Result" => "Shop has been saved"];
+        } else {
+            return ["Result" => "Operation failed"];
+        }
+
+    }
+
+
 
 
 
@@ -365,7 +429,10 @@ class ShopController extends Controller
         $order->shop_ID=$request-> input('shopId');
         $order->save();
 
-        $o_id=DB::table('orders')->where('user_id',$user_id)->value('OrderID');
+        $o_id=DB::table('orders')
+            ->where('user_id',$user_id)
+            ->orderBy('OrderID','DESC')
+            ->value('OrderID');
 
 
 
@@ -373,10 +440,11 @@ class ShopController extends Controller
 
             $i=0;
             for($i=0;$i<count($productDetails);$i++){
+
                 $orderprd = new OrderProduct();
                 $orderprd->OrderID=$o_id;
-                $orderprd->product_ID=$productDetails[$i]->productId;
-                $orderprd->quantity_per_product=$productDetails[$i]->productQuantity;
+                $orderprd->product_ID=$productDetails[$i]['productId'];
+                $orderprd->quantity_per_product=$productDetails[$i]['productQuantity'];
                 $orderprd->save();
             }
 

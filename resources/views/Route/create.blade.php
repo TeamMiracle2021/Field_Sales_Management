@@ -17,8 +17,8 @@
                                 <div class="col-md-12">
                                     <h3 class="float-left"><b>Add Route</b></h3>
 
-                                    <a class="btn btn-secondary float-left" href="{{route('route.getlatlng')}}" target="_blank">Get lat,lng From map</a>
-                                    <a class="btn btn-primary float-right" href="{{route('route.index')}}">Back</a>
+                                    <a class="btn btn-primary float-right" style="margin: 5px" href="{{route('route.index')}}">Back</a>
+                                    <a class="btn btn-primary float-right" style="margin: 5px" href="{{route('route.getlatlng')}}" target="_blank">Get lat,lng From map</a>
 
                                 </div>
                             </div>
