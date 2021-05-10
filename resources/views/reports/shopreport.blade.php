@@ -36,12 +36,12 @@
                                     <th>Address No</th>
                                     <th>Suburb</th>
                                     <th>City</th>
-                                    <th>Province</th>
-                                    <th>Country</th>
+                                    <th>District</th>
                                     <th>Tele. No</th>
                                     <th>Reg. Date</th>
                                     <th>Due Dates</th>
                                     <th>User</th>
+                                    <th>Status</th>
                                     <th>Created At</th>
                                     <th>Updated At</th>
                                     <th>Image</th>
@@ -61,12 +61,12 @@
                                         <td>{{$data->address_no}}</td>
                                         <td>{{$data->suburb}}</td>
                                         <td>{{$data->city}}</td>
-                                        <td>{{$data->province}}</td>
-                                        <td>{{$data->country}}</td>
+                                        <td>{{$data->district}}</td>
                                         <td>{{$data->telephone_numbers}}</td>
                                         <td>{{$data->registered_date}}</td>
                                         <td>{{$data->due_dates}}</td>
                                         <td>{{$data->user_id}}</td>
+                                        <td>{{$data->status}}</td>
                                         <td>{{$data->created_at}}</td>
                                         <td>{{$data->updated_at}}</td>
                                         <td><img src="{{asset('uploads/shop/'.$data->image)  }}"

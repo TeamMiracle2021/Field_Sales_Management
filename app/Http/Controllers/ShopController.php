@@ -67,8 +67,9 @@ class ShopController extends Controller
             'lng'=>'numeric',
             'image'=>'nullable|mimes:jpg,jpeg,bmp,svg,png',
             'address_no' => 'required',
-            'suburb'=> 'required',
-            'city' => 'required',
+//            'suburb'=> 'required',
+//            'city' => 'required',
+            'status'=>'required',
             'telephone_numbers' => 'numeric|max:10=10',
             'user_id'=> 'required',
             'RouteID'=>'required'
@@ -101,8 +102,9 @@ class ShopController extends Controller
         $Shop->address_no=$request->address_no;
         $Shop->suburb=$request->suburb;
         $Shop->city=$request->city;
-        $Shop->province=$request->province;
-        $Shop->country=$request->country;
+        $Shop->district=$request->district;
+        $Shop->source='Administrator';
+        $Shop->status=$request->status;
         $Shop->registered_date=$request->registered_date;
         $Shop->due_dates=$request->due_dates;
         $Shop->telephone_numbers=$request->telephone_numbers;
@@ -162,9 +164,10 @@ class ShopController extends Controller
             'lng'=>'numeric',
             'image'=>'nullable|mimes:jpg,jpeg,bmp,svg,png',
             'address_no' => 'required',
-            'suburb'=> 'required',
-            'city' => 'required',
-            'telephone_numbers' => 'numeric|max:10=10',
+//            'suburb'=> 'required',
+//            'city' => 'required',
+            'status'=>'required',
+//            'telephone_numbers' => 'numeric|max:10=10',
             'user_id'=> 'required',
             'RouteID'=>'required'
 
@@ -309,10 +312,11 @@ class ShopController extends Controller
             $Shop->address_no=$request->address_no;
             $Shop->suburb=$request->suburb;
             $Shop->city=$request->city;
-            $Shop->province=$request->province;
-            $Shop->country=$request->country;
+            $Shop->district=$request->district;
+            $Shop->source='Mobile User';
+            $Shop->status='Partially Completed';
             $Shop->registered_date= Carbon::now();
-            $Shop->due_dates=11;
+            $Shop->due_dates=15;
             $Shop->telephone_numbers=$request->telephone_numbers;
             $Shop->user_id=$request->user_id;
 //            $Shop->RouteID=$request->RouteID;
@@ -353,10 +357,11 @@ class ShopController extends Controller
         $Shop->address_no=$request->address_no;
         $Shop->suburb=$request->suburb;
         $Shop->city=$request->city;
-        $Shop->province=$request->province;
-        $Shop->country=$request->country;
+        $Shop->district=$request->district;
+        $Shop->source='Mobile User';
+        $Shop->status='Partially Completed';
         $Shop->registered_date= Carbon::now();
-        $Shop->due_dates=11;
+        $Shop->due_dates=15;
         $Shop->telephone_numbers=$request->telephone_numbers;
         $Shop->user_id=$request->user_id;
 //            $Shop->RouteID=$request->RouteID;
