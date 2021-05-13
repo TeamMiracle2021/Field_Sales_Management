@@ -68,6 +68,9 @@ Route::post('/order',[ShopController::class,'order']);
 
 Route::post('/mobilelogin',[UserController::class,'mobilelogin']);
 
-Route::post('/mobilelogin2',[UserController::class,'mobilelogin2']);
+Route::get('/getallorders/{id}',[ShopController::class,'getallorders']);
 
-Route::post('/mobilelogin3',[UserController::class,'mobilelogin3']);
+Route::get('/totalitems/{id}',[ShopController::class,'totalitems']);
+
+Route::get('/billsfromshops/{id}',[ShopController::class,'billsfromshops']);
+

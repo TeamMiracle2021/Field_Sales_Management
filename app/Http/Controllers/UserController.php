@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Order;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\UserType;
@@ -185,37 +186,7 @@ public function loginview(){
             return response()->json(['status'=>'false', 'message'=>'password is wrong']);
         }
 
-
     }
-
-    public function mobilelogin2(Request $request){
-
-        $user = User::where('email', request('email'))->first();
-
-        if(Hash::check(request('password'), $user->password)) {
-            return response()->json('ok');
-        } else {
-            return response()->json(['status'=>'false', 'message'=>'password is wrong']);
-        }
-
-
-    }
-
-
-    public function mobilelogin3(Request $request){
-
-        $user = User::where('email', request('email'))->first();
-
-        if(Hash::check(request('password'), $user->password)) {
-            return response()->json(['ok']);
-        } else {
-            return response()->json(['status'=>'false', 'message'=>'password is wrong']);
-        }
-
-
-    }
-
-
 
 
 

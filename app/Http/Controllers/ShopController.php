@@ -452,6 +452,58 @@ class ShopController extends Controller
 
 
 
+    public function getallorders(Request $request,$id)
+    {
+        $orderreport = DB::table('orders')
+            ->select(DB::raw('count(OrderID) as numOfBills'),DB::raw('sum(bill_value) as totalValue'))
+            ->whereBetween('placed_date',[$request->input('start_date'),$request->input('end_date')])
+            ->where('user_id',$id)
+            ->get();
+
+        return $orderreport;
+    }
+
+
+
+
+    public function totalitems(Request $request,$id)
+    {
+        $productreport = DB::table('order_products')
+            //->select(DB::raw('count(OrderID) as num'),DB::raw('sum(bill_value) as total'))
+
+            ->join('orders','order_products.OrderId','=','orders.OrderID')
+            ->join('products','order_products.product_ID','=','products.productID')
+
+            ->select('order_products.product_ID',
+                'products.product_Name',
+                DB::raw('sum(order_products.quantity_per_product) as quantity'),
+                DB::raw('sum(order_products.quantity_per_product * products.sales_price) as total'))
+
+            ->whereBetween('orders.placed_date',[$request->input('start_date'),$request->input('end_date')])
+            ->where('orders.user_id',$id)
+            ->groupBy('order_products.product_ID','products.product_Name')
+            ->get();
+        return $productreport;
+    }
+
+
+
+
+    public function billsfromshops(Request $request,$id)
+    {
+        $billsfromshops = DB::table('orders')
+//            ->join('order_products','orders.OrderId','=','order_products.OrderID')
+            ->join('shops','orders.shop_ID','=','shops.ShopID')
+            ->select('shops.shop_name',DB::raw('count(OrderID) as numOfBills'),DB::raw('sum(bill_value) as totalValue'))
+            ->whereBetween('placed_date',[$request->input('start_date'),$request->input('end_date')])
+            ->where('orders.user_id',$id)
+            ->groupBy('shops.shop_name')
+            ->get();
+
+        return $billsfromshops;
+    }
+
+
 
 }
 
