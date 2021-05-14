@@ -463,6 +463,17 @@ class ShopController extends Controller
         return $orderreport;
     }
 
+    public function getallorders2(Request $request,$id)
+    {
+        $orderreport = DB::table('orders')
+            ->select(DB::raw('count(OrderID) as numOfBills'),DB::raw('sum(bill_value) as totalValue'))
+            ->whereBetween('placed_date',[$request->input('start_date'),$request->input('end_date')])
+            ->where('user_id',$id)
+            ->get();
+
+        return $orderreport;
+    }
+
 
 
 
