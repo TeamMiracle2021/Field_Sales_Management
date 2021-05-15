@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Order;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\UserType;
 use Illuminate\Support\Facades\DB;
@@ -185,37 +187,50 @@ public function loginview(){
             return response()->json(['status'=>'false', 'message'=>'password is wrong']);
         }
 
+    }
+
+    public function count(Request $request){
+        $usercount = DB::table('users')->count('userID');
+        $productcount = DB::table('products')->count('productID');
+        $shopscount = DB::table('shops')->count('ShopID');
+        $routecount = DB::table('routes')->count('RouteID');
+        $today = (Carbon::today())->toDateString();
+        $lastday = (Carbon::today()->subDays(7))->toDateString();
+        $lastday2 = (Carbon::today()->subDays(14))->toDateString();
+        $graph = DB::table('orders')
+            ->select('placed_date',DB::raw('sum(bill_value) as totalValue'))
+            ->groupBy('placed_date')
+            ->whereBetween('placed_date',[$lastday,$today])
+            ->get();
+        $graph2 = DB::table('orders')
+            ->select('placed_date',DB::raw('sum(bill_value) as totalValue'))
+            ->groupBy('placed_date')
+            ->whereBetween('placed_date',[$lastday2,$lastday])
+            ->get();
+        return view('dashboard',compact('usercount','productcount','shopscount','routecount','graph','graph2'));
 
     }
 
-    public function mobilelogin2(Request $request){
+    public function daydate()
+    {
+        $today = (Carbon::today())->toDateString();
+        $lastday = (Carbon::today()->subDays(7))->toDateString();
+        $sort = DB::table('orders')
+            ->select('placed_date',DB::raw('sum(bill_value) as totalValue'))
+            ->groupBy('placed_date')
+            ->whereBetween('placed_date',[$lastday,$today])
+            ->get();
+        return $sort;
+        return ([$today,$lastday]);
 
-        $user = User::where('email', request('email'))->first();
 
-        if(Hash::check(request('password'), $user->password)) {
-            return response()->json('ok');
-        } else {
-            return response()->json(['status'=>'false', 'message'=>'password is wrong']);
-        }
-
-
+//        $val = DB::table('orders')
+//            ->select(DB::raw('sum(bill_value) as totalValue'))
+//            ->where('placed_date','=', $myDate)
+//            ->get();
+//
+//        return $val;
     }
-
-
-    public function mobilelogin3(Request $request){
-
-        $user = User::where('email', request('email'))->first();
-
-        if(Hash::check(request('password'), $user->password)) {
-            return response()->json(['ok']);
-        } else {
-            return response()->json(['status'=>'false', 'message'=>'password is wrong']);
-        }
-
-
-    }
-
-
 
 
 

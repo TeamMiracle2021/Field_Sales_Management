@@ -27,33 +27,30 @@
                             <table id="example" class="table table-bordered table-striped ">
                                 <thead>
                                 <tr>
-                                    <th>Route ID</th>
                                     <th>Route Name</th>
                                     <th>Start Latitude</th>
                                     <th>Start Longitude</th>
                                     <th>End Latitude</th>
                                     <th>End Longitude</th>
-                                    <th>User</th>
+                                    <th>Sales Representative</th>
+                                    <th>No of Shops</th>
 
 
                                 </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($route as $data)
-
                                     <tr>
-                                        <td>{{$data->RouteID}}</td>
                                         <td>{{$data->route_name}}</td>
                                         <td>{{$data->start_lat}}</td>
                                         <td>{{$data->start_lng}}</td>
                                         <td>{{$data->end_lat}}</td>
                                         <td>{{$data->end_lng}}</td>
-                                        <td>{{$data->user->first_name}}</td>
-{{--                                        <td>{{$data->address_no}}</td>--}}
+                                        <td>{{$data->first_name}} {{$data->last_name}}</td>
+                                        <td>{{$data->quantity}}</td>
 
 
                                     </tr>
-
                                 @endforeach
                                 </tbody>
                             </table>

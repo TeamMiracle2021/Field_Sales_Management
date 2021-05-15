@@ -30,7 +30,7 @@
                                     <th>Shop Name</th>
                                     <th>Reason</th>
                                     <th>Date</th>
-                                    <th>User Name</th>
+                                    <th>Sales Representative</th>
                                 </tr>
                                 </thead>
                                 <tbody>

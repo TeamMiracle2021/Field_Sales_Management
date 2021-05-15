@@ -2,7 +2,11 @@
 
 
 @section('title')
-    Order Details Report
+    Detailed Report of Order
+    <h4><b><center>Made By : {{$orders[0]->first_name}} {{$orders[0]->last_name}}</center></b></h4>
+    <h4><b><center>Placed Date : {{$orders[0]->placed_date}}</center></b></h4>
+    <h4><b><center>Shop Name : {{$orders[0]->shop_name}}</center></b></h4>
+    <h4><b><center>Total Bill Value : {{$orders[0]->bill_value}}</center></b></h4>
 @endsection
 
 @section('content')
@@ -24,10 +28,14 @@
 
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <table id="example" class="table table-bordered table-striped">
+                            <h4><b><center>Made By : {{$orders[0]->first_name}} {{$orders[0]->last_name}}</center></b></h4>
+                            <h4><b><center>Placed Date : {{$orders[0]->placed_date}}</center></b></h4>
+                            <h4><b><center>Shop Name : {{$orders[0]->shop_name}}</center></b></h4>
+                            <h4><b><center>Total Bill Value : {{$orders[0]->bill_value}}</center></b></h4>
+                            <table id="example15" class="table  table-responsive-md">
                                 <thead>
                                 <tr>
-                                    <th>Order ID</th>
+{{--                                    <th >Order ID</th>--}}
                                     <th>Product Name</th>
                                     <th>QTY</th>
 
@@ -37,14 +45,19 @@
                                 @foreach($order as $data)
 
                                     <tr>
-                                        <td>{{$data->OrderID}}</td>
+{{--                                        <td>{{$data->OrderID}}</td>--}}
                                         <td>{{$data->product_Name}}</td>
                                         <td>{{$data->quantity_per_product}}</td>
 
                                     </tr>
 
                                 @endforeach
+                                <tr>
+                                    <td><b>Total No Of Products</b></td>
+                                    <td><b>{{$ordertotal[0]->quantity}}</b></td>
+                                </tr>
                                 </tbody>
+
                             </table>
                         </div>
                         <!-- /.card-body -->
@@ -57,4 +70,25 @@
         </div>
         <!-- /.container-fluid -->
     </section>
+@endsection
+
+
+@section('jscript')
+
+
+
+    {{--for csv pdf execl--}}
+    <script >
+        $(document).ready(function() {
+            $('#example15').DataTable( {
+                dom: 'B',
+                buttons: ['print']
+            } );
+        } );
+    </script>
+
+
+
+
+
 @endsection

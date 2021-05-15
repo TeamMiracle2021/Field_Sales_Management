@@ -33,8 +33,7 @@
                                     <th>Sales Price</th>
                                     <th>Labeled Price</th>
                                     <th>Weight</th>
-                                    <th>Expire Date</th>
-                                    <th>Category Id</th>
+                                    <th>Category name</th>
                                     <th>Created At</th>
                                     <th>Updated At</th>
 
@@ -50,8 +49,7 @@
                                         <td>{{$data->sales_price}}</td>
                                         <td>{{$data->labled_price}}</td>
                                         <td>{{$data->weight}}</td>
-                                        <td>{{$data->Expire_date}}</td>
-                                        <td>{{$data->category_id}}</td>
+                                        <td>{{$data->categories->category_name}}</td>
                                         <td>{{$data->created_at}}</td>
                                         <td>{{$data->updated_at}}</td>
 

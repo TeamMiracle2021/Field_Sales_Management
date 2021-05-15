@@ -42,6 +42,7 @@
                                     <th>Due Dates</th>
                                     <th>User</th>
                                     <th>Status</th>
+                                    <th>Source</th>
                                     <th>Created At</th>
                                     <th>Updated At</th>
                                     <th>Image</th>
@@ -50,7 +51,6 @@
                                 </thead>
                                 <tbody>
                                 @foreach($Shop as $data)
-
                                     <tr>
                                         <td>{{$data->ShopID}}</td>
                                         <td>{{$data->shop_name}}</td>
@@ -65,8 +65,9 @@
                                         <td>{{$data->telephone_numbers}}</td>
                                         <td>{{$data->registered_date}}</td>
                                         <td>{{$data->due_dates}}</td>
-                                        <td>{{$data->user_id}}</td>
+                                        <td>{{$data->user->first_name}} {{$data->user->last_name}} </td>
                                         <td>{{$data->status}}</td>
+                                        <td>{{$data->source}}</td>
                                         <td>{{$data->created_at}}</td>
                                         <td>{{$data->updated_at}}</td>
                                         <td><img src="{{asset('uploads/shop/'.$data->image)  }}"
