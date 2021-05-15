@@ -12,7 +12,7 @@
 <section class="content">
     <div class="container-fluid">
 
-<br>
+<br><br>
 
 {{--        <div class="callout ">--}}
 {{--            <h4><center>Welcome !!!!</center></h4>--}}
@@ -41,7 +41,7 @@
 
             <div class="col-lg-3 col-6">
                 <!-- small box -->
-                <div class="small-box bg-success">
+                <div class="small-box bg-fuchsia">
                     <div class="inner">
                         <h3>Products</h3>
                         <h5>Total: <b>{{$productcount}}</b></h5>
@@ -102,8 +102,9 @@
 
                 {{--graph--}}
                 <div class="card card-primary">
-                    <div class="card-header">
-                        <h3 class="card-title">Sales Chart</h3>
+                    <div class="card-header bg-gradient-success">
+
+                        <h3 class="card-title">  <i class="fas fa-chart-area"></i> Sales Chart</h3>
 
                         <div class="card-tools">
                             <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
@@ -139,14 +140,14 @@
                         <div class="card-tools">
                             <!-- button with a dropdown -->
                             <div class="btn-group">
-                                <button type="button" class="btn btn-success btn-sm dropdown-toggle" data-toggle="dropdown">
-                                    <i class="fas fa-bars"></i></button>
-                                <div class="dropdown-menu float-right" role="menu">
-                                    <a href="#" class="dropdown-item">Add new event</a>
-                                    <a href="#" class="dropdown-item">Clear events</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a href="#" class="dropdown-item">View calendar</a>
-                                </div>
+{{--                                <button type="button" class="btn btn-success btn-sm dropdown-toggle" data-toggle="dropdown">--}}
+{{--                                    <i class="fas fa-bars"></i></button>--}}
+{{--                                <div class="dropdown-menu float-right" role="menu">--}}
+{{--                                    <a href="#" class="dropdown-item">Add new event</a>--}}
+{{--                                    <a href="#" class="dropdown-item">Clear events</a>--}}
+{{--                                    <div class="dropdown-divider"></div>--}}
+{{--                                    <a href="#" class="dropdown-item">View calendar</a>--}}
+{{--                                </div>--}}
                             </div>
                             <button type="button" class="btn btn-success btn-sm" data-card-widget="collapse">
                                 <i class="fas fa-minus"></i>
@@ -165,58 +166,67 @@
                     <!-- /.card-body -->
                 </div>
                 <!-- /.card -->
+            </section>
 
+
+
+            <section class="col-xl-12">
+<br>
                 <!-- Map card -->
-                <div class="card bg-gradient-primary">
-                    <div class="card-header border-0">
-                    {{--                        <h3 class="card-title">--}}
-                    {{--                            <i class="fas fa-map-marker-alt mr-1"></i>--}}
-                    {{--                            Visitors--}}
-                    {{--                        </h3>--}}
-                    <!-- card tools -->
-                    {{--                        <div class="card-tools">--}}
-                    {{--                            <button type="button"--}}
-                    {{--                                    class="btn btn-primary btn-sm daterange"--}}
-                    {{--                                    data-toggle="tooltip"--}}
-                    {{--                                    title="Date range">--}}
-                    {{--                                <i class="far fa-calendar-alt"></i>--}}
-                    {{--                            </button>--}}
-                    {{--                            <button type="button"--}}
-                    {{--                                    class="btn btn-primary btn-sm"--}}
-                    {{--                                    data-card-widget="collapse"--}}
-                    {{--                                    data-toggle="tooltip"--}}
-                    {{--                                    title="Collapse">--}}
-                    {{--                                <i class="fas fa-minus"></i>--}}
-                    {{--                            </button>--}}
-                    {{--                        </div>--}}
-                    <!-- /.card-tools -->
-                    </div>
-                {{--                    <div class="card-body">--}}
-                {{--                        <div id="world-map" style="height: 250px; width: 100%;"></div>--}}
-                {{--                    </div>--}}
-                <!-- /.card-body-->
-                    <div class="card-footer bg-transparent">
-                        <div class="row">
-                            <div class="col-4 text-center">
-                                <div id="sparkline-1"></div>
-                                {{--                                <div class="text-white">Visitors</div>--}}
-                            </div>
-                            <!-- ./col -->
-                            <div class="col-4 text-center">
-                                <div id="sparkline-2"></div>
-                                {{--                                <div class="text-white">Online</div>--}}
-                            </div>
-                            <!-- ./col -->
-                            <div class="col-4 text-center">
-                                <div id="sparkline-3"></div>
-                                {{--                                <div class="text-white">Sales</div>--}}
-                            </div>
-                            <!-- ./col -->
+                    <div class="card bg-gradient-lightblue">
+                        <div class="card-header border-0">
+                                                <h3 class="card-title">
+                                                    <i class="fas fa-chart-area"></i>
+                                                    Compare summary of sales
+                                                </h3>
+                        <!-- card tools -->
+                                                <div class="card-tools">
+{{--                                                    <button type="button"--}}
+{{--                                                            class="btn btn-primary btn-sm daterange"--}}
+{{--                                                            data-toggle="tooltip"--}}
+{{--                                                            title="Date range">--}}
+{{--                                                        <i class="far fa-calendar-alt"></i>--}}
+{{--                                                    </button>--}}
+                                                    <button type="button"
+                                                            class="btn btn-primary btn-sm"
+                                                            data-card-widget="collapse"
+                                                            data-toggle="tooltip"
+                                                            title="Collapse">
+                                                        <i class="fas fa-minus"></i>
+                                                    </button>
+                                                </div>
+                        <!-- /.card-tools -->
                         </div>
-                        <!-- /.row -->
+{{--                                        <div class="card-body">--}}
+{{--                                            <div id="world-map" style="height: 250px; width: 100%;"></div>--}}
+{{--                                        </div>--}}
+                    <!-- /.card-body-->
+                        <div class="card-footer bg-transparent">
+                            <div class="row">
+                                <div class="col-4 text-center">
+                                    <div id="sparkline-1" class="accent-light" ></div>
+                                    <div class="text-white">last 5 Days</div>
+                                </div>
+                                <!-- ./col -->
+                                <div class="col-4 text-center">
+                                    <div id="sparkline-2"></div>
+                                    <div class="text-white">Last 10 days</div>
+                                </div>
+                                <!-- ./col -->
+                                <div class="col-4 text-center">
+                                    <div id="sparkline-3"></div>
+                                    <div class="text-white">last 15 Days</div>
+                                </div>
+                                <!-- ./col -->
+                            </div>
+{{--                            <!-- /.row -->--}}
+                        </div>
                     </div>
-                </div>
-                <!-- /.Mapcard -->
+                    <!-- /.Mapcard -->
+
+
+
+
 
 
 
@@ -301,8 +311,8 @@
                 datasets: [
                     {
                         label               : 'Total Sales',
-                        backgroundColor     : 'rgba(60,141,188,0.9)',
-                        borderColor         : 'rgba(60,141,188,0.8)',
+                        backgroundColor     : '#98ff98',
+                        borderColor         : '#64e986',
                         pointRadius          : false,
                         pointColor          : '#3b8bba',
                         pointStrokeColor    : 'rgba(60,141,188,1)',
@@ -375,6 +385,8 @@
             //- DONUT CHART -
             //-------------
             // Get context with jQuery - using jQuery's .get() method.
+
+
             var donutChartCanvas = $('#donutChart').get(0).getContext('2d')
             var donutData        = {
                 labels: [
@@ -505,6 +517,102 @@
     <!-- AdminLTE for demo purposes -->
     <script src="dist/js/demo.js"></script>
 
+
+
+
+
+
+
+
+    <script>
+        $(function () {
+            /* jQueryKnob */
+
+            $('.knob').knob({
+                /*change : function (value) {
+                 //console.log("change : " + value);
+                 },
+                 release : function (value) {
+                 console.log("release : " + value);
+                 },
+                 cancel : function () {
+                 console.log("cancel : " + this.value);
+                 },*/
+                draw: function () {
+
+                    // "tron" case
+                    if (this.$.data('skin') == 'tron') {
+
+                        var a   = this.angle(this.cv)  // Angle
+                            ,
+                            sa  = this.startAngle          // Previous start angle
+                            ,
+                            sat = this.startAngle         // Start angle
+                            ,
+                            ea                            // Previous end angle
+                            ,
+                            eat = sat + a                 // End angle
+                            ,
+                            r   = true
+
+                        this.g.lineWidth = this.lineWidth
+
+                        this.o.cursor
+                        && (sat = eat - 0.3)
+                        && (eat = eat + 0.3)
+
+                        if (this.o.displayPrevious) {
+                            ea = this.startAngle + this.angle(this.value)
+                            this.o.cursor
+                            && (sa = ea - 0.3)
+                            && (ea = ea + 0.3)
+                            this.g.beginPath()
+                            this.g.strokeStyle = this.previousColor
+                            this.g.arc(this.xy, this.xy, this.radius - this.lineWidth, sa, ea, false)
+                            this.g.stroke()
+                        }
+
+                        this.g.beginPath()
+                        this.g.strokeStyle = r ? this.o.fgColor : this.fgColor
+                        this.g.arc(this.xy, this.xy, this.radius - this.lineWidth, sat, eat, false)
+                        this.g.stroke()
+
+                        this.g.lineWidth = 2
+                        this.g.beginPath()
+                        this.g.strokeStyle = this.o.fgColor
+                        this.g.arc(this.xy, this.xy, this.radius - this.lineWidth + 1 + this.lineWidth * 2 / 3, 0, 2 * Math.PI, false)
+                        this.g.stroke()
+
+                        return false
+                    }
+                }
+            })
+            /* END JQUERY KNOB */
+
+            //INITIALIZE SPARKLINE CHARTS
+            var sparkline1 = new Sparkline($('#sparkline-1')[0], { width: 240, height: 170, lineColor: '#FFC0CB', endColor: '#92c1dc' })
+            var sparkline2 = new Sparkline($('#sparkline-2')[0], { width: 240, height: 170, lineColor: '#FFFF00', endColor: '#FFFF00' })
+            var sparkline3 = new Sparkline($('#sparkline-3')[0], { width: 240, height: 170, lineColor: '#3af221', endColor: '#3af221' })
+
+            sparkline1.draw([
+                @foreach($graph as $data)
+                {{$data->totalValue}},
+                @endforeach
+            ])
+            sparkline2.draw([
+                @foreach($graph2 as $data)
+                {{$data->totalValue}},
+                @endforeach
+            ])
+            sparkline3.draw([
+                @foreach($graph3 as $data)
+                {{$data->totalValue}},
+                @endforeach
+            ])
+
+        })
+
+    </script>
     @endsection
 
 
