@@ -253,10 +253,30 @@ class ShopController extends Controller
         $order = DB::table('order_products')
             ->join('products','order_products.product_ID','=','products.productID')
             ->where('order_products.OrderID',$id)
-            ->select('order_products.OrderID','products.product_Name','order_products.quantity_per_product','order_products.discount_per_product')
+            ->select('order_products.OrderID','products.product_Name','order_products.quantity_per_product',
+                'order_products.discount_per_product')
             ->get();
 
-        return view('reports.ord2')->with (compact('order',$order));
+
+        $orders = DB::table('orders')
+            ->join('shops','orders.shop_ID','=','shops.ShopID')
+            ->join('users','orders.user_id','=','users.userID')
+            ->where('orders.OrderID',$id)
+            ->select('orders.bill_value','users.first_name','shops.shop_name','users.last_name',
+            'orders.placed_date')
+            ->get();
+
+
+        $ordertotal = DB::table('order_products')
+            ->join('orders','order_products.OrderId','=','orders.OrderID')
+            ->join('products','order_products.product_ID','=','products.productID')
+            ->select(DB::raw('sum(order_products.quantity_per_product) as quantity'))
+            ->where('order_products.OrderID',$id)
+            ->get();
+
+
+        return view('reports.ord2')->with('order',$order)->with('orders',$orders)->with('ordertotal',$ordertotal);
+//        dd($order,$orders,$ordertotal);
 
     }
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\UserType;
 use Illuminate\Support\Facades\DB;
@@ -186,6 +187,27 @@ public function loginview(){
             return response()->json(['status'=>'false', 'message'=>'password is wrong']);
         }
 
+    }
+
+    public function count(Request $request){
+        $usercount = DB::table('users')->count('userID');
+        $productcount = DB::table('products')->count('productID');
+        $shopscount = DB::table('shops')->count('ShopID');
+        $routecount = DB::table('routes')->count('RouteID');
+        $graph = ([52,50,58,96,20,15,2]);
+        return view('dashboard',compact('usercount','productcount','shopscount','routecount','graph'));
+
+    }
+
+    public function daydate()
+    {
+        $myDate = Carbon::today();
+        $val = DB::table('orders')
+            ->select(DB::raw('sum(bill_value) as totalValue'))
+            ->where('placed_date','=', $myDate)
+            ->get();
+
+        return $val;
     }
 
 

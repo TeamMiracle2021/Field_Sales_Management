@@ -46,6 +46,7 @@
         </div>
     @include('layouts.partials.footer')
     @include('layouts.partials.javascript')
+        @yield('jscript')
         <!-- /.content-wrapper -->
 
 </body>

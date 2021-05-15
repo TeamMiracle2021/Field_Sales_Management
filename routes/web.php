@@ -29,9 +29,14 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+//Route::get('/dashboard', function () {
+//    return view('dashboard');
+//})->name('dashboard');
+
+Route::get('/dashboard',[UserController::class, 'count'])->name('user.count');
+
+
+
 
 Route::resource('product',ProductController::class);
 Route::resource('category',CategoryController::class);
@@ -67,6 +72,8 @@ Route::get('/rep/orderdetailreport/{id}', [ShopController::class, 'orderdetailre
 Route::post('/loginweb', [UserController::class, 'loginweb'])->name('user.loginweb');
 
 Route::get('/loginview', [UserController::class, 'loginview'])->name('user.loginview');
+
+Route::get('/daydate', [UserController::class, 'daydate']);
 
 
 
