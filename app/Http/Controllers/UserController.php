@@ -181,7 +181,7 @@ public function loginview(){
 
         $user = User::where('email', request('email'))->first();
 
-        if(Hash::check(request('password'), $user->password)) {
+        if($user && Hash::check(request('password'), $user->password)) {
             return response()->json([$user,'Login Successfully']);
         } else {
             return response()->json(['status'=>'false', 'message'=>'password is wrong']);
@@ -195,8 +195,9 @@ public function loginview(){
         $shopscount = DB::table('shops')->count('ShopID');
         $routecount = DB::table('routes')->count('RouteID');
         $today = (Carbon::today())->toDateString();
-        $lastday = (Carbon::today()->subDays(7))->toDateString();
-        $lastday2 = (Carbon::today()->subDays(14))->toDateString();
+        $lastday = (Carbon::today()->subDays(5))->toDateString();
+        $lastday2 = (Carbon::today()->subDays(10))->toDateString();
+        $lastday3 = (Carbon::today()->subDays(15))->toDateString();
         $graph = DB::table('orders')
             ->select('placed_date',DB::raw('sum(bill_value) as totalValue'))
             ->groupBy('placed_date')
@@ -207,7 +208,14 @@ public function loginview(){
             ->groupBy('placed_date')
             ->whereBetween('placed_date',[$lastday2,$lastday])
             ->get();
-        return view('dashboard',compact('usercount','productcount','shopscount','routecount','graph','graph2'));
+        $graph3 = DB::table('orders')
+            ->select('placed_date',DB::raw('sum(bill_value) as totalValue'))
+            ->groupBy('placed_date')
+            ->whereBetween('placed_date',[$lastday3,$lastday2])
+            ->get();
+        $state=false;
+        return view('dashboard',compact('usercount','productcount',
+                    'shopscount','routecount','graph','graph2','graph3','state'));
 
     }
 
