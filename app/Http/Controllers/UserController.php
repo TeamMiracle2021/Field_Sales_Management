@@ -194,20 +194,42 @@ public function loginview(){
         $productcount = DB::table('products')->count('productID');
         $shopscount = DB::table('shops')->count('ShopID');
         $routecount = DB::table('routes')->count('RouteID');
-        $graph = ([52,50,58,96,20,15,2]);
-        return view('dashboard',compact('usercount','productcount','shopscount','routecount','graph'));
+        $today = (Carbon::today())->toDateString();
+        $lastday = (Carbon::today()->subDays(7))->toDateString();
+        $lastday2 = (Carbon::today()->subDays(14))->toDateString();
+        $graph = DB::table('orders')
+            ->select('placed_date',DB::raw('sum(bill_value) as totalValue'))
+            ->groupBy('placed_date')
+            ->whereBetween('placed_date',[$lastday,$today])
+            ->get();
+        $graph2 = DB::table('orders')
+            ->select('placed_date',DB::raw('sum(bill_value) as totalValue'))
+            ->groupBy('placed_date')
+            ->whereBetween('placed_date',[$lastday2,$lastday])
+            ->get();
+        return view('dashboard',compact('usercount','productcount','shopscount','routecount','graph','graph2'));
 
     }
 
     public function daydate()
     {
-        $myDate = Carbon::today();
-        $val = DB::table('orders')
-            ->select(DB::raw('sum(bill_value) as totalValue'))
-            ->where('placed_date','=', $myDate)
+        $today = (Carbon::today())->toDateString();
+        $lastday = (Carbon::today()->subDays(7))->toDateString();
+        $sort = DB::table('orders')
+            ->select('placed_date',DB::raw('sum(bill_value) as totalValue'))
+            ->groupBy('placed_date')
+            ->whereBetween('placed_date',[$lastday,$today])
             ->get();
+        return $sort;
+        return ([$today,$lastday]);
 
-        return $val;
+
+//        $val = DB::table('orders')
+//            ->select(DB::raw('sum(bill_value) as totalValue'))
+//            ->where('placed_date','=', $myDate)
+//            ->get();
+//
+//        return $val;
     }
 
 

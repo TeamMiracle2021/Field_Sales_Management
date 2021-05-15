@@ -143,8 +143,23 @@ class RouteController extends Controller
 
     public function routereport()
     {
-        $route = route::get();
+//        $route = route::get();
+
+        $route= DB::table('routes')
+            ->join('shops','routes.routeID','=','shops.routeID')
+            ->join('users','routes.user_id','=','users.userID')
+            ->select(DB::raw('sum(shops.RouteID) as quantity'),
+                'routes.route_name','routes.start_lat','routes.end_lat','routes.start_lng',
+                'routes.end_lng','users.first_name','users.last_name')
+            ->groupBy('routes.route_name','routes.start_lat','routes.end_lat',
+                'routes.start_lng','routes.end_lng','users.first_name','users.last_name')
+            ->get();
+
+
+//        dd($shopcount);
         return view('reports.routereport',compact('route'));
+//        return view('reports.routereport')->with('route',$route)->with('shopcount',$shopcount);
+
     }
 
 
