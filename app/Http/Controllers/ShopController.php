@@ -359,9 +359,9 @@ class ShopController extends Controller
         $Shop->shop_name=$request->shop_name;
         $Shop->owner_name=$request->owner_name;
         $Shop->owner_NIC=$request->owner_NIC;
-//            $Shop->lat=$request->lat;
-//            $Shop->lng=$request->lng;
-//
+        $Shop->lat=$request->lat;
+        $Shop->lng=$request->lng;
+
 
             if($request->hasfile('avatar')){
                 $file=$request->file('avatar');
