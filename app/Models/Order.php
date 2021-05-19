@@ -18,4 +18,9 @@ class Order extends Model
         'user_id',
         'shop_ID'
     ];
+
+
+    public function user(){
+        return $this->belongsTo(User::class, 'user_id', 'userID');
+    }
 }

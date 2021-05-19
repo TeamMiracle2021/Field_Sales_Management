@@ -75,8 +75,13 @@ Route::get('/loginview', [UserController::class, 'loginview'])->name('user.login
 
 Route::get('/daydate', [UserController::class, 'daydate']);
 
+Route::get('rep/salesIndex',[ShopController::class,'salesIndex'])->name('shop.salesIndex');
 
+Route::get('rep/allSales',[ShopController::class,'allSales'])->name('shop.allSales');
 
+Route::get('rep/allSalesByUser',[ShopController::class,'allSalesByUser'])->name('shop.allSalesByUser');
+
+Route::get('rep/allSalesOfProducts',[ShopController::class,'allSalesOfProducts'])->name('shop.allSalesOfProducts');
 
 
 

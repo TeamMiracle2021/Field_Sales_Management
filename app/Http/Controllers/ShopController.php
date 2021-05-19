@@ -281,6 +281,74 @@ class ShopController extends Controller
     }
 
 
+    public function salesIndex()
+    {
+        $user=User::all();
+       return view('reports.totalSalesHome')->with('user',$user);
+       //dd($user);
+    }
+
+
+
+    public function allSales(Request $request)
+    {
+        $sd=$request->input('start_date');
+        $ed=$request->input('end_date');
+
+        $allSales = DB::table('orders')
+            ->select(DB::raw('sum(bill_value) as totalValue'))
+            ->whereBetween('placed_date',[$request->input('start_date'),$request->input('end_date')])
+            ->get();
+
+        return view('reports.totalSales')->with('allSales',$allSales)->with('sd',$sd)->with('ed',$ed);
+    }
+
+
+    public function allSalesByUser(Request $request)
+    {
+        $sd=$request->input('start_date');
+        $ed=$request->input('end_date');
+
+        $allSalesByUser = DB::table('orders')
+            ->join('users','orders.user_id','=','users.userID')
+            ->select('orders.user_id','users.first_name','users.middle_name','users.last_name',
+                        DB::raw('count(OrderID) as numOfBills'),DB::raw('sum(bill_value) as totalValue'))
+            ->whereBetween('placed_date',[$request->input('start_date'),$request->input('end_date')])
+            ->groupBy('orders.user_id','users.first_name','users.middle_name','users.last_name')
+            ->get();
+
+        return view('reports.userWiseSales')->with (compact('allSalesByUser','sd','ed'));
+
+    }
+
+
+
+
+    public function allSalesOfProducts(Request $request)
+    {
+        {
+            $sd=$request->input('start_date');
+            $ed=$request->input('end_date');
+
+            $productsales = DB::table('order_products')
+                ->join('orders','order_products.OrderId','=','orders.OrderID')
+                ->join('products','order_products.product_ID','=','products.productID')
+
+                ->select('products.product_Name',
+                    DB::raw('sum(order_products.quantity_per_product) as quantity'),
+                    DB::raw('sum(order_products.quantity_per_product * products.sales_price) as total'))
+
+                ->whereBetween('orders.placed_date',[$request->input('start_date'),$request->input('end_date')])
+                ->groupBy('order_products.product_ID','products.product_Name')
+                ->get();
+
+            return view('reports.productWiseSales')->with (compact('productsales','sd','ed'));
+        }
+    }
+
+
+
+
 
 
 
@@ -482,16 +550,7 @@ class ShopController extends Controller
         return $orderreport;
     }
 
-    public function getallorders2(Request $request,$id)
-    {
-        $orderreport = DB::table('orders')
-            ->select(DB::raw('count(OrderID) as numOfBills'),DB::raw('sum(bill_value) as totalValue'))
-            ->whereBetween('placed_date',[$request->input('start_date'),$request->input('end_date')])
-            ->where('user_id',$id)
-            ->get();
 
-        return $orderreport;
-    }
 
 
 
