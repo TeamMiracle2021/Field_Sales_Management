@@ -339,7 +339,7 @@ class ShopController extends Controller
             $Shop->due_dates=15;
             $Shop->telephone_numbers=$request->telephone_numbers;
             $Shop->user_id=$request->user_id;
-//            $Shop->RouteID=$request->RouteID;
+            $Shop->RouteID=$request->RouteID;
             $Shop->save();
         if ($Shop) {
             return ["Result" => "Shop has been saved"];
@@ -531,6 +531,15 @@ class ShopController extends Controller
             ->get();
 
         return $billsfromshops;
+    }
+
+    public function viewShopsForRoute($id,$id2){
+        $shops = DB::table('shops')
+            ->where('user_id',$id)
+            ->where('RouteID',$id2)
+            ->get();
+        return $shops;
+
     }
 
 }

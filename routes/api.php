@@ -43,6 +43,7 @@ Route::get('/routeview/{id}',[RouteController::class,'viewroutes']);
 Route::get('/routewaypoints/{id}',[RouteController::class,'viewroute']);
 
 Route::get('/viewshops/{id}',[ShopController::class,'viewshops']);
+Route::get('/viewShopsForRoute/{id}/route/{id2}',[ShopController::class,'viewShopsForRoute']);
 
 Route::get('/viewshopdetails/{id}',[ShopController::class,'viewshopdetails']);
 
