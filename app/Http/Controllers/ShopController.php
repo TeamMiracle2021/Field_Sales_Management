@@ -92,7 +92,7 @@ class ShopController extends Controller
             $file=$request->file('avatar');
             $extension=$file->getClientOriginalExtension();//get image extension
             $filename= time().'.'.$extension;
-            $file->move('uploads/shops',$filename);
+            $file->move('uploads/shop',$filename);
             $Shop->image=$filename;
         }else{
             return $request;
