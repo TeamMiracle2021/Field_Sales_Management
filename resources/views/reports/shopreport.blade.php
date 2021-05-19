@@ -27,7 +27,7 @@
                             <table id="example" class="table table-bordered table-striped ">
                                 <thead>
                                 <tr>
-                                    <th>Shop ID</th>
+{{--                                    <th>Shop ID</th>--}}
                                     <th>Shop Name</th>
                                     <th>Owner Name</th>
                                     <th>Owner NIC</th>
@@ -40,7 +40,8 @@
                                     <th>Tele. No</th>
                                     <th>Reg. Date</th>
                                     <th>Due Dates</th>
-                                    <th>User</th>
+                                    <th>Sales Representative</th>
+                                    <th>Route Name</th>
                                     <th>Status</th>
                                     <th>Source</th>
                                     <th>Created At</th>
@@ -52,7 +53,7 @@
                                 <tbody>
                                 @foreach($Shop as $data)
                                     <tr>
-                                        <td>{{$data->ShopID}}</td>
+{{--                                        <td>{{$data->ShopID}}</td>--}}
                                         <td>{{$data->shop_name}}</td>
                                         <td>{{$data->owner_name}}</td>
                                         <td>{{$data->owner_NIC}}</td>
@@ -66,6 +67,7 @@
                                         <td>{{$data->registered_date}}</td>
                                         <td>{{$data->due_dates}}</td>
                                         <td>{{$data->user->first_name}} {{$data->user->last_name}} </td>
+                                        <td>{{$data->route->route_name}}</td>
                                         <td>{{$data->status}}</td>
                                         <td>{{$data->source}}</td>
                                         <td>{{$data->created_at}}</td>
