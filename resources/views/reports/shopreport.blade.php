@@ -67,7 +67,7 @@
                                         <td>{{$data->registered_date}}</td>
                                         <td>{{$data->due_dates}}</td>
                                         <td>{{$data->user->first_name}} {{$data->user->last_name}} </td>
-                                        <td>{{$data->route->route_name}}</td>
+                                        <td>{{$data->route['route_name']}}</td>
                                         <td>{{$data->status}}</td>
                                         <td>{{$data->source}}</td>
                                         <td>{{$data->created_at}}</td>
