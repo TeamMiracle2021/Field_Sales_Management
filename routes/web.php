@@ -83,7 +83,7 @@ Route::get('rep/allSalesByUser',[ShopController::class,'allSalesByUser'])->name(
 
 Route::get('rep/allSalesOfProducts',[ShopController::class,'allSalesOfProducts'])->name('shop.allSalesOfProducts');
 
-
+Route::get('test',[RouteController::class,'test'])->name('route.test');
 
 
 

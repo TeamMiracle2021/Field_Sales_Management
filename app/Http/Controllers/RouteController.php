@@ -191,6 +191,30 @@ class RouteController extends Controller
     }
 
 
+    public function test(Request $request)
+    {
+        $Elat=$request->input('lat2');
+        $Elng=$request->input('lng2');
+
+//        return view('maps.test')->with('la',$la)->with('l',$l);
+        dd($Elat,$Elng);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 //    -------------------------API----------------------------
