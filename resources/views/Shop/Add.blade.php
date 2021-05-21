@@ -12,7 +12,6 @@
                                 <div class="col-xl-12">
                                     <h3 class="float-left"><b>Add Shop</b></h3>
                                     <a class="btn btn-primary float-right" style="margin: 5px" href="{{route('shop.index')}}">Back</a>
-                                    <a class="btn btn-primary float-right" style="margin: 5px" href="{{route('route.getlatlng')}}" target="_blank">Get lat,lng From map</a>
 {{--                                    <button class="btn btn-primary float-right" style="margin: 5px">dd</button>--}}
 
                                 </div>
@@ -22,7 +21,7 @@
                         <!-- /.card-header -->
                         <div class="card-body">
 
-                            <form action="{{route('shop.store')}}" method="POST" enctype="multipart/form-data">
+                            <form action="{{route('shop.storeHalfShop')}}" method="POST" enctype="multipart/form-data">
 
                                 @csrf
 
@@ -58,26 +57,26 @@
                                 </div>
 
 
-                                <div class="form-group row">
-                                    <label class="col-md-2 col-form-label" >Latitude:</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" class="form-control" placeholder="Enter latitude of shop" name="lat" value="{{old('lat')}}">
-                                        @if ($errors->has('lat'))
-                                            <span class="text-danger">{{ $errors->first('lat') }}</span>
-                                        @endif
-                                    </div>
-                                </div>
+{{--                                <div class="form-group row">--}}
+{{--                                    <label class="col-md-2 col-form-label" >Latitude:</label>--}}
+{{--                                    <div class="col-sm-10">--}}
+{{--                                        <input type="text" class="form-control" placeholder="Enter latitude of shop" name="lat" value="{{old('lat')}}">--}}
+{{--                                        @if ($errors->has('lat'))--}}
+{{--                                            <span class="text-danger">{{ $errors->first('lat') }}</span>--}}
+{{--                                        @endif--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
 
 
-                                <div class="form-group row">
-                                    <label class="col-md-2 col-form-label">Longitude:</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" class="form-control" placeholder="Enter longitude of shop" name="lng" value="{{old('lng')}}">
-                                        @if ($errors->has('lng'))
-                                            <span class="text-danger">{{ $errors->first('lng') }}</span>
-                                        @endif
-                                    </div>
-                                </div>
+{{--                                <div class="form-group row">--}}
+{{--                                    <label class="col-md-2 col-form-label">Longitude:</label>--}}
+{{--                                    <div class="col-sm-10">--}}
+{{--                                        <input type="text" class="form-control" placeholder="Enter longitude of shop" name="lng" value="{{old('lng')}}">--}}
+{{--                                        @if ($errors->has('lng'))--}}
+{{--                                            <span class="text-danger">{{ $errors->first('lng') }}</span>--}}
+{{--                                        @endif--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
 
                                 <div class="form-group row">
                                     <label class="col-md-2 col-form-label" >Image:</label>
@@ -186,17 +185,17 @@
                                 </div>
 
 
-                                <div class="form-group row">
-                                    <label class="col-md-2 col-form-label">Assign to:</label>
-                                    <div class="col-sm-10">
-                                        <select class="form-control"  name="user_id" >
-                                            <option value="Select">Select User</option>
-                                            @foreach ($users as $user)
-                                                <option value="{{$user->userID}}">{{$user->userID}} -  {{$user->first_name}} {{$user->last_name}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
+{{--                                <div class="form-group row">--}}
+{{--                                    <label class="col-md-2 col-form-label">Assign to:</label>--}}
+{{--                                    <div class="col-sm-10">--}}
+{{--                                        <select class="form-control"  name="user_id" >--}}
+{{--                                            <option value="Select">Select User</option>--}}
+{{--                                            @foreach ($users as $user)--}}
+{{--                                                <option value="{{$user->userID}}">{{$user->userID}} -  {{$user->first_name}} {{$user->last_name}}</option>--}}
+{{--                                            @endforeach--}}
+{{--                                        </select>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
 
 
                                 <div class="form-group row">
@@ -214,30 +213,30 @@
 
 
 
-                                <div class="form-group row">
-                                    <label class="col-md-2 col-form-label">status:</label>
-                                    <div class="col-sm-10">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="status" id="flexRadioDefault1" value="Partially Completed" checked>
-                                            <label class="form-check-label" for="flexRadioDefault1">
-                                                Partially Completed
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="status" id="flexRadioDefault2" value="Completed">
-                                            <label class="form-check-label" for="flexRadioDefault2">
-                                                Completed
-                                            </label>
-                                        </div>
-                                        </div>
-                                    </div>
+{{--                                <div class="form-group row">--}}
+{{--                                    <label class="col-md-2 col-form-label">status:</label>--}}
+{{--                                    <div class="col-sm-10">--}}
+{{--                                        <div class="form-check">--}}
+{{--                                            <input class="form-check-input" type="radio" name="status" id="flexRadioDefault1" value="Partially Completed" checked>--}}
+{{--                                            <label class="form-check-label" for="flexRadioDefault1">--}}
+{{--                                                Partially Completed--}}
+{{--                                            </label>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="form-check">--}}
+{{--                                            <input class="form-check-input" type="radio" name="status" id="flexRadioDefault2" value="Completed">--}}
+{{--                                            <label class="form-check-label" for="flexRadioDefault2">--}}
+{{--                                                Completed--}}
+{{--                                            </label>--}}
+{{--                                        </div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
 
 
 
 
 
                                 <div class="text-right">
-                                    <button type="submit"  Value="Save" class="btn btn-primary">Save</button>
+                                    <button type="submit"  Value="Save" class="btn btn-primary">Select Location</button>
                                     <a class="btn btn-secondary" href="{{route('shop.index')}}">Cancel</a>
                                 </div>
 

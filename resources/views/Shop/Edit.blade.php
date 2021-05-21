@@ -11,7 +11,8 @@
                             <div class="row">
                                 <div class="col-xl-12">
                                     <h3 class="float-left"><b>Shop Edit</b></h3>
-                                    <a class="btn btn-primary float-right" href="{{route('shop.index')}}">back</a>
+                                    <a class="btn btn-primary float-right" style="margin: 5px" href="{{route('shop.index')}}">back</a>
+                                    <a class="btn btn-primary float-right" style="margin: 5px" href="{{route('shop.editshoplocation')}}" target="_blank">Get Location From map</a>
                                 </div>
                             </div>
                         </div>

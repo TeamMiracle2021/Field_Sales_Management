@@ -54,7 +54,7 @@
             </tr>
 
             <tr>
-                <td>Weight</td>
+                <td>Weight/Volume</td>
                 <td> {{$product->weight}}</td>
             </tr>
 

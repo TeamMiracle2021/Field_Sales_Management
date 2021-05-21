@@ -265,6 +265,11 @@ class RouteController extends Controller
         return redirect()->route('route.step1')->with('add','Record Deleted');
     }
 
+    public function testmap()
+    {
+     return view('maps.test');
+    }
+
 
 
 

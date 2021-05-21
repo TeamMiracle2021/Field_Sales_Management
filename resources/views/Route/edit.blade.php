@@ -19,7 +19,7 @@
                                     <h3 class="float-left"><b>Route Edit</b></h3>
 
                                     <a class="btn btn-primary float-right" style="margin: 5px" href="{{route('route.index')}}">back</a>
-                                    <a class="btn btn-primary float-right" style="margin: 5px" href="{{route('route.getlatlng')}}" target="_blank">Get lat,lng From map</a>
+                                    <a class="btn btn-primary float-right" style="margin: 5px" href="{{route('shop.editshoplocation')}}" target="_blank">Get lat,lng From map</a>
                                 </div>
                             </div>
                         </div>

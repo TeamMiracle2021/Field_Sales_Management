@@ -58,4 +58,3 @@
         width: 1220px;
     }
 </style>
-

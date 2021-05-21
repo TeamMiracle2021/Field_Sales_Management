@@ -97,6 +97,17 @@ Route::get('step3Store',[RouteController::class,'step3Store'])->name('route.step
 
 Route::get('deleteWhenCreate',[RouteController::class,'deleteWhenCreate'])->name('route.deleteWhenCreate');
 
+Route::get('testmap',[RouteController::class,'testmap'])->name('route.testmap');
+
+Route::get('getshoplocation',[ShopController::class,'getshoplocation'])->name('shop.getshoplocation');
+
+Route::post('storeHalfShop',[ShopController::class,'storeHalfShop'])->name('shop.storeHalfShop');
+
+Route::get('frommap',[ShopController::class,'frommap'])->name('shop.frommap');
+
+Route::get('shopstorefinal',[ShopController::class,'shopstorefinal'])->name('shop.shopstorefinal');
+
+Route::get('editshoplocation',[ShopController::class,'editshoplocation'])->name('shop.editshoplocation');
 
 
 

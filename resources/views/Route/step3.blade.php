@@ -21,7 +21,7 @@
         <div class="container-fluid">
             <div class="card">
 
-<div class="row">
+<div class="col-md-6">
             <div id="latclicked"></div>
             <div id="longclicked"></div>
 
@@ -54,14 +54,14 @@
 
             var mylat1 = 0;
             var mylng1 = 0;
-            var latitude = 7.7172453; // YOUR LATITUDE VALUE
-            var longitude = 80.3239605; // YOUR LONGITUDE VALUE
+            var latitude = 7.8731; // YOUR LATITUDE VALUE
+            var longitude = 80.7718; // YOUR LONGITUDE VALUE
 
             var myLatLng = {lat: latitude, lng: longitude};
 
             map = new google.maps.Map(document.getElementById('map'), {
                 center: myLatLng,
-                zoom: 14,
+                zoom: 10,
                 disableDoubleClickZoom: true, // disable the default map zoom on double click
             });
             {
@@ -87,8 +87,8 @@
 
                 // Update lat/long value of div when you move the mouse over the map
                 google.maps.event.addListener(map, 'mousemove', function (event) {
-                    document.getElementById('latmoved').innerHTML = event.latLng.lat();
-                    document.getElementById('longmoved').innerHTML = event.latLng.lng();
+                    // document.getElementById('latmoved').innerHTML = event.latLng.lat();
+                    // document.getElementById('longmoved').innerHTML = event.latLng.lng();
                 });
 
                 var marker = new google.maps.Marker({

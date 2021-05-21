@@ -63,15 +63,15 @@ class ShopController extends Controller
             'shop_name'=>'required',
             'owner_name'=>'required',
             'owner_NIC'=>'required|max:10<=12',
-            'lat'=>'numeric',
-            'lng'=>'numeric',
+//            'lat'=>'numeric',
+//            'lng'=>'numeric',
             'image'=>'nullable|mimes:jpg,jpeg,bmp,svg,png',
             'address_no' => 'required',
 //            'suburb'=> 'required',
 //            'city' => 'required',
-            'status'=>'required',
+//            'status'=>'required',
             'telephone_numbers' => 'numeric|max:10=10',
-            'user_id'=> 'required',
+//            'user_id'=> 'required',
             'RouteID'=>'required'
 
         ],[
@@ -84,8 +84,8 @@ class ShopController extends Controller
         $Shop->shop_name=$request->shop_name;
         $Shop->owner_name=$request->owner_name;
         $Shop->owner_NIC=$request->owner_NIC;
-        $Shop->lat=$request->lat;
-        $Shop->lng=$request->lng;
+//        $Shop->lat=$request->lat;
+//        $Shop->lng=$request->lng;
 
 
         if($request->hasfile('avatar')){
@@ -104,15 +104,20 @@ class ShopController extends Controller
         $Shop->city=$request->city;
         $Shop->district=$request->district;
         $Shop->source='Administrator';
-        $Shop->status=$request->status;
+//        $Shop->status=$request->status;
         $Shop->registered_date=$request->registered_date;
         $Shop->due_dates=$request->due_dates;
         $Shop->telephone_numbers=$request->telephone_numbers;
-        $Shop->user_id=$request->user_id;
+//        $Shop->user_id=$request->user_id;
         $Shop->RouteID=$request->RouteID;
+        $user=Route::find($request->input('RouteID'));
+        $user1=$user->user_id;
+        $Shop->user_id=$user1;
         //shop::create($request->all());
         $Shop->save();
-        return redirect()->route('shop.index')->with('add','Record Added');
+//        return redirect()->route('shop.index')->with('add','Record Added');
+
+        return view('Shop.autocomplete');
 
     }
 
@@ -349,6 +354,122 @@ class ShopController extends Controller
 
 
 
+
+
+    public function storeHalfShop(Request $request)
+    {
+        $this->Validate($request,[
+            'shop_name'=>'required',
+            'owner_name'=>'required',
+            'owner_NIC'=>'required|max:10<=12',
+//            'lat'=>'numeric',
+//            'lng'=>'numeric',
+            'image'=>'nullable|mimes:jpg,jpeg,bmp,svg,png',
+            'address_no' => 'required',
+//            'suburb'=> 'required',
+//            'city' => 'required',
+//            'status'=>'required',
+            'telephone_numbers' => 'numeric|max:10=10',
+//            'user_id'=> 'required',
+            'RouteID'=>'required'
+
+        ],[
+            'owner_NIC.required'=>'NIC should be 10 or 12 characteristics',
+            'telephone_numbers'=>'Telephone number should be 10 numbers'
+        ]);
+
+
+        $Shop=new Shop();
+        $Shop->shop_name=$request->shop_name;
+        $Shop->owner_name=$request->owner_name;
+        $Shop->owner_NIC=$request->owner_NIC;
+//        $Shop->lat=$request->lat;
+//        $Shop->lng=$request->lng;
+
+
+        if($request->hasfile('avatar')){
+            $file=$request->file('avatar');
+            $extension=$file->getClientOriginalExtension();//get image extension
+            $filename= time().'.'.$extension;
+            $file->move('uploads/shop',$filename);
+            $Shop->image=$filename;
+        }else{
+            return $request;
+            $Shop->image='';
+        }
+
+        $Shop->address_no=$request->address_no;
+        $Shop->suburb=$request->suburb;
+        $Shop->city=$request->city;
+        $Shop->district=$request->district;
+        $Shop->source='Administrator';
+//        $Shop->status=$request->status;
+        $Shop->registered_date=$request->registered_date;
+        $Shop->due_dates=$request->due_dates;
+        $Shop->telephone_numbers=$request->telephone_numbers;
+//        $Shop->user_id=$request->user_id;
+        $Shop->RouteID=$request->RouteID;
+        $user=Route::find($request->input('RouteID'));
+        $user1=$user->user_id;
+        $Shop->user_id=$user1;
+        //shop::create($request->all());
+        $Shop->save();
+//        return redirect()->route('shop.index')->with('add','Record Added');
+
+        return view('Shop.autocomplete');
+
+    }
+
+    public function getshoplocation(Request $request)
+    {
+
+        $s_id = DB::table('shops')->orderBy('ShopID','DESC')->value('ShopID');
+        $shop = Shop::find($s_id);
+        if($shop){
+            $shop->lat = $request->input('latitude');
+            $shop->lng = $request->input('longitude');
+            $shop->status='Completed';
+            $shop->update();
+            return redirect()->route('shop.index')->with('add','Record Added');
+        }
+        else{
+            return "Not Found";
+        }
+
+    }
+
+
+    public function frommap(Request $request)
+    {
+        return view('Shop.frommap');
+
+    }
+
+    public function shopstorefinal(Request $request)
+    {
+        $s_id = DB::table('shops')->orderBy('ShopID','DESC')->value('ShopID');
+        $shop = Shop::find($s_id);
+        if($shop){
+            $shop->lat = $request->input('lat');
+            $shop->lng = $request->input('lng');
+            $shop->status='Completed';
+            $shop->update();
+            return redirect()->route('shop.index')->with('add','Record Added');
+        }
+        else{
+            return "Not Found";
+        }
+
+    }
+
+
+
+
+    public function editshoplocation(Request $request)
+    {
+     return view('shop.editlocation');
+
+    }
 
 
 

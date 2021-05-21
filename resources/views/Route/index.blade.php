@@ -33,9 +33,9 @@
                             <table id="example1" class="table table-bordered table-striped display nowrap">
                                 <thead>
                                 <tr>
-                                    <th>Route Name</th>
-                                    <th>User Name</th>
-                                    <th>Action</th>
+                                    <th><center>Route Name</center></th>
+                                    <th><center>User Name</center></th>
+                                    <th><center>Action</center></th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -43,21 +43,21 @@
                                 @foreach($route as $data)
 
 
-                                        <td>{{$data->route_name}}</td>
-                                        <td>{{$data->user->first_name}}</td>
-                                        <td>
+                                        <td><center>{{$data->route_name}}</center></td>
+                                        <td><center>{{$data->user->first_name}}</center></td>
+                                        <td><center>
                                             <form action="{{route('route.destroy',$data->RouteID)}}" method="POST">
 
-                                                <a class="btn btn-primary" href="{{route('route.edit',$data->RouteID)}}">Edit</a>
+                                                <a class="btn btn-primary" style="margin: 5px" href="{{route('route.edit',$data->RouteID)}}">Edit</a>
 {{--                                                <button type="button" data-toggle="modal" class="btn btn-danger" data-target="#exampleModal" >Delete</button>--}}
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit"  class="btn btn-danger">Delete</button>
-                                                <a class="btn btn-success" href="{{route('route.show',$data->RouteID)}}">View</a>
-                                                <a class="btn btn-info" href="{{route('route.show2', $data->RouteID)}}" target="_blank">View on Map <i class="fas fa-map-marker-alt"></i></a>
+                                                <button type="submit"  style="margin: 5px" class="btn btn-danger">Delete</button>
+                                                <a class="btn btn-success" style="margin: 5px" href="{{route('route.show',$data->RouteID)}}">View</a>
+                                                <a class="btn btn-info" style="margin: 5px" href="{{route('route.show2', $data->RouteID)}}" target="_blank">View on Map <i class="fas fa-map-marker-alt"></i></a>
 
                                             </form>
-                                        </td>
+                                            </center></td>
                                 </tr>
                                 @endforeach
                                  </tbody>

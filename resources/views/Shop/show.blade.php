@@ -101,7 +101,7 @@
 
                                         <tr>
                                             <td>Assigned User</td>
-                                            <td>{{$shop->user->first_name}}</td>
+                                            <td>{{$shop->user->first_name}} {{$shop->user->middle_name}} {{$shop->user->last_name}}</td>
                                         </tr>
 
 
