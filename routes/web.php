@@ -85,6 +85,19 @@ Route::get('rep/allSalesOfProducts',[ShopController::class,'allSalesOfProducts']
 
 Route::get('test',[RouteController::class,'test'])->name('route.test');
 
+Route::get('routestep1',[RouteController::class,'step1'])->name('route.step1');
+
+Route::post('step1Store',[RouteController::class,'step1Store'])->name('route.step1Store');
+
+Route::get('step2Store',[RouteController::class,'step2Store'])->name('route.step2Store');
+
+Route::get('step3Store',[RouteController::class,'step3Store'])->name('route.step3Store');
+
+Route::get('step3Store',[RouteController::class,'step3Store'])->name('route.step3Store');
+
+Route::get('deleteWhenCreate',[RouteController::class,'deleteWhenCreate'])->name('route.deleteWhenCreate');
+
+
 
 
 

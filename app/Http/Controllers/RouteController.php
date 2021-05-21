@@ -201,6 +201,69 @@ class RouteController extends Controller
     }
 
 
+    public function step1(Request $request)
+    {
+        $users = User::all();
+        return view('Route.step1')->with('users',$users);
+    }
+
+
+    public function step1Store(Request $request)
+    {
+        $validateData = $request->validate([
+            'route_name'=>'required',
+            'user_id' =>'required|not_in:0'
+
+        ],[
+            'route_name.required' => 'Route name is required',
+            'user_id.required' => 'User is required'
+
+        ]);
+        Route::create($validateData);
+        return view('Route.step2');
+    }
+
+    public function step2Store(Request $request)
+    {
+        $r_id = DB::table('routes')->orderBy('RouteID','DESC')->value('RouteID');
+        $route = Route::find($r_id);
+        if($route){
+            $route->start_lat = $request->input('lat');
+            $route->start_lng = $request->input('lng');
+            $route->update();
+        }
+        else{
+            return "Not Found";
+        }
+        return view('Route.step3');
+    }
+
+
+    public function step3Store(Request $request)
+    {
+        $r_id = DB::table('routes')->orderBy('RouteID','DESC')->value('RouteID');
+        $route = Route::find($r_id);
+        if($route){
+            $route->end_lat = $request->input('lat');
+            $route->end_lng = $request->input('lng');
+            $route->update();
+        }
+        else{
+            return "Not Found";
+        }
+
+
+        $lastroute = Route::find($r_id);
+        return view('Route.step4')->with('lastroute',$lastroute)->with('r_id',$r_id);
+    }
+
+    public function deleteWhenCreate(Route $route)
+    {
+        $del_route_id = DB::table('routes')->orderBy('RouteID','DESC')->value('RouteID');
+        $route = Route::find($del_route_id);
+        $route->delete();
+        return redirect()->route('route.step1')->with('add','Record Deleted');
+    }
 
 
 

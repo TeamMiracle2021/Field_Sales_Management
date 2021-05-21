@@ -23,7 +23,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <a class="btn btn-primary"  href="{{route('route.create')}}">Create Route</a>
+                            <a class="btn btn-primary"  href="{{route('route.step1')}}">Create Route</a>
 
 
                         </div>
