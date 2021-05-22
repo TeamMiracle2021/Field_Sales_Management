@@ -13,7 +13,7 @@
             <div class="col-xl-6 col-lg-6 col-md-8 col-sm-12 col-12 m-auto">
                 <div class="card shadow">
                     <div class="card-header bg-primary">
-                        <h5 class="card-title text-white"> Google Autocomplete Address</h5>
+                        <h5 class="card-title text-white"> Get the Location</h5>
                     </div>
                     <form action="{{route('shop.getshoplocation')}}" method="GET">
                         <div class="card-body">

@@ -467,7 +467,7 @@ class ShopController extends Controller
 
     public function editshoplocation(Request $request)
     {
-     return view('shop.editlocation');
+     return view('Shop.editlocation');
 
     }
 
@@ -721,6 +721,31 @@ class ShopController extends Controller
         return $shops;
 
     }
+
+
+
+
+    public function onlyimage(Request $request){
+
+        $s_id = DB::table('shops')->orderBy('ShopID','DESC')->value('ShopID');
+        $Shop = Shop::find($s_id);
+        if($Shop){
+
+                $file=$request->file('avatar');
+                $extension=$file->getClientOriginalExtension();//get image extension
+                $filename= time().'.'.$extension;
+                $file->move('uploads/shop',$filename);
+                $Shop->image=$filename;
+
+            $Shop->update();
+            return ["success"];
+        }
+        else{
+            return ["Not Found"];
+        }
+
+    }
+
 
 }
 
