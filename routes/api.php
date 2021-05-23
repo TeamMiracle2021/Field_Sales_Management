@@ -78,3 +78,5 @@ Route::get('/billsfromshops/{id}',[ShopController::class,'billsfromshops']);
 
 Route::post('/onlyimage',[ShopController::class,'onlyimage']);
 
+Route::post('/imgtest',[RouteController::class,'imgtest']);
+

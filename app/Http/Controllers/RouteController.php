@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Privilages;
 use App\Models\Route;
+use App\Models\Shop;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use function Couchbase\defaultDecoder;
@@ -316,6 +318,29 @@ class RouteController extends Controller
 
 
         return $route;
+    }
+
+
+    public function imgtest(Request $request){
+
+        $Shop=new Privilages();
+            if($request->hasfile('avatar')){
+                $file=$request->file('avatar');
+                $extension=$file->getClientOriginalExtension();//get image extension
+                $filename= time().'.'.$extension;
+                $file->move('uploads/unp',$filename);
+                $Shop->privilage_name=$filename;
+            }else{
+                return $request;
+                $Shop->privilage_name='';
+            }
+        $Shop->save();
+        if ($Shop) {
+            return ["Result" => "Shop has been saved"];
+        } else {
+            return ["Result" => "Operation failed"];
+        }
+
     }
 
 }
