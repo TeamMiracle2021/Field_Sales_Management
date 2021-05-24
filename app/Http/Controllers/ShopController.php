@@ -573,7 +573,7 @@ class ShopController extends Controller
         $Shop->due_dates=15;
         $Shop->telephone_numbers=$request->telephone_numbers;
         $Shop->user_id=$request->user_id;
-//            $Shop->RouteID=$request->RouteID;
+        $Shop->RouteID=$request->RouteID;
         $Shop->save();
         if ($Shop) {
             return ["Result" => "Shop has been saved"];
