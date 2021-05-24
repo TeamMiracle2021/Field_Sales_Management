@@ -25,6 +25,8 @@
                         <div class="card-header">
                             <a class="btn btn-primary"  href="{{route('route.step1')}}">Create Route</a>
 
+                            <a class="btn btn-primary"  href="{{route('route.imgview')}}">img View</a>
+
 
                         </div>
 

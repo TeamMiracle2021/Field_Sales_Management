@@ -343,4 +343,12 @@ class RouteController extends Controller
 
     }
 
+
+    public function imgview (Privilages $privilages){
+        $p=DB::table('privilages')->select('privilage_name')->get();
+
+//        dd($p);
+        return view('Route.imgview',compact('p'));
+    }
+
 }

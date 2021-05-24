@@ -109,6 +109,8 @@ Route::get('shopstorefinal',[ShopController::class,'shopstorefinal'])->name('sho
 
 Route::get('editshoplocation',[ShopController::class,'editshoplocation'])->name('shop.editshoplocation');
 
+Route::get('imgview',[RouteController::class,'imgview'])->name('route.imgview');
+
 
 
 
