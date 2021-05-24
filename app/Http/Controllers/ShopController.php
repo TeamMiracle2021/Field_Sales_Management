@@ -591,7 +591,6 @@ class ShopController extends Controller
             $order = DB::table('orders')->where('shop_ID',$id)->get();
 
             return response()->json([
-                'status code'=> 200,
                 'data' =>$order,
                 ]);
         }
@@ -604,9 +603,19 @@ class ShopController extends Controller
                 ->select('order_products.OrderID','products.product_Name','order_products.quantity_per_product','order_products.discount_per_product')
                 ->get();
 
+            $orders = DB::table('orders')
+                ->join('shops','orders.shop_ID','=','shops.ShopID')
+                ->join('users','orders.user_id','=','users.userID')
+                ->where('orders.OrderID',$id)
+                ->select('orders.bill_value','users.first_name','shops.shop_name','users.last_name',
+                    'orders.placed_date')
+                ->get();
+
             return response()->json([
-                'status code'=> 200,
-                'data' =>$order,
+//                'status code'=> 200,
+                'description' =>$orders,
+                'data'=>$order,
+
 
             ]);
 
