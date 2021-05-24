@@ -93,7 +93,7 @@ class RouteController extends Controller
     public function edit(Route $route)
     {
         $users = User::all();
-        return view('route.edit',compact('route'))->with('users', $users);
+        return view('Route.edit',compact('route'))->with('users', $users);
     }
 
     /**

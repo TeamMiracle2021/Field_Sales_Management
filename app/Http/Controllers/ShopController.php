@@ -590,9 +590,10 @@ class ShopController extends Controller
         public function orderlist($id){
             $order = DB::table('orders')->where('shop_ID',$id)->get();
 
-            return response()->json([
-                'data' =>$order,
-                ]);
+//            return response()->json([
+//                'data' =>$order,
+//                ]);
+            return $order;
         }
 
         public function orderdetails($id){
@@ -615,9 +616,8 @@ class ShopController extends Controller
 //                'status code'=> 200,
                 'description' =>$orders,
                 'data'=>$order,
-
-
             ]);
+//            return ([$order],[$orders]);
 
         }
 
