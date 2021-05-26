@@ -33,7 +33,7 @@ Route::get('/', function () {
 //    return view('dashboard');
 //})->name('dashboard');
 
-Route::get('/dashboard',[UserController::class, 'count'])->name('user.count');
+Route::get('/dashboard',[UserController::class,'count'])->name('user.count');
 
 
 

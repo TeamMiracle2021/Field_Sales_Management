@@ -756,6 +756,12 @@ class ShopController extends Controller
     }
 
 
+
+    public function teach(Request $request,$id){
+
+    }
+
+
 }
 
 

@@ -36,7 +36,7 @@
                                 <thead>
                                 <tr>
                                     <th><center>Route Name</center></th>
-                                    <th><center>User Name</center></th>
+                                    <th><center>Sales Representative</center></th>
                                     <th><center>Action</center></th>
                                 </tr>
                                 </thead>
