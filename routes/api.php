@@ -39,6 +39,7 @@ Route::get('/fut/{id}', [UserTypeController::class, 'fut'])->name('usertype.fut'
 Route::post('/route/cre',[RouteController::class, 'storemobile'])->name('route.storemobile');
 
 Route::get('/routeview/{id}',[RouteController::class,'viewroutes']);
+Route::get('/todayrouteview/{id}',[RouteController::class,'viewTodayroutes']);
 
 Route::get('/routewaypoints/{id}',[RouteController::class,'viewroute']);
 
@@ -66,6 +67,8 @@ Route::post('/mobileshopaddwi',[ShopController::class,'mobileshopaddwi']);
 Route::post('/shopclosereason/{id}',[ShopController::class,'shopclosereason']);
 
 Route::post('/order',[ShopController::class,'order']);
+
+Route::post('/orderWithReturns',[ShopController::class,'orderWithReturns']);
 
 Route::post('/mobilelogin',[UserController::class,'mobilelogin']);
 

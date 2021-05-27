@@ -89,10 +89,6 @@
                                             <td>{{$shop->registered_date}}</td>
                                         </tr>
 
-                                        <tr>
-                                            <td>Due Dates</td>
-                                            <td>{{$shop->due_dates}}</td>
-                                        </tr>
 
                                         <tr>
                                             <td>Status</td>

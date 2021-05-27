@@ -17,8 +17,11 @@ class Route extends Model
         'start_lng',
         'end_lat',
         'end_lng',
+        'due_dates',
         'user_id'
     ];
+
+    protected $dates = ['first_date'];
 
     public function shops(){
         return $this->hasMany(Shop::class, 'RouteID', 'RouteID');

@@ -32,6 +32,7 @@
                                     <th>Start Longitude</th>
                                     <th>End Latitude</th>
                                     <th>End Longitude</th>
+                                    <th>Due Dates</th>
                                     <th>Sales Representative</th>
                                     <th>No of Shops</th>
 
@@ -46,6 +47,7 @@
                                         <td>{{$data->start_lng}}</td>
                                         <td>{{$data->end_lat}}</td>
                                         <td>{{$data->end_lng}}</td>
+                                        <td>{{$data->due_dates}}</td>
                                         <td>{{$data->first_name}} {{$data->last_name}}</td>
                                         <td>{{$data->quantity}}</td>
 

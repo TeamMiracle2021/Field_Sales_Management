@@ -84,6 +84,8 @@
                                 </div>
 
 
+
+
                                 <div class="form-group row">
                                     <label class="col-md-2 col-form-label">Assign To:</label>
                                     <div class="col-sm-10">
@@ -97,7 +99,38 @@
                                 </div>
 
 
+                                <div class="form-group row">
+                                    <label class="col-md-2 col-form-label">Due Dates:</label>
+                                    <div class="col-sm-10">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="due_dates" id="flexRadioDefault1" value="7" checked>
+                                            <label class="form-check-label" for="flexRadioDefault1">
+                                                7 Days
+                                            </label>
+                                        </div>
 
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="due_dates" id="flexRadioDefault2" value="14" >
+                                            <label class="form-check-label" for="flexRadioDefault2">
+                                                14 Days
+                                            </label>
+                                        </div>
+
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="due_dates" id="flexRadioDefault3" value="21" >
+                                            <label class="form-check-label" for="flexRadioDefault3">
+                                                21 Days
+                                            </label>
+                                        </div>
+
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="due_dates" id="flexRadioDefault4" value="28" >
+                                            <label class="form-check-label" for="flexRadioDefault4">
+                                                28 Days
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
 
 
                                 <div class="col-md-12">

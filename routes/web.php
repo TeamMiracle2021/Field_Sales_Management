@@ -111,6 +111,13 @@ Route::get('editshoplocation',[ShopController::class,'editshoplocation'])->name(
 
 Route::get('imgview',[RouteController::class,'imgview'])->name('route.imgview');
 
+Route::get('/schedule/{id}',[RouteController::class,'schedule'])->name('route.schedule');
+
+Route::post('/saveSchedule/{id}',[RouteController::class,'saveSchedule'])->name('route.saveSchedule');
+
+Route::post('/deleteSchedule/{id}',[RouteController::class,'deleteSchedule'])->name('route.deleteSchedule');
+
+
 
 
 

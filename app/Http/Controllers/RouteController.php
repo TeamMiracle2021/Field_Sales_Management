@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Privilages;
 use App\Models\Route;
+use App\Models\RouteShedules;
 use App\Models\Shop;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use function Couchbase\defaultDecoder;
@@ -111,7 +113,8 @@ class RouteController extends Controller
             'start_lng'=>'required|numeric',
             'end_lat'=>'required|numeric',
             'end_lng'=>'required|numeric',
-            'user_id' =>'required'
+            'user_id' =>'required',
+            'due_dates' => 'required'
 
         ],[
             'route_name.required' => 'Route name is required',
@@ -152,9 +155,9 @@ class RouteController extends Controller
             ->join('users','routes.user_id','=','users.userID')
             ->select(DB::raw('sum(shops.RouteID) as quantity'),
                 'routes.route_name','routes.start_lat','routes.end_lat','routes.start_lng',
-                'routes.end_lng','users.first_name','users.last_name')
+                'routes.end_lng','routes.due_dates','users.first_name','users.last_name')
             ->groupBy('routes.route_name','routes.start_lat','routes.end_lat',
-                'routes.start_lng','routes.end_lng','users.first_name','users.last_name')
+                'routes.start_lng','routes.end_lng','routes.due_dates','users.first_name','users.last_name')
             ->get();
 
 
@@ -214,7 +217,8 @@ class RouteController extends Controller
     {
         $validateData = $request->validate([
             'route_name'=>'required',
-            'user_id' =>'required|not_in:0'
+            'user_id' =>'required|not_in:0',
+            'due_dates' => 'required'
 
         ],[
             'route_name.required' => 'Route name is required',
@@ -237,7 +241,7 @@ class RouteController extends Controller
         else{
             return "Not Found";
         }
-        return view('Route.step3');
+        return view('Route.step3')->with('route',$route);
     }
 
 
@@ -276,6 +280,108 @@ class RouteController extends Controller
 
 
 
+    public function schedule($id)
+    {
+        $route = Route::find($id);
+        $shedules = DB::table('route_shedules')->where('route_shedules.RouteID','=',$id)->get();
+
+        $nameOfDay =null;
+        $start=null;
+        $end=null;
+        $due = null;
+
+        if ($shedules!=null){
+            for ($i=0;$i<count($shedules);$i++){
+                $dName=$shedules[0]->date_of_Shedule;
+                $nameOfDay = date('l', strtotime($dName));
+
+                $start=$shedules[0]->date_of_Shedule;
+                $end=$shedules[count($shedules)-1]->date_of_Shedule;
+                $due = $route->due_dates;
+                if ($due==7){
+                    $due="Every week";
+                }else if ($due==14){
+                    $due="Every 2 weeks";
+                }else if ($due==21){
+                    $due="Every 3 weeks";
+                }else if ($due==28){
+                    $due="Every month";
+                }
+
+            }
+        }
+
+
+        return view('Route.schedule')
+            ->with('route', $route)
+            ->with('shedules',$shedules)
+            ->with('day',$nameOfDay)
+            ->with('start',$start)
+            ->with('end',$end)
+            ->with('due',$due);
+    }
+
+
+
+
+
+    public function saveSchedule(Request $request,$id)
+    {
+        $first_date=$request->input('first_date');
+        $range=$request->input('noOfMonths');
+        $again=$request->input('due_dates');
+        $today = (new Carbon($first_date))->toDateString();
+
+        $date = Carbon::parse($request->first_date);
+        $day = $date->day;
+
+        $newshedule = new RouteShedules();
+        $newshedule->RouteID=$id;
+        $newshedule->date_of_Shedule=$today;
+        $newshedule->save();
+
+//            $nameOfDay = date('l', strtotime($date));
+//            echo $nameOfDay;
+
+        $st=$first_date;
+        for($i = $day;$i <=$range; $i+=$again){
+
+            $lastday = ((new Carbon($st))->addDays($again))->toDateString();
+            $newshedule = new RouteShedules();
+            $newshedule->RouteID=$id;
+            $newshedule->date_of_Shedule=$lastday;
+            $newshedule->save();
+            $st=$lastday;
+
+        }
+//        echo ("success");
+        return redirect()->route('route.index')->with('add','Sheduled Save Successfully');
+
+    }
+
+
+
+    public function deleteSchedule($id)
+    {
+        $shedules = DB::table('route_shedules')->where('route_shedules.RouteID','=',$id)->delete();
+//        return redirect()->route('route.index')->with('add','Sheduled Delete Successfully');
+        return redirect()->route('route.schedule',$id)->with('add','Sheduled Delete Successfully');
+    }
+
+
+
+
+    public function editSchedule($id)
+    {
+        $shedules = DB::table('route_shedules')->where('route_shedules.RouteID','=',$id)->delete();
+        dd('delete susss');
+        return redirect()->route('route.index')->with('add','Sheduled Delete Successfully');
+    }
+
+
+
+
+
 
 
 
@@ -301,10 +407,25 @@ class RouteController extends Controller
         Route::create($request->all());
     }
 
+
+
     public function viewroutes($id){
         $routes  = DB::table('routes')->where('user_id',$id)->get();
         return $routes;
     }
+
+
+
+    public function viewTodayroutes($id){
+        $routes  = DB::table('routes')
+            ->join('route_shedules','routes.RouteID','=','route_shedules.RouteID')
+            ->where('user_id',$id)
+            ->where('date_of_Shedule',Carbon::today())
+            ->get();
+        return $routes;
+    }
+
+
 
     public function viewroute($id){
         $route = new Route();

@@ -81,12 +81,15 @@
                     // document.getElementById('latmoved').innerHTML = event.latLng.lat();
                     // document.getElementById('longmoved').innerHTML = event.latLng.lng();
                 });
+
+                const image = " ";
                 var marker = new google.maps.Marker({
                     position: myLatLng,
                     map: map,
                     //title: 'Hello World'
                     // setting latitude & longitude as title of the marker
                     // title is shown when you hover over the marker
+                    icon: image,
                     title: latitude + ', ' + longitude
                 });
                 // Update lat/long value of div when the marker is clicked

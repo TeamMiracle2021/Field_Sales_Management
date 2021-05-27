@@ -54,8 +54,8 @@
 
             var mylat1 = 0;
             var mylng1 = 0;
-            var latitude = 7.8731; // YOUR LATITUDE VALUE
-            var longitude = 80.7718; // YOUR LONGITUDE VALUE
+            var latitude = {{$route->start_lat}}; // YOUR LATITUDE VALUE
+            var longitude = {{$route->start_lng}}; // YOUR LONGITUDE VALUE
 
             var myLatLng = {lat: latitude, lng: longitude};
 

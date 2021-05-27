@@ -39,7 +39,7 @@
                                     <th>District</th>
                                     <th>Tele. No</th>
                                     <th>Reg. Date</th>
-                                    <th>Due Dates</th>
+{{--                                    <th>Due Dates</th>--}}
                                     <th>Sales Representative</th>
                                     <th>Route Name</th>
                                     <th>Status</th>
@@ -65,7 +65,7 @@
                                         <td>{{$data->district}}</td>
                                         <td>{{$data->telephone_numbers}}</td>
                                         <td>{{$data->registered_date}}</td>
-                                        <td>{{$data->due_dates}}</td>
+{{--                                        <td>{{$data->due_dates}}</td>--}}
                                         <td>{{$data->user->first_name}} {{$data->user->last_name}} </td>
                                         <td>{{$data->route['route_name']}}</td>
                                         <td>{{$data->status}}</td>

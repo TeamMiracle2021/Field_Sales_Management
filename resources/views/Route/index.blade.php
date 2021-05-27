@@ -25,7 +25,7 @@
                         <div class="card-header">
                             <a class="btn btn-primary"  href="{{route('route.step1')}}">Create Route</a>
 
-                            <a class="btn btn-primary"  href="{{route('route.imgview')}}">img View</a>
+{{--                            <a class="btn btn-primary"  href="{{route('route.imgview')}}">img View</a>--}}
 
 
                         </div>
@@ -56,6 +56,7 @@
                                                 @method('DELETE')
                                                 <button type="submit"  style="margin: 5px" class="btn btn-danger">Delete</button>
                                                 <a class="btn btn-success" style="margin: 5px" href="{{route('route.show',$data->RouteID)}}">View</a>
+                                                <a class="btn btn-secondary" style="margin: 5px" href="{{route('route.schedule',$data->RouteID)}}">Schedule <i class="far fa-calendar-check"></i></a>
                                                 <a class="btn btn-info" style="margin: 5px" href="{{route('route.show2', $data->RouteID)}}" target="_blank">View on Map <i class="fas fa-map-marker-alt"></i></a>
 
                                             </form>

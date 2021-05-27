@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use App\Models\OrderProduct;
+use App\Models\ReturnProduct;
 use App\Models\Shop;
 use Carbon\Carbon;
 use Database\Seeders\DatabaseSeeder;
@@ -106,7 +107,7 @@ class ShopController extends Controller
         $Shop->source='Administrator';
 //        $Shop->status=$request->status;
         $Shop->registered_date=$request->registered_date;
-        $Shop->due_dates=$request->due_dates;
+//        $Shop->due_dates=$request->due_dates;
         $Shop->telephone_numbers=$request->telephone_numbers;
 //        $Shop->user_id=$request->user_id;
         $Shop->RouteID=$request->RouteID;
@@ -405,7 +406,7 @@ class ShopController extends Controller
         $Shop->source='Administrator';
 //        $Shop->status=$request->status;
         $Shop->registered_date=$request->registered_date;
-        $Shop->due_dates=$request->due_dates;
+//        $Shop->due_dates=$request->due_dates;
         $Shop->telephone_numbers=$request->telephone_numbers;
 //        $Shop->user_id=$request->user_id;
         $Shop->RouteID=$request->RouteID;
@@ -669,6 +670,69 @@ class ShopController extends Controller
 
 
 
+
+    public function orderWithReturns(Request $request)
+    {
+        $order = new Order();
+        $order->placed_date = Carbon::now();
+        $user_id = $request->input('userId');
+        $order->bill_value = $request->input('grandTotal');
+        $order->discount = $request->input('discount');
+        $order->user_id = $request->input('userId');
+        $order->shop_ID = $request->input('shopId');
+        $order->return_total = $request->input('returnTotal');
+        $order->final_bill = $request->input('billValue');
+        $order->save();
+
+        $o_id = DB::table('orders')
+            ->where('user_id', $user_id)
+            ->orderBy('OrderID', 'DESC')
+            ->value('OrderID');
+
+//for order products table
+        $productDetails = $request->input('productDetails');
+
+        $i = 0;
+        for ($i = 0; $i < count($productDetails); $i++) {
+
+            $orderprd = new OrderProduct();
+            $orderprd->OrderID = $o_id;
+            $orderprd->product_ID = $productDetails[$i]['productId'];
+            $orderprd->quantity_per_product = $productDetails[$i]['productQuantity'];
+            $orderprd->save();
+        }
+//for return products table
+            $returnProductDetails = $request->input('returnProductDetails');
+
+            $i = 0;
+            for ($i = 0; $i < count($returnProductDetails); $i++) {
+
+                $orderreturn = new ReturnProduct();
+                $orderreturn->OrderID = $o_id;
+                $orderreturn->product_ID = $returnProductDetails[$i]['productId'];
+                $orderreturn->quantity_per_product = $returnProductDetails[$i]['productQuantity'];
+                $orderreturn->save();
+            }
+
+        return response()->json([
+            'message'=>'save successfully'
+        ]);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public function getallorders(Request $request,$id)
     {
         $orderreport = DB::table('orders')
@@ -756,10 +820,6 @@ class ShopController extends Controller
     }
 
 
-
-    public function teach(Request $request,$id){
-
-    }
 
 
 }

@@ -177,12 +177,12 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group row">
-                                    <label class="col-md-2 col-form-label">Due Date:</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" class="form-control" placeholder="Enter due Date" name="due_dates">
-                                    </div>
-                                </div>
+{{--                                <div class="form-group row">--}}
+{{--                                    <label class="col-md-2 col-form-label">Due Date:</label>--}}
+{{--                                    <div class="col-sm-10">--}}
+{{--                                        <input type="text" class="form-control" placeholder="Enter due Date" name="due_dates">--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
 
 
 {{--                                <div class="form-group row">--}}
