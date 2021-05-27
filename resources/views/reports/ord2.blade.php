@@ -52,6 +52,7 @@
                                     </tr>
 
                                 @endforeach
+
                                 <tr>
                                     <td><b>Total No Of Products</b></td>
                                     <td><b>{{$ordertotal[0]->quantity}}</b></td>
@@ -59,6 +60,60 @@
                                 </tbody>
 
                             </table>
+
+                            <br><br>
+
+
+
+                            <h1><b><center>Returns</center></b></h1>
+
+
+
+                            <table id="example15" class="table  table-responsive-md">
+                                <thead>
+                                <tr>
+                                    <th>Product Name</th>
+                                    <th>QTY</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                @foreach($returns as $data)
+
+                                    <tr>
+                                        <td>{{$data->product_Name}}</td>
+                                        <td>{{$data->quantity_per_product}}</td>
+                                    </tr>
+
+                                @endforeach
+
+{{--                                <tr>--}}
+{{--                                    <td><b>Total No Of Products</b></td>--}}
+{{--                                    <td><b>{{$ordertotal[0]->quantity}}</b></td>--}}
+{{--                                </tr>--}}
+                                </tbody>
+
+                            </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                         </div>
                         <!-- /.card-body -->
                     </div>

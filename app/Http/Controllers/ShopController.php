@@ -280,8 +280,18 @@ class ShopController extends Controller
             ->where('order_products.OrderID',$id)
             ->get();
 
+        $returns=DB::table('return_products')
+            ->join('products','return_products.product_ID','=','products.productID')
+            ->where('return_products.OrderID',$id)
+            ->select('return_products.OrderID','products.product_Name','return_products.quantity_per_product')
+            ->get();
 
-        return view('reports.ord2')->with('order',$order)->with('orders',$orders)->with('ordertotal',$ordertotal);
+
+        return view('reports.ord2')
+            ->with('order',$order)
+            ->with('orders',$orders)
+            ->with('ordertotal',$ordertotal)
+            ->with('returns',$returns);
 //        dd($order,$orders,$ordertotal);
 
     }
