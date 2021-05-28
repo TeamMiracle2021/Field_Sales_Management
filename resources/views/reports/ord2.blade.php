@@ -31,7 +31,9 @@
                             <h4><b><center>Made By : {{$orders[0]->first_name}} {{$orders[0]->last_name}}</center></b></h4>
                             <h4><b><center>Placed Date : {{$orders[0]->placed_date}}</center></b></h4>
                             <h4><b><center>Shop Name : {{$orders[0]->shop_name}}</center></b></h4>
-                            <h4><b><center>Total Bill Value : {{$orders[0]->bill_value}}</center></b></h4>
+                            <h4><b><center>Total Order Value : {{$orders[0]->bill_value}}</center></b></h4>
+                            <h4><b><center>Return Value : {{$orders[0]->return_total}}</center></b></h4>
+                            <h4><b><center>Final Bill : {{$orders[0]->final_bill}}</center></b></h4>
                             <table id="example15" class="table  table-responsive-md">
                                 <thead>
                                 <tr>

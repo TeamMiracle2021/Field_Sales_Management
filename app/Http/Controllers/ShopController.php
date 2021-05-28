@@ -269,7 +269,7 @@ class ShopController extends Controller
             ->join('users','orders.user_id','=','users.userID')
             ->where('orders.OrderID',$id)
             ->select('orders.bill_value','users.first_name','shops.shop_name','users.last_name',
-            'orders.placed_date')
+            'orders.placed_date', 'orders.return_total', 'orders.final_bill')
             ->get();
 
 
