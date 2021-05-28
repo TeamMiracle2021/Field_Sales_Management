@@ -68,7 +68,7 @@ Route::post('/shopclosereason/{id}',[ShopController::class,'shopclosereason']);
 
 Route::post('/order',[ShopController::class,'order']);
 
-Route::post('/orderWithReturnsorderWithReturns',[ShopController::class,'orderWithReturns']);
+Route::post('/orderWithReturns',[ShopController::class,'orderWithReturns']);
 
 Route::post('/mobilelogin',[UserController::class,'mobilelogin']);
 
