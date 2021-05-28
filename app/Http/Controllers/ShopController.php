@@ -720,7 +720,7 @@ class ShopController extends Controller
                 $orderreturn = new ReturnProduct();
                 $orderreturn->OrderID = $o_id;
                 $orderreturn->product_ID = $returnProductDetails[$i]['productId'];
-                $orderreturn->quantity_per_product = $returnProductDetails[$i]['productQuantity'];
+                $orderreturn->quantity_per_product = $returnProductDetails[$i]['returnQuantity'];
                 $orderreturn->save();
             }
 
