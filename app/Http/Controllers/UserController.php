@@ -178,7 +178,6 @@ public function loginview(){
 
     public function mobilelogin(Request $request){
 
-
         $user = User::where('email', request('email'))->first();
 
         if($user && Hash::check(request('password'), $user->password)) {

@@ -615,6 +615,12 @@ class ShopController extends Controller
                 ->select('order_products.OrderID','products.product_Name','order_products.quantity_per_product','order_products.discount_per_product')
                 ->get();
 
+            $return = DB::table('return_products')
+                ->join('products','return_products.product_ID','=','products.productID')
+                ->where('return_products.OrderID',$id)
+                ->select('return_products.OrderID','products.product_Name','return_products.quantity_per_product')
+                ->get();
+
             $orders = DB::table('orders')
                 ->join('shops','orders.shop_ID','=','shops.ShopID')
                 ->join('users','orders.user_id','=','users.userID')
@@ -627,6 +633,7 @@ class ShopController extends Controller
 //                'status code'=> 200,
                 'description' =>$orders,
                 'data'=>$order,
+                'return'=>$return,
             ]);
 //            return ([$order],[$orders]);
 
