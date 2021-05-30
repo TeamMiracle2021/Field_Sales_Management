@@ -19,12 +19,11 @@
 
                         <div class="card-body">
 
-                            <div class="row">
-                                @foreach($p as $privilage)
-                                <img src="{{asset('uploads/unp/'.$privilage->privilage_name)   }}"
-                                     class="img-bordered-sm" width="400px;" height="400px;" alt="Product-Image">
-                                    @endforeach
-                            </div>
+                            <form method='post' action='{{route('product.uploadFile')}}' enctype='multipart/form-data' >
+                                {{ csrf_field() }}
+                                <input type='file' name='file' >
+                                <input type='submit' name='submit' value='Import'>
+                            </form>
 
 
 

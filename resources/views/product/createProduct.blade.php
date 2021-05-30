@@ -18,7 +18,9 @@
                             <div class="row">
                                 <div class="col-xl-12">
                                     <h3 class="float-left">Add product</h3>
-                                    <a class="btn btn-primary float-right" href="{{route('product.index')}}">Back</a>
+
+                                    <a class="btn btn-primary float-right" style="margin: 5px" href="{{route('product.index')}}">Back</a>
+                                    <a class="btn btn-primary float-right"  style="margin: 5px" href="{{route('product.CsvImport')}}">Import Products Via CSV</a>
                                 </div>
                             </div>
                         </div>

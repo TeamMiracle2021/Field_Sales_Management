@@ -11,6 +11,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use function Couchbase\defaultDecoder;
 Use App\Models\User;
+use App\Models\UserType;
+use Session;
 
 class RouteController extends Controller
 {
@@ -464,12 +466,5 @@ class RouteController extends Controller
 
     }
 
-
-    public function imgview (Privilages $privilages){
-        $p=DB::table('privilages')->select('privilage_name')->get();
-
-//        dd($p);
-        return view('Route.imgview',compact('p'));
-    }
 
 }

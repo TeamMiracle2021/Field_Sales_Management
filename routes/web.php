@@ -109,7 +109,8 @@ Route::get('shopstorefinal',[ShopController::class,'shopstorefinal'])->name('sho
 
 Route::get('editshoplocation',[ShopController::class,'editshoplocation'])->name('shop.editshoplocation');
 
-Route::get('imgview',[RouteController::class,'imgview'])->name('route.imgview');
+Route::get('CsvImport',[ProductController::class,'CsvImport'])->name('product.CsvImport');
+Route::post('uploadFile',[ProductController::class,'uploadFile'])->name('product.uploadFile');
 
 Route::get('/schedule/{id}',[RouteController::class,'schedule'])->name('route.schedule');
 

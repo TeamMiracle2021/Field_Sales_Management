@@ -13,6 +13,13 @@
 </div>
 @endif
 
+
+
+@if($msg = Session::get('add'))
+    <div class="alert alert-default-primary">
+        <p>{{$msg}}</p>
+    </div>
+@endif
 {{--<!-- valiodation -->--}}
 {{--@if($errors->any())--}}
 {{--@foreach($errors->all() as $error)--}}
@@ -145,7 +152,7 @@
                                             <th>Cost Price</th>
                                             <th>Sales Price</th>
                                             <th width="200px">Category</th>
-                                            <th class="text-center" width="380px">Action</th>
+                                            <th class="text-center" width="380px"><center>Action</center></th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -156,7 +163,7 @@
                                                 <td>{{$data->cost_price}}</td>
                                                 <td>{{$data->sales_price}}</td>
                                                 <td>{{$data->categories->category_name}}</td>
-                                                <td>
+                                                <td><center>
                                                     <form action="{{route('product.destroy',$data->productID)}}" method="POST">
                                                         <a class="btn btn-primary" href="{{route('product.edit',$data->productID)}}">Edit</a>
                                                         @csrf
@@ -166,7 +173,7 @@
 
                                                         <a class="btn btn-success" href="{{route('product.show',$data->productID)}}">View</a>
                                                     </form>
-                                                </td>
+                                                    </center></td>
 
                                             </tr>
 

@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Category;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
+use App\Models\UserType;
+use Session;
 
 class ProductController extends Controller
 {
@@ -246,6 +249,127 @@ class ProductController extends Controller
         $product = Product::get();
         return view('reports.productreport')->with(compact('product'));
     }
+
+
+
+    public function CsvImport (){
+
+        $categories=Category::all();
+        return view('product.CsvImport')->with('categories',$categories);
+    }
+
+
+
+
+    public function uploadFile(Request $request){
+
+
+
+        $request->validate([
+            'category_id' => 'bail|required',
+            'author.name' => 'required',
+        ]);
+
+
+        $c_id=$request->category_id;
+
+        if ($request->input('submit') != null ){
+
+            $file = $request->file('file');
+
+            // File Details
+            $filename = $file->getClientOriginalName();
+            $extension = $file->getClientOriginalExtension();
+            $tempPath = $file->getRealPath();
+            $fileSize = $file->getSize();
+            $mimeType = $file->getMimeType();
+
+            // Valid File Extensions
+            $valid_extension = array("csv");
+
+            // 2MB in Bytes
+            $maxFileSize = 2097152;
+
+            // Check file extension
+            if(in_array(strtolower($extension),$valid_extension)){
+
+                // Check file size
+                if($fileSize <= $maxFileSize){
+
+                    // File upload location
+                    $location = 'csv';
+
+                    // Upload file
+                    $file->move($location,$filename);
+
+                    // Import CSV to Database
+                    $filepath = public_path($location."/".$filename);
+
+                    // Reading file
+                    $file = fopen($filepath,"r");
+
+                    $importData_arr = array();
+                    $i = 0;
+
+                    while (($filedata = fgetcsv($file, 1000, ",")) !== FALSE) {
+                        $num = count($filedata );
+
+                        // Skip first row (Remove below comment if you want to skip the first row)
+                        /*if($i == 0){
+                           $i++;
+                           continue;
+                        }*/
+                        for ($c=0; $c < $num; $c++) {
+                            $importData_arr[$i][] = $filedata [$c];
+                        }
+                        $i++;
+                    }
+                    fclose($file);
+
+                    // Insert to MySQL database
+                    foreach($importData_arr as $importData){
+
+                        $insertData = array(
+                            "product_Name"=>$importData[0],
+                            "cost_price"=>$importData[1],
+                            "sales_price"=>$importData[2],
+                            "labled_price"=>$importData[3],
+                            "weight"=>$importData[4],
+                            "category_id"=>$c_id,
+                            "created_at"=>Carbon::now(),
+                            "updated_at"=>Carbon::now()
+
+                        );
+                        Product::insertData($insertData);
+
+
+
+                    }
+
+                    Session::flash('add','Import Successful.');
+                }else{
+                    Session::flash('add','File too large. File must be less than 2MB.');
+                }
+
+            }else{
+                Session::flash('add','Invalid File Extension.');
+            }
+
+        }
+
+        // Redirect to index
+        return redirect()->route('product.index');
+    }
+
+
+
+
+
+
+
+
+
+
 
     //==============================================================API=======================================================
 
