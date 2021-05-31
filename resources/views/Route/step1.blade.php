@@ -57,7 +57,7 @@
                                     <div class="col-sm-10">
                                         <select class="form-control"  name="user_id">
                                             <option value="0">Select User</option>
-                                            @foreach ($users as $user)
+                                            @foreach ($reps as $user)
                                                 <option value="{{$user->userID}}">{{$user->userID}} -  {{$user->first_name}} {{$user->last_name}}</option>
                                             @endforeach
 

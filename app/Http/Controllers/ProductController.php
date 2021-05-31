@@ -264,13 +264,6 @@ class ProductController extends Controller
     public function uploadFile(Request $request){
 
 
-
-        $request->validate([
-            'category_id' => 'bail|required',
-            'author.name' => 'required',
-        ]);
-
-
         $c_id=$request->category_id;
 
         if ($request->input('submit') != null ){

@@ -24,9 +24,9 @@ class RouteController extends Controller
     public function index()
     {
         $route = route::get();
-//        $route = route::paginate(6);
+
         return view('Route.index')->with(compact('route'));
-//        return view('Route.index',compact('route'));
+
     }
 
     /**
@@ -211,7 +211,13 @@ class RouteController extends Controller
     public function step1(Request $request)
     {
         $users = User::all();
-        return view('Route.step1')->with('users',$users);
+        $reps = DB::table('users')
+            ->join('usertypes','users.user_typeID','=','usertypes.user_typeID')
+            ->where('usertypes.user_typeID','=',2)
+            ->get();
+
+
+        return view('Route.step1')->with('users',$users)->with('reps',$reps);
     }
 
 

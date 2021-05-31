@@ -29,6 +29,12 @@ class Route extends Model
 
 
 
+    public function shedules(){
+        return $this->hasMany(RouteShedules::class, 'RouteID', 'RouteID');
+    }
+
+
+
     public function user(){
         return $this->belongsTo(User::class, 'user_id', 'userID');
     }

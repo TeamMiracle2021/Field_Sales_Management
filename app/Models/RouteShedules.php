@@ -14,4 +14,12 @@ class RouteShedules extends Model
         'RouteID',
         'date_of_Shedule'
     ];
+
+    public function routes(){
+        return $this->belongsTo(Route::class, 'RouteID', 'RouteID');
+    }
+
+
+
+
 }
