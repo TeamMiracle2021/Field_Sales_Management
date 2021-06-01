@@ -15,6 +15,76 @@
 
 
 
+@if($msg = Session::get('add'))
+    <div class="alert alert-default-primary">
+        <p>{{$msg}}</p>
+    </div>
+@endif
+{{--<!-- valiodation -->--}}
+{{--@if($errors->any())--}}
+{{--@foreach($errors->all() as $error)--}}
+
+
+{{--<div class="alert alert-danger" role="alert">--}}
+{{--    {{$error}}--}}
+{{--</div>--}}
+{{--@endforeach--}}
+{{--@endif--}}
+{{--<!-- end of validation -->--}}
+
+{{--        <form action="{{route('category.store')}}" method="POST">--}}
+
+{{--            @csrf--}}
+
+
+
+{{--            <div class="modal fade" id="createCreateModel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">--}}
+
+
+{{--                <!-- hedaer of the popup form    -->--}}
+
+{{--                <div class="modal-dialog">--}}
+
+{{--                    <div class="modal-content">--}}
+
+{{--                        <div class="modal-header">--}}
+
+{{--                            <h5 class="modal-title" id="exampleModalLabel">Add new category details</h5>--}}
+
+{{--                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>--}}
+
+{{--                        </div>--}}
+
+
+
+
+{{--                        <!-- Lable and text box of Product Name: -->--}}
+
+{{--                        <div class="modal-body">--}}
+
+{{--                            <div class="form-group">--}}
+
+{{--                                <label>Category Name :</label><br>--}}
+
+{{--                                <input type="text" class="form-control" name="category_name" placeholder="Enter category name ">--}}
+
+{{--                            </div>--}}
+
+{{--                        </div>--}}
+
+{{--                        <div class="modal-footer">--}}
+{{--                            <button type="submit" class="btn btn-primary">Save</button>--}}
+{{--                            <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>--}}
+{{--                        </div>--}}
+
+{{--                    </div>--}}
+
+{{--                </div>--}}
+{{--        </form>--}}
+
+
+
+
 <section class="content">
     <h1><b><center>Products</center></b></h1>
                 <div class="container-fluid">
@@ -29,7 +99,7 @@
                                         <div class="modal fade" id="createCreateModel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 
 
-                                            <!-- header of the popup form    -->
+                                            <!-- hedaer of the popup form    -->
 
                                             <div class="modal-dialog">
 
@@ -54,10 +124,8 @@
 
                                                             <label>Category Name :</label><br>
 
-                                                            <input type="text" class="form-control" name="category_name" placeholder="Enter category name">
-{{--                                                            @if ($errors->has('category_name'))--}}
-{{--                                                                <span class="text-danger">{{ $errors->first('category_name') }}</span>--}}
-{{--                                                            @endif--}}
+                                                            <input type="text" class="form-control" name="category_name" placeholder="Enter category name" required>
+
                                                         </div>
 
                                                     </div>
@@ -84,7 +152,7 @@
                                             <th>Cost Price</th>
                                             <th>Sales Price</th>
                                             <th width="200px">Category</th>
-                                            <th class="text-center" width="380px">Action</th>
+                                            <th class="text-center" width="380px"><center>Action</center></th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -95,7 +163,7 @@
                                                 <td>{{$data->cost_price}}</td>
                                                 <td>{{$data->sales_price}}</td>
                                                 <td>{{$data->categories->category_name}}</td>
-                                                <td>
+                                                <td><center>
                                                     <form action="{{route('product.destroy',$data->productID)}}" method="POST">
                                                         <a class="btn btn-primary" href="{{route('product.edit',$data->productID)}}">Edit</a>
                                                         @csrf
@@ -105,7 +173,7 @@
 
                                                         <a class="btn btn-success" href="{{route('product.show',$data->productID)}}">View</a>
                                                     </form>
-                                                </td>
+                                                    </center></td>
 
                                             </tr>
 

@@ -52,5 +52,9 @@
 
 
 
-
-
+<style>
+    #map {
+        height: 500px;
+        width: 1220px;
+    }
+</style>

@@ -18,7 +18,9 @@
                             <div class="row">
                                 <div class="col-xl-12">
                                     <h3 class="float-left">Add product</h3>
-                                    <a class="btn btn-primary float-right" href="{{route('product.index')}}">Back</a>
+
+                                    <a class="btn btn-primary float-right" style="margin: 5px" href="{{route('product.index')}}">Back</a>
+                                    <a class="btn btn-primary float-right"  style="margin: 5px" href="{{route('product.CsvImport')}}">Import Products Via CSV</a>
                                 </div>
                             </div>
                         </div>
@@ -93,9 +95,9 @@
 
 
                                 <div class="form-group row">
-                                    <label class="col-md-2 col-form-label">Weight</label>
+                                    <label class="col-md-2 col-form-label">Weight/ Volume</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" name=" weight" placeholder="Enter weight (g)" value="{{old('weight')}}">
+                                        <input type="text" class="form-control" name=" weight" placeholder="Enter weight (g)/Volume (ml)" value="{{old('weight')}}">
                                         @if ($errors->has('weight'))
                                             <span class="text-danger">{{ $errors->first('weight') }}</span>
                                         @endif

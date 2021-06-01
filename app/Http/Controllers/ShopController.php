@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use App\Models\OrderProduct;
+use App\Models\ReturnProduct;
 use App\Models\Shop;
 use Carbon\Carbon;
 use Database\Seeders\DatabaseSeeder;
@@ -63,15 +64,15 @@ class ShopController extends Controller
             'shop_name'=>'required',
             'owner_name'=>'required',
             'owner_NIC'=>'required|max:10<=12',
-            'lat'=>'numeric',
-            'lng'=>'numeric',
+//            'lat'=>'numeric',
+//            'lng'=>'numeric',
             'image'=>'nullable|mimes:jpg,jpeg,bmp,svg,png',
             'address_no' => 'required',
 //            'suburb'=> 'required',
 //            'city' => 'required',
-            'status'=>'required',
+//            'status'=>'required',
             'telephone_numbers' => 'numeric|max:10=10',
-            'user_id'=> 'required',
+//            'user_id'=> 'required',
             'RouteID'=>'required'
 
         ],[
@@ -84,8 +85,8 @@ class ShopController extends Controller
         $Shop->shop_name=$request->shop_name;
         $Shop->owner_name=$request->owner_name;
         $Shop->owner_NIC=$request->owner_NIC;
-        $Shop->lat=$request->lat;
-        $Shop->lng=$request->lng;
+//        $Shop->lat=$request->lat;
+//        $Shop->lng=$request->lng;
 
 
         if($request->hasfile('avatar')){
@@ -104,15 +105,20 @@ class ShopController extends Controller
         $Shop->city=$request->city;
         $Shop->district=$request->district;
         $Shop->source='Administrator';
-        $Shop->status=$request->status;
+//        $Shop->status=$request->status;
         $Shop->registered_date=$request->registered_date;
-        $Shop->due_dates=$request->due_dates;
+//        $Shop->due_dates=$request->due_dates;
         $Shop->telephone_numbers=$request->telephone_numbers;
-        $Shop->user_id=$request->user_id;
+//        $Shop->user_id=$request->user_id;
         $Shop->RouteID=$request->RouteID;
+        $user=Route::find($request->input('RouteID'));
+        $user1=$user->user_id;
+        $Shop->user_id=$user1;
         //shop::create($request->all());
         $Shop->save();
-        return redirect()->route('shop.index')->with('add','Record Added');
+//        return redirect()->route('shop.index')->with('add','Record Added');
+
+        return view('Shop.autocomplete');
 
     }
 
@@ -263,7 +269,7 @@ class ShopController extends Controller
             ->join('users','orders.user_id','=','users.userID')
             ->where('orders.OrderID',$id)
             ->select('orders.bill_value','users.first_name','shops.shop_name','users.last_name',
-            'orders.placed_date')
+            'orders.placed_date', 'orders.return_total', 'orders.final_bill')
             ->get();
 
 
@@ -274,13 +280,207 @@ class ShopController extends Controller
             ->where('order_products.OrderID',$id)
             ->get();
 
+        $returns=DB::table('return_products')
+            ->join('products','return_products.product_ID','=','products.productID')
+            ->where('return_products.OrderID',$id)
+            ->select('return_products.OrderID','products.product_Name','return_products.quantity_per_product')
+            ->get();
 
-        return view('reports.ord2')->with('order',$order)->with('orders',$orders)->with('ordertotal',$ordertotal);
+
+        return view('reports.ord2')
+            ->with('order',$order)
+            ->with('orders',$orders)
+            ->with('ordertotal',$ordertotal)
+            ->with('returns',$returns);
 //        dd($order,$orders,$ordertotal);
 
     }
 
 
+    public function salesIndex()
+    {
+        $user=User::all();
+       return view('reports.totalSalesHome')->with('user',$user);
+       //dd($user);
+    }
+
+
+
+    public function allSales(Request $request)
+    {
+        $sd=$request->input('start_date');
+        $ed=$request->input('end_date');
+
+        $allSales = DB::table('orders')
+            ->select(DB::raw('sum(bill_value) as totalValue'))
+            ->whereBetween('placed_date',[$request->input('start_date'),$request->input('end_date')])
+            ->get();
+
+        return view('reports.totalSales')->with('allSales',$allSales)->with('sd',$sd)->with('ed',$ed);
+    }
+
+
+    public function allSalesByUser(Request $request)
+    {
+        $sd=$request->input('start_date');
+        $ed=$request->input('end_date');
+
+        $allSalesByUser = DB::table('orders')
+            ->join('users','orders.user_id','=','users.userID')
+            ->select('orders.user_id','users.first_name','users.middle_name','users.last_name',
+                        DB::raw('count(OrderID) as numOfBills'),DB::raw('sum(bill_value) as totalValue'))
+            ->whereBetween('placed_date',[$request->input('start_date'),$request->input('end_date')])
+            ->groupBy('orders.user_id','users.first_name','users.middle_name','users.last_name')
+            ->get();
+
+        return view('reports.userWiseSales')->with (compact('allSalesByUser','sd','ed'));
+
+    }
+
+
+
+
+    public function allSalesOfProducts(Request $request)
+    {
+        {
+            $sd=$request->input('start_date');
+            $ed=$request->input('end_date');
+
+            $productsales = DB::table('order_products')
+                ->join('orders','order_products.OrderId','=','orders.OrderID')
+                ->join('products','order_products.product_ID','=','products.productID')
+
+                ->select('products.product_Name',
+                    DB::raw('sum(order_products.quantity_per_product) as quantity'),
+                    DB::raw('sum(order_products.quantity_per_product * products.sales_price) as total'))
+
+                ->whereBetween('orders.placed_date',[$request->input('start_date'),$request->input('end_date')])
+                ->groupBy('order_products.product_ID','products.product_Name')
+                ->get();
+
+            return view('reports.productWiseSales')->with (compact('productsales','sd','ed'));
+        }
+    }
+
+
+
+
+
+
+    public function storeHalfShop(Request $request)
+    {
+        $this->Validate($request,[
+            'shop_name'=>'required',
+            'owner_name'=>'required',
+            'owner_NIC'=>'required|max:10<=12',
+//            'lat'=>'numeric',
+//            'lng'=>'numeric',
+            'image'=>'nullable|mimes:jpg,jpeg,bmp,svg,png',
+            'address_no' => 'required',
+//            'suburb'=> 'required',
+//            'city' => 'required',
+//            'status'=>'required',
+            'telephone_numbers' => 'numeric|max:10=10',
+//            'user_id'=> 'required',
+            'RouteID'=>'required'
+
+        ],[
+            'owner_NIC.required'=>'NIC should be 10 or 12 characteristics',
+            'telephone_numbers'=>'Telephone number should be 10 numbers'
+        ]);
+
+
+        $Shop=new Shop();
+        $Shop->shop_name=$request->shop_name;
+        $Shop->owner_name=$request->owner_name;
+        $Shop->owner_NIC=$request->owner_NIC;
+//        $Shop->lat=$request->lat;
+//        $Shop->lng=$request->lng;
+
+
+        if($request->hasfile('avatar')){
+            $file=$request->file('avatar');
+            $extension=$file->getClientOriginalExtension();//get image extension
+            $filename= time().'.'.$extension;
+            $file->move('uploads/shop',$filename);
+            $Shop->image=$filename;
+        }else{
+            return $request;
+            $Shop->image='';
+        }
+
+        $Shop->address_no=$request->address_no;
+        $Shop->suburb=$request->suburb;
+        $Shop->city=$request->city;
+        $Shop->district=$request->district;
+        $Shop->source='Administrator';
+//        $Shop->status=$request->status;
+        $Shop->registered_date=$request->registered_date;
+//        $Shop->due_dates=$request->due_dates;
+        $Shop->telephone_numbers=$request->telephone_numbers;
+//        $Shop->user_id=$request->user_id;
+        $Shop->RouteID=$request->RouteID;
+        $user=Route::find($request->input('RouteID'));
+        $user1=$user->user_id;
+        $Shop->user_id=$user1;
+        //shop::create($request->all());
+        $Shop->save();
+//        return redirect()->route('shop.index')->with('add','Record Added');
+
+        return view('Shop.autocomplete');
+
+    }
+
+    public function getshoplocation(Request $request)
+    {
+
+        $s_id = DB::table('shops')->orderBy('ShopID','DESC')->value('ShopID');
+        $shop = Shop::find($s_id);
+        if($shop){
+            $shop->lat = $request->input('latitude');
+            $shop->lng = $request->input('longitude');
+            $shop->status='Completed';
+            $shop->update();
+            return redirect()->route('shop.index')->with('add','Record Added');
+        }
+        else{
+            return "Not Found";
+        }
+
+    }
+
+
+    public function frommap(Request $request)
+    {
+        return view('Shop.frommap');
+
+    }
+
+    public function shopstorefinal(Request $request)
+    {
+        $s_id = DB::table('shops')->orderBy('ShopID','DESC')->value('ShopID');
+        $shop = Shop::find($s_id);
+        if($shop){
+            $shop->lat = $request->input('lat');
+            $shop->lng = $request->input('lng');
+            $shop->status='Completed';
+            $shop->update();
+            return redirect()->route('shop.index')->with('add','Record Added');
+        }
+        else{
+            return "Not Found";
+        }
+
+    }
+
+
+
+
+    public function editshoplocation(Request $request)
+    {
+     return view('Shop.editlocation');
+
+    }
 
 
 
@@ -314,8 +514,8 @@ class ShopController extends Controller
             $Shop->shop_name=$request->shop_name;
             $Shop->owner_name=$request->owner_name;
             $Shop->owner_NIC=$request->owner_NIC;
-//            $Shop->lat=$request->lat;
-//            $Shop->lng=$request->lng;
+            $Shop->lat=$request->lat;
+            $Shop->lng=$request->lng;
 ////
 //
 //            if($request->hasfile('avatar')){
@@ -339,7 +539,7 @@ class ShopController extends Controller
             $Shop->due_dates=15;
             $Shop->telephone_numbers=$request->telephone_numbers;
             $Shop->user_id=$request->user_id;
-//            $Shop->RouteID=$request->RouteID;
+            $Shop->RouteID=$request->RouteID;
             $Shop->save();
         if ($Shop) {
             return ["Result" => "Shop has been saved"];
@@ -359,9 +559,9 @@ class ShopController extends Controller
         $Shop->shop_name=$request->shop_name;
         $Shop->owner_name=$request->owner_name;
         $Shop->owner_NIC=$request->owner_NIC;
-//            $Shop->lat=$request->lat;
-//            $Shop->lng=$request->lng;
-//
+        $Shop->lat=$request->lat;
+        $Shop->lng=$request->lng;
+
 
             if($request->hasfile('avatar')){
                 $file=$request->file('avatar');
@@ -384,7 +584,7 @@ class ShopController extends Controller
         $Shop->due_dates=15;
         $Shop->telephone_numbers=$request->telephone_numbers;
         $Shop->user_id=$request->user_id;
-//            $Shop->RouteID=$request->RouteID;
+        $Shop->RouteID=$request->RouteID;
         $Shop->save();
         if ($Shop) {
             return ["Result" => "Shop has been saved"];
@@ -401,10 +601,10 @@ class ShopController extends Controller
         public function orderlist($id){
             $order = DB::table('orders')->where('shop_ID',$id)->get();
 
-            return response()->json([
-                'status code'=> 200,
-                'data' =>$order,
-                ]);
+//            return response()->json([
+//                'data' =>$order,
+//                ]);
+            return $order;
         }
 
         public function orderdetails($id){
@@ -415,11 +615,27 @@ class ShopController extends Controller
                 ->select('order_products.OrderID','products.product_Name','order_products.quantity_per_product','order_products.discount_per_product')
                 ->get();
 
-            return response()->json([
-                'status code'=> 200,
-                'data' =>$order,
+            $return = DB::table('return_products')
+                ->join('products','return_products.product_ID','=','products.productID')
+                ->where('return_products.OrderID',$id)
+                ->select('return_products.OrderID','products.product_Name','return_products.quantity_per_product')
+                ->get();
 
+            $orders = DB::table('orders')
+                ->join('shops','orders.shop_ID','=','shops.ShopID')
+                ->join('users','orders.user_id','=','users.userID')
+                ->where('orders.OrderID',$id)
+                ->select('orders.bill_value','users.first_name','shops.shop_name','users.last_name',
+                    'orders.placed_date','orders.return_total','orders.final_bill')
+                ->get();
+
+            return response()->json([
+//                'status code'=> 200,
+                'description' =>$orders,
+                'data'=>$order,
+                'return'=>$return,
             ]);
+//            return ([$order],[$orders]);
 
         }
 
@@ -455,7 +671,6 @@ class ShopController extends Controller
             ->value('OrderID');
 
 
-
             $productDetails=$request->input('productDetails');
 
             $i=0;
@@ -472,6 +687,69 @@ class ShopController extends Controller
 
 
 
+
+    public function orderWithReturns(Request $request)
+    {
+        $order = new Order();
+        $order->placed_date = Carbon::now();
+        $user_id = $request->input('userId');
+        $order->bill_value = $request->input('grandTotal');
+        $order->discount = $request->input('discount');
+        $order->user_id = $request->input('userId');
+        $order->shop_ID = $request->input('shopId');
+        $order->return_total = $request->input('returnTotal');
+        $order->final_bill = $request->input('billValue');
+        $order->save();
+
+        $o_id = DB::table('orders')
+            ->where('user_id', $user_id)
+            ->orderBy('OrderID', 'DESC')
+            ->value('OrderID');
+
+//for order products table
+        $productDetails = $request->input('productDetails');
+
+        $i = 0;
+        for ($i = 0; $i < count($productDetails); $i++) {
+
+            $orderprd = new OrderProduct();
+            $orderprd->OrderID = $o_id;
+            $orderprd->product_ID = $productDetails[$i]['productId'];
+            $orderprd->quantity_per_product = $productDetails[$i]['productQuantity'];
+            $orderprd->save();
+        }
+//for return products table
+            $returnProductDetails = $request->input('returnProductDetails');
+
+            $i = 0;
+            for ($i = 0; $i < count($returnProductDetails); $i++) {
+
+                $orderreturn = new ReturnProduct();
+                $orderreturn->OrderID = $o_id;
+                $orderreturn->product_ID = $returnProductDetails[$i]['productId'];
+                $orderreturn->quantity_per_product = $returnProductDetails[$i]['returnQuantity'];
+                $orderreturn->save();
+            }
+
+        return response()->json([
+            'message'=>'save successfully'
+        ]);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public function getallorders(Request $request,$id)
     {
         $orderreport = DB::table('orders')
@@ -483,16 +761,7 @@ class ShopController extends Controller
         return $orderreport;
     }
 
-    public function getallorders2(Request $request,$id)
-    {
-        $orderreport = DB::table('orders')
-            ->select(DB::raw('count(OrderID) as numOfBills'),DB::raw('sum(bill_value) as totalValue'))
-            ->whereBetween('placed_date',[$request->input('start_date'),$request->input('end_date')])
-            ->where('user_id',$id)
-            ->get();
 
-        return $orderreport;
-    }
 
 
 
@@ -533,6 +802,40 @@ class ShopController extends Controller
 
         return $billsfromshops;
     }
+
+    public function viewShopsForRoute($id,$id2){
+        $shops = DB::table('shops')
+            ->where('user_id',$id)
+            ->where('RouteID',$id2)
+            ->get();
+        return $shops;
+
+    }
+
+
+
+
+    public function onlyimage(Request $request){
+
+        $s_id = DB::table('shops')->orderBy('ShopID','DESC')->value('ShopID');
+        $Shop = Shop::find($s_id);
+        if($Shop){
+
+                $file=$request->file('avatar');
+                $extension=$file->getClientOriginalExtension();//get image extension
+                $filename= time().'.'.$extension;
+                $file->move('uploads/shop',$filename);
+                $Shop->image=$filename;
+
+            $Shop->update();
+            return ["success"];
+        }
+        else{
+            return ["Not Found"];
+        }
+
+    }
+
 
 
 

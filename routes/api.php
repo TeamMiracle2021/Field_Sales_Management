@@ -39,10 +39,12 @@ Route::get('/fut/{id}', [UserTypeController::class, 'fut'])->name('usertype.fut'
 Route::post('/route/cre',[RouteController::class, 'storemobile'])->name('route.storemobile');
 
 Route::get('/routeview/{id}',[RouteController::class,'viewroutes']);
+Route::get('/todayrouteview/{id}',[RouteController::class,'viewTodayroutes']);
 
 Route::get('/routewaypoints/{id}',[RouteController::class,'viewroute']);
 
 Route::get('/viewshops/{id}',[ShopController::class,'viewshops']);
+Route::get('/viewShopsForRoute/{id}/route/{id2}',[ShopController::class,'viewShopsForRoute']);
 
 Route::get('/viewshopdetails/{id}',[ShopController::class,'viewshopdetails']);
 
@@ -66,6 +68,8 @@ Route::post('/shopclosereason/{id}',[ShopController::class,'shopclosereason']);
 
 Route::post('/order',[ShopController::class,'order']);
 
+Route::post('/orderWithReturns',[ShopController::class,'orderWithReturns']);
+
 Route::post('/mobilelogin',[UserController::class,'mobilelogin']);
 
 Route::get('/getallorders/{id}',[ShopController::class,'getallorders']);
@@ -74,4 +78,8 @@ Route::post('/getallorders2/{id}',[ShopController::class,'getallorders2']);
 Route::get('/totalitems/{id}',[ShopController::class,'totalitems']);
 
 Route::get('/billsfromshops/{id}',[ShopController::class,'billsfromshops']);
+
+Route::post('/onlyimage',[ShopController::class,'onlyimage']);
+
+Route::post('/imgtest',[RouteController::class,'imgtest']);
 

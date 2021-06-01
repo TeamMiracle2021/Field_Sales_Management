@@ -82,6 +82,16 @@
                             </div>
 
 
+                        <div class="col-md-4 col-6">
+                            <!-- small box -->
+                            <div class="small-box bg-gradient-teal">
+                                <div class="inner"><a href="{{route('shop.salesIndex')}}">
+                                        <h4><center><b>Sales Reports</b></center></h4>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
 
 
 </center>

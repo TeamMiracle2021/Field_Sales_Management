@@ -22,7 +22,7 @@
         <!-- Notifications Dropdown Menu -->
         <li class="nav-item dropdown">
             <a class="nav-link" data-toggle="dropdown" href="/">
-                <i class="fas fa-user-circle"> Admin</i>
+              Bhagya Aththanayaka
 
             </a>
             <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">

@@ -65,6 +65,11 @@
                                         </tr>
 
                                         <tr>
+                                            <td>Due Dates</td>
+                                            <td>{{$route->due_dates}}</td>
+                                        </tr>
+
+                                        <tr>
                                             <td>Assigned User</td>
                                             <td> {{$route->user->first_name}}</td>
                                         </tr>

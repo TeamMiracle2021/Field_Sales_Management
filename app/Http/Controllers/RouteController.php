@@ -2,11 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Privilages;
 use App\Models\Route;
+use App\Models\RouteShedules;
+use App\Models\Shop;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use function Couchbase\defaultDecoder;
 Use App\Models\User;
+use App\Models\UserType;
+use Session;
 
 class RouteController extends Controller
 {
@@ -18,9 +24,9 @@ class RouteController extends Controller
     public function index()
     {
         $route = route::get();
-//        $route = route::paginate(6);
+
         return view('Route.index')->with(compact('route'));
-//        return view('Route.index',compact('route'));
+
     }
 
     /**
@@ -91,7 +97,7 @@ class RouteController extends Controller
     public function edit(Route $route)
     {
         $users = User::all();
-        return view('route.edit',compact('route'))->with('users', $users);
+        return view('Route.edit',compact('route'))->with('users', $users);
     }
 
     /**
@@ -109,7 +115,8 @@ class RouteController extends Controller
             'start_lng'=>'required|numeric',
             'end_lat'=>'required|numeric',
             'end_lng'=>'required|numeric',
-            'user_id' =>'required'
+            'user_id' =>'required',
+            'due_dates' => 'required'
 
         ],[
             'route_name.required' => 'Route name is required',
@@ -150,9 +157,9 @@ class RouteController extends Controller
             ->join('users','routes.user_id','=','users.userID')
             ->select(DB::raw('sum(shops.RouteID) as quantity'),
                 'routes.route_name','routes.start_lat','routes.end_lat','routes.start_lng',
-                'routes.end_lng','users.first_name','users.last_name')
+                'routes.end_lng','routes.due_dates','users.first_name','users.last_name')
             ->groupBy('routes.route_name','routes.start_lat','routes.end_lat',
-                'routes.start_lng','routes.end_lng','users.first_name','users.last_name')
+                'routes.start_lng','routes.end_lng','routes.due_dates','users.first_name','users.last_name')
             ->get();
 
 
@@ -191,6 +198,207 @@ class RouteController extends Controller
     }
 
 
+    public function test(Request $request)
+    {
+        $Elat=$request->input('lat2');
+        $Elng=$request->input('lng2');
+
+//        return view('maps.test')->with('la',$la)->with('l',$l);
+        dd($Elat,$Elng);
+    }
+
+
+    public function step1(Request $request)
+    {
+        $users = User::all();
+        $reps = DB::table('users')
+            ->join('usertypes','users.user_typeID','=','usertypes.user_typeID')
+            ->where('usertypes.user_typeID','=',2)
+            ->get();
+
+
+        return view('Route.step1')->with('users',$users)->with('reps',$reps);
+    }
+
+
+    public function step1Store(Request $request)
+    {
+        $validateData = $request->validate([
+            'route_name'=>'required',
+            'user_id' =>'required|not_in:0',
+            'due_dates' => 'required'
+
+        ],[
+            'route_name.required' => 'Route name is required',
+            'user_id.required' => 'User is required'
+
+        ]);
+        Route::create($validateData);
+        return view('Route.step2');
+    }
+
+    public function step2Store(Request $request)
+    {
+        $r_id = DB::table('routes')->orderBy('RouteID','DESC')->value('RouteID');
+        $route = Route::find($r_id);
+        if($route){
+            $route->start_lat = $request->input('lat');
+            $route->start_lng = $request->input('lng');
+            $route->update();
+        }
+        else{
+            return "Not Found";
+        }
+        return view('Route.step3')->with('route',$route);
+    }
+
+
+    public function step3Store(Request $request)
+    {
+        $r_id = DB::table('routes')->orderBy('RouteID','DESC')->value('RouteID');
+        $route = Route::find($r_id);
+        if($route){
+            $route->end_lat = $request->input('lat');
+            $route->end_lng = $request->input('lng');
+            $route->update();
+        }
+        else{
+            return "Not Found";
+        }
+
+
+        $lastroute = Route::find($r_id);
+        return view('Route.step4')->with('lastroute',$lastroute)->with('r_id',$r_id);
+    }
+
+    public function deleteWhenCreate(Route $route)
+    {
+        $del_route_id = DB::table('routes')->orderBy('RouteID','DESC')->value('RouteID');
+        $route = Route::find($del_route_id);
+        $route->delete();
+        return redirect()->route('route.step1')->with('add','Record Deleted');
+    }
+
+    public function testmap()
+    {
+     return view('maps.test');
+    }
+
+
+
+
+
+    public function schedule($id)
+    {
+        $route = Route::find($id);
+        $shedules = DB::table('route_shedules')->where('route_shedules.RouteID','=',$id)->get();
+
+        $nameOfDay =null;
+        $start=null;
+        $end=null;
+        $due = null;
+
+        if ($shedules!=null){
+            for ($i=0;$i<count($shedules);$i++){
+                $dName=$shedules[0]->date_of_Shedule;
+                $nameOfDay = date('l', strtotime($dName));
+
+                $start=$shedules[0]->date_of_Shedule;
+                $end=$shedules[count($shedules)-1]->date_of_Shedule;
+                $due = $route->due_dates;
+                if ($due==7){
+                    $due="Every week";
+                }else if ($due==14){
+                    $due="Every 2 weeks";
+                }else if ($due==21){
+                    $due="Every 3 weeks";
+                }else if ($due==28){
+                    $due="Every month";
+                }
+
+            }
+        }
+
+
+        return view('Route.schedule')
+            ->with('route', $route)
+            ->with('shedules',$shedules)
+            ->with('day',$nameOfDay)
+            ->with('start',$start)
+            ->with('end',$end)
+            ->with('due',$due);
+    }
+
+
+
+
+
+    public function saveSchedule(Request $request,$id)
+    {
+        $first_date=$request->input('first_date');
+        $range=$request->input('noOfMonths');
+        $again=$request->input('due_dates');
+        $today = (new Carbon($first_date))->toDateString();
+
+        $date = Carbon::parse($request->first_date);
+        $day = $date->day;
+
+        $newshedule = new RouteShedules();
+        $newshedule->RouteID=$id;
+        $newshedule->date_of_Shedule=$today;
+        $newshedule->save();
+
+//            $nameOfDay = date('l', strtotime($date));
+//            echo $nameOfDay;
+
+        $st=$first_date;
+        for($i = $day;$i <=$range; $i+=$again){
+
+            $lastday = ((new Carbon($st))->addDays($again))->toDateString();
+            $newshedule = new RouteShedules();
+            $newshedule->RouteID=$id;
+            $newshedule->date_of_Shedule=$lastday;
+            $newshedule->save();
+            $st=$lastday;
+
+        }
+//        echo ("success");
+        return redirect()->route('route.index')->with('add','Sheduled Save Successfully');
+
+    }
+
+
+
+    public function deleteSchedule($id)
+    {
+        $shedules = DB::table('route_shedules')->where('route_shedules.RouteID','=',$id)->delete();
+//        return redirect()->route('route.index')->with('add','Sheduled Delete Successfully');
+        return redirect()->route('route.schedule',$id)->with('add','Sheduled Delete Successfully');
+    }
+
+
+
+
+    public function editSchedule($id)
+    {
+        $shedules = DB::table('route_shedules')->where('route_shedules.RouteID','=',$id)->delete();
+        dd('delete susss');
+        return redirect()->route('route.index')->with('add','Sheduled Delete Successfully');
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 //    -------------------------API----------------------------
@@ -207,10 +415,25 @@ class RouteController extends Controller
         Route::create($request->all());
     }
 
+
+
     public function viewroutes($id){
         $routes  = DB::table('routes')->where('user_id',$id)->get();
         return $routes;
     }
+
+
+
+    public function viewTodayroutes($id){
+        $routes  = DB::table('routes')
+            ->join('route_shedules','routes.RouteID','=','route_shedules.RouteID')
+            ->where('user_id',$id)
+            ->where('date_of_Shedule',Carbon::today())
+            ->get();
+        return $routes;
+    }
+
+
 
     public function viewroute($id){
         $route = new Route();
@@ -225,5 +448,29 @@ class RouteController extends Controller
 
         return $route;
     }
+
+
+    public function imgtest(Request $request){
+
+        $Shop=new Privilages();
+            if($request->hasfile('avatar')){
+                $file=$request->file('avatar');
+                $extension=$file->getClientOriginalExtension();//get image extension
+                $filename= time().'.'.$extension;
+                $file->move('uploads/unp',$filename);
+                $Shop->privilage_name=$filename;
+            }else{
+                return $request;
+                $Shop->privilage_name='';
+            }
+        $Shop->save();
+        if ($Shop) {
+            return ["Result" => "Shop has been saved"];
+        } else {
+            return ["Result" => "Operation failed"];
+        }
+
+    }
+
 
 }

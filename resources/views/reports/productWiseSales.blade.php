@@ -2,18 +2,18 @@
 
 
 @section('title')
-    Route Report
+ Product Wise Sales Report From {{$sd}} To {{$ed}}
 @endsection
 
 @section('content')
 
 
-
+<br>
     <section class="content">
-        <h4><b><center>Reports of Routes</center></b></h4>
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
+
                     <div class="card">
                         <div class="card-header">
                             <div class="float-right">
@@ -22,37 +22,38 @@
 
                         </div>
 
+
+                    </div>
+
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h4><b><center>Product Wise Sales Report From {{$sd}} To {{$ed}}</center></b></h4>
+
+
+                        </div>
+
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <table id="example" class="table table-bordered table-striped ">
+                            <table id="example16" class="table table-bordered table-striped ">
                                 <thead>
                                 <tr>
-                                    <th>Route Name</th>
-                                    <th>Start Latitude</th>
-                                    <th>Start Longitude</th>
-                                    <th>End Latitude</th>
-                                    <th>End Longitude</th>
-                                    <th>Due Dates</th>
-                                    <th>Sales Representative</th>
-                                    <th>No of Shops</th>
-
+                                    <th>Product Name</th>
+                                    <th>Quantity</th>
+                                    <th>Total</th>
 
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($route as $data)
-                                    <tr>
-                                        <td>{{$data->route_name}}</td>
-                                        <td>{{$data->start_lat}}</td>
-                                        <td>{{$data->start_lng}}</td>
-                                        <td>{{$data->end_lat}}</td>
-                                        <td>{{$data->end_lng}}</td>
-                                        <td>{{$data->due_dates}}</td>
-                                        <td>{{$data->first_name}} {{$data->last_name}}</td>
-                                        <td>{{$data->quantity}}</td>
+                                @foreach($productsales as $data)
 
+                                    <tr>
+                                        <td>{{$data->product_Name}}</td>
+                                        <td>{{$data->quantity}}</td>
+                                        <td>{{$data->total}}</td>
 
                                     </tr>
+
                                 @endforeach
                                 </tbody>
                             </table>
@@ -67,4 +68,29 @@
         </div>
         <!-- /.container-fluid -->
     </section>
+@endsection
+
+
+@section('jscript')
+
+
+
+    {{--for csv pdf execl--}}
+    <script >
+        $(document).ready(function() {
+            $('#example16').DataTable( {
+                "responsive": true,
+                "autoWidth": true,
+                "info": true,
+                 dom: 'SBfrti',
+                 buttons: ['copy', 'csv', 'excel', 'pdf', 'print'],
+
+            } );
+        } );
+    </script>
+
+
+
+
+
 @endsection

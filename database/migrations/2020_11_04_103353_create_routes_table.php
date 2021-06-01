@@ -20,6 +20,7 @@ class CreateRoutesTable extends Migration
             $table->float('start_lng',16,14)->nullable();
             $table->float('end_lat',16,14)->nullable();
             $table->float('end_lng',16,14)->nullable();
+            $table->integer('due_dates')->nullable();
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('userID')->on('users');
             $table->timestamps();

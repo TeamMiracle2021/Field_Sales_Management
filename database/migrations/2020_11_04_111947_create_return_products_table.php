@@ -14,10 +14,12 @@ class CreateReturnProductsTable extends Migration
     public function up()
     {
         Schema::create('return_products', function (Blueprint $table) {
-            $table->unsignedBigInteger('returnID');
-            $table->foreign('returnID')->references('returnID')->on('returns');
+            $table->unsignedBigInteger('OrderID');
+            $table->foreign('OrderID')->references('OrderID')->on('orders');
             $table->unsignedBigInteger('product_ID');
             $table->foreign('product_ID')->references('productID')->on('products');
+            $table->integer('quantity_per_product')->nullable();
+            $table->timestamps();
         });
     }
 

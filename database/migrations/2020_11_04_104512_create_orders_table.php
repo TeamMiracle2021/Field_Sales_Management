@@ -18,6 +18,8 @@ class CreateOrdersTable extends Migration
             $table->date('placed_date');
             $table->float('bill_value');
             $table->float('discount')->nullable();
+            $table->float('return_total')->nullable();
+            $table->float('final_bill')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('userID')->on('users');
             $table->unsignedBigInteger('shop_ID');

@@ -14,11 +14,10 @@ class CreateRouteShedulesTable extends Migration
     public function up()
     {
         Schema::create('route_shedules', function (Blueprint $table) {
-            $table->unsignedBigInteger('RouteID');
+            $table->unsignedBigInteger('RouteID')->nullable();
             $table->foreign('RouteID')->references('RouteID')->on('routes');
-            $table->unsignedBigInteger('SheduleID');
-            $table->foreign('SheduleID')->references('SheduleID')->on('shedule_dates');
-            $table->primary(['RouteID', 'SheduleID']);
+            $table->date('date_of_Shedule')->nullable();
+//            $table->primary(['RouteID', 'SheduleID']);
             $table->timestamps();
         });
     }

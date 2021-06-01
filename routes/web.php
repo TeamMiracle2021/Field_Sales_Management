@@ -33,7 +33,7 @@ Route::get('/', function () {
 //    return view('dashboard');
 //})->name('dashboard');
 
-Route::get('/dashboard',[UserController::class, 'count'])->name('user.count');
+Route::get('/dashboard',[UserController::class,'count'])->name('user.count');
 
 
 
@@ -75,9 +75,48 @@ Route::get('/loginview', [UserController::class, 'loginview'])->name('user.login
 
 Route::get('/daydate', [UserController::class, 'daydate']);
 
+Route::get('rep/salesIndex',[ShopController::class,'salesIndex'])->name('shop.salesIndex');
 
+Route::get('rep/allSales',[ShopController::class,'allSales'])->name('shop.allSales');
 
+Route::get('rep/allSalesByUser',[ShopController::class,'allSalesByUser'])->name('shop.allSalesByUser');
 
+Route::get('rep/allSalesOfProducts',[ShopController::class,'allSalesOfProducts'])->name('shop.allSalesOfProducts');
+
+Route::get('test',[RouteController::class,'test'])->name('route.test');
+
+Route::get('routestep1',[RouteController::class,'step1'])->name('route.step1');
+
+Route::post('step1Store',[RouteController::class,'step1Store'])->name('route.step1Store');
+
+Route::get('step2Store',[RouteController::class,'step2Store'])->name('route.step2Store');
+
+Route::get('step3Store',[RouteController::class,'step3Store'])->name('route.step3Store');
+
+Route::get('step3Store',[RouteController::class,'step3Store'])->name('route.step3Store');
+
+Route::get('deleteWhenCreate',[RouteController::class,'deleteWhenCreate'])->name('route.deleteWhenCreate');
+
+Route::get('testmap',[RouteController::class,'testmap'])->name('route.testmap');
+
+Route::get('getshoplocation',[ShopController::class,'getshoplocation'])->name('shop.getshoplocation');
+
+Route::post('storeHalfShop',[ShopController::class,'storeHalfShop'])->name('shop.storeHalfShop');
+
+Route::get('frommap',[ShopController::class,'frommap'])->name('shop.frommap');
+
+Route::get('shopstorefinal',[ShopController::class,'shopstorefinal'])->name('shop.shopstorefinal');
+
+Route::get('editshoplocation',[ShopController::class,'editshoplocation'])->name('shop.editshoplocation');
+
+Route::get('CsvImport',[ProductController::class,'CsvImport'])->name('product.CsvImport');
+Route::post('uploadFile',[ProductController::class,'uploadFile'])->name('product.uploadFile');
+
+Route::get('/schedule/{id}',[RouteController::class,'schedule'])->name('route.schedule');
+
+Route::post('/saveSchedule/{id}',[RouteController::class,'saveSchedule'])->name('route.saveSchedule');
+
+Route::post('/deleteSchedule/{id}',[RouteController::class,'deleteSchedule'])->name('route.deleteSchedule');
 
 
 

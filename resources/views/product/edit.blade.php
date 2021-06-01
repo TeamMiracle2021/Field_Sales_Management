@@ -77,7 +77,7 @@
 
 
                                 <div class="form-group row">
-                                    <label class="col-md-2 col-form-label">Weight</label>
+                                    <label class="col-md-2 col-form-label">Weight/Volume</label>
                                     <div class="col-sm-10">
                                         <input type="text" class="form-control" value="{{$product->weight}}" name="weight" placeholder="Enter weight" value="{{old('weight')}}">
                                         @if ($errors->has('weight'))

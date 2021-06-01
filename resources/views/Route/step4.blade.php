@@ -1,54 +1,55 @@
+@extends('layouts.app')
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Shops of the {{$route->route_name}} Route</title>
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-    <style type="text/css">
-        #right-panel {
-            font-family: "Roboto", "sans-serif";
-            line-height: 30px;
-            padding-left: 10px;
-        }
+@section('title')
+    FSM | Route Step 02
+@endsection
 
-        #right-panel select,
-        #right-panel input {
-            font-size: 15px;
-        }
 
-        #right-panel select {
-            width: 100%;
-        }
 
-        #right-panel i {
-            font-size: 12px;
-        }
+@section('content')
 
-        html,
-        body {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-        }
+<br>
 
-        #map {
-            height: 100%;
-            float: left;
-            width: 63%;
-            height: 100%;
-        }
+    @if($msg = Session::get('add'))
+        <div class="alert alert-default-primary">
+            <p>{{$msg}}</p>
+        </div>
+    @endif
 
-        #right-panel {
-            float: right;
-            width: 34%;
-            height: 100%;
-        }
+    <section class="content">
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="float-left">
+                            <p>Total Distance: <span id="total"></span></p>
+                        </div>
+                        <label  class="col-md-8 control-label"></label>
+                        <div class="float-right">
+                            <a class="btn btn-success float-right" style="margin: 5px" href="{{route('route.index')}}">Confirm</a>
+                            <a class="btn btn-danger float-right" style="margin: 5px" href="{{route('route.deleteWhenCreate',$r_id)}}">Delete</a>
+                        </div>
 
-        .panel {
-            height: 100%;
-            overflow: auto;
-        }
-    </style>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="card">
+                <div id="map"></div>
+            </div>
+
+        </div>
+        <!-- /.container-fluid -->
+        </div>
+
+    </section>
+
+
+
+@endsection
+
+@section('jscript')
     <script>
         function initMap() {
             const map = new google.maps.Map(document.getElementById("map"), {
@@ -83,8 +84,8 @@
                 computeTotalDistance(directionsRenderer.getDirections());
             });
             displayRoute(
-                "{{ $route->start_lat }}, {{ $route->start_lng }}",
-                "{{ $route->end_lat }}, {{ $route->end_lng }}",
+                "{{ $lastroute->start_lat }}, {{ $lastroute->start_lng }}",
+                "{{ $lastroute->end_lat }}, {{ $lastroute->end_lng }}",
                 directionsService,
                 directionsRenderer
             );
@@ -95,11 +96,7 @@
                 {
                     origin: origin,
                     destination: destination,
-                    waypoints: [
-                            @foreach($route->shops as $shop)
-                        { location: "{{$shop->lat}}, {{$shop->lng}}" },
-                        @endforeach
-                    ],
+                    waypoints: [],
                     travelMode: google.maps.TravelMode.DRIVING,
                     avoidTolls: true,
                 },
@@ -137,19 +134,13 @@
 
         }
     </script>
-</head>
-<body style="height:100vh">
-<div id="map"></div>
-<div id="right-panel" style="overflow-y: scroll">
-    <a class="btn btn-primary float-right"  href="{{route('route.index')}}">Back</a>
-    <p>Total Distance: <span id="total"></span></p>
 
-</div>
 
-<!-- Async script executes immediately and must be after any DOM elements used in callback. -->
-<script
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBpXzrZUX5wPh9ayMMP4n81oJ29wzdpCHo&callback=initMap&libraries=&v=weekly"
-    async
-></script>
-</body>
-</html>
+
+
+    <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBpXzrZUX5wPh9ayMMP4n81oJ29wzdpCHo&callback=initMap&libraries=&v=weekly"
+        async
+    ></script>
+@endsection
