@@ -118,6 +118,10 @@ Route::post('/saveSchedule/{id}',[RouteController::class,'saveSchedule'])->name(
 
 Route::post('/deleteSchedule/{id}',[RouteController::class,'deleteSchedule'])->name('route.deleteSchedule');
 
+Route::get('/addStock',[ProductController::class,'addStock'])->name('product.addStock');
+
+Route::get('/saveStock',[ProductController::class,'saveStock'])->name('product.saveStock');
+
 
 
 

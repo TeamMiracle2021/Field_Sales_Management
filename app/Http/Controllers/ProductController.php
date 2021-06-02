@@ -75,14 +75,16 @@ class ProductController extends Controller
             'sales_price'=>'required|numeric',
             'labled_price'=>'required|numeric',
             'weight'=>'required|numeric',
-             'category_id'=>'required'
+             'category_id'=>'required',
+            'qty'=>'numeric'
 
         ],[
             'product_Name.required' =>'Product name is required',
             'cost_price.required'=> 'Cost price is required',
             'sales_price.required'=> 'Sales price is required',
             'labled_price.required'=> 'Labled price is required',
-            'weight.required'=> 'Weight should be grams'
+            'weight.required'=> 'Weight should be grams',
+            'qty.required'=> 'Enter numeric value'
 
 
         ]);
@@ -356,6 +358,39 @@ class ProductController extends Controller
 
 
 
+
+
+
+    public function addStock(){
+        $product = Product::get();
+        return view('product.addStock')->with(compact('product'));
+    }
+
+
+    public function saveStock(Request $request){
+        $products=$request->input('products');
+        $qty=$request->input('quantities');
+
+        for ($i = 0; $i < count($products); $i++) {
+
+            $quantity =  DB::table('products')
+                ->where('productID',$products[$i])
+                ->value('qty');
+
+            $newquantity = $quantity +  ($qty[$i]);
+
+            $product = Product::find( $products[$i]);
+            $product->qty = $newquantity;
+            $product->update();
+
+        }
+
+        return redirect()->route('product.index')->with('alert', 'Successfully added the stock');
+
+
+
+
+    }
 
 
 

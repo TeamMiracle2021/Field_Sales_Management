@@ -18,7 +18,7 @@ class Product extends Model
         'sales_price',
         'labled_price',
         'weight',
-        'Expire_date',
+        'qty',
         'user_id',
         'category_id'
 

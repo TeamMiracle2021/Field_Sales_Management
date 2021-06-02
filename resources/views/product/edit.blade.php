@@ -87,6 +87,17 @@
                                 </div>
 
 
+                                <div class="form-group row">
+                                    <label class="col-md-2 col-form-label">Quantity</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" value="{{$product->qty}}" name="qty" placeholder="Enter quantity" value="{{old('qty')}}">
+                                        @if ($errors->has('qty'))
+                                            <span class="text-danger">{{ $errors->first('qty') }}</span>
+                                        @endif
+                                    </div>
+                                </div>
+
+
 
 
                                 <div class="form-group row">

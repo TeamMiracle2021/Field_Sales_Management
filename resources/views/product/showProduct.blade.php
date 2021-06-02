@@ -58,6 +58,11 @@
                 <td> {{$product->weight}}</td>
             </tr>
 
+            <tr>
+                <td>Available Qty</td>
+                <td> {{$product->qty}}</td>
+            </tr>
+
 
             <tr>
                 <td>Category </td>
