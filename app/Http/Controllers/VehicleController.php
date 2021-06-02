@@ -216,7 +216,13 @@ class VehicleController extends Controller
             ->where('user_id','=',$id)
             ->get();
 
-        return $products;
+        $vehicle = DB::table('vehicles')
+            ->join('users','vehicles.vehicle_ID','=','users.vehicle_ID')
+            ->select('users.first_name','users.last_name','vehicles.vehicle_no')
+            ->where('users.userID','=',$id)
+            ->get();
+
+        return response(['products'=>$products,'vehicle'=>$vehicle]);
     }
 
 
