@@ -115,8 +115,11 @@ class VehicleController extends Controller
      */
     public function edit(Vehicle $vehicle)
     {
-
-        return view('vehicle.Edit', compact('vehicle'));
+        $user = DB::table('vehicles')
+            ->join('users','vehicles.vehicle_ID','=','users.vehicle_ID')
+            ->get();
+//        dd($user);
+        return view('vehicle.Edit', compact('vehicle'))->with('user',$user);
     }
 
     /**
@@ -128,7 +131,22 @@ class VehicleController extends Controller
      */
     public function update(Request $request, Vehicle $vehicle)
     {
-        //
+        $this->Validate($request,[
+            'vehicle_no'=>'required',
+            'capacity'=>'required',
+            'description'=>'required'
+
+        ],[
+            'vehicle_no.required' =>'Vehicle no is required',
+            'capacity.required'=> 'Capacity is required',
+            'description.required'=> 'description is required'
+
+        ]);
+
+
+        $vehicle->update($request->all());
+
+        return redirect()->route('vehicle.index')->with('add', 'Data updated successfully!');
     }
 
     /**
