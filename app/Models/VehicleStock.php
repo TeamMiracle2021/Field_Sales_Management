@@ -4,18 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\DB;
 
-class UserType extends Model
+class VehicleStock extends Model
 {
     use HasFactory;
-    protected $table = "usertypes";
-    protected $primaryKey = 'user_typeID';
+
+    protected $table = "vehicle_stock";
+    protected $primaryKey='stock_id';
     protected $fillable = [
-        'user_type_name'
+        'user_id',
+        'product_ID',
+        'quantity_per_product'
     ];
-
-
-
-
 }

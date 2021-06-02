@@ -55,14 +55,13 @@
                     </a>
                 </li>
 
-{{--                <li class="nav-item">--}}
-{{--                <div class="{{ 'User' == request()->path() ? "nav-link active" : ''}}">--}}
-{{--                    <a href="./User" class="nav-link">--}}
-{{--                        <i class="nav-icon fas fa-chart-line"></i>--}}
-{{--                        <p>User</p>--}}
-{{--                    </a>--}}
-{{--                </div>--}}
-{{--                </li>--}}
+
+                <li class="nav-item">
+                    <a href="/vehicle" class="nav-link">
+                        <i class="nav-icon fas fa-truck-moving"></i>
+                        <p>Vehicle</p>
+                    </a>
+                </li>
 
                 <li class="nav-item">
                     <a href="/shop" class="nav-link">

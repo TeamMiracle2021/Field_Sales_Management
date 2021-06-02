@@ -7,6 +7,7 @@ use App\Models\OrderProduct;
 use App\Models\Product;
 use App\Models\ReturnProduct;
 use App\Models\Shop;
+use App\Models\VehicleStock;
 use Carbon\Carbon;
 use Database\Seeders\DatabaseSeeder;
 use Illuminate\Http\Request;
@@ -689,7 +690,7 @@ class ShopController extends Controller
 
 
 
-    public function orderWithReturns(Request $request)
+    public function orderWithReturns(Request $request,$id)
     {
         $order = new Order();
         $order->placed_date = Carbon::now();
@@ -720,14 +721,16 @@ class ShopController extends Controller
 
             $orderprd->save();
 
-            $quantity =  DB::table('products')
-                ->where('productID',$productDetails[$i]['productId'])
-                ->value('qty');
-            $newquantity = $quantity -  ($productDetails[$i]['productQuantity']);
+            $StockID =  DB::table('vehicle_stock')
+                ->where('user_id', $id)
+                ->where('product_ID',$productDetails[$i]['productId'])
+                ->value('stock_id');
 
-            $product = Product::find( $productDetails[$i]['productId']);
-            $product->qty = $newquantity;
-            $product->update();
+            $stock = VehicleStock::find($StockID);
+            $stock->quantity_per_product -= ($productDetails[$i]['productQuantity']);
+            $stock->update();
+
+
 
         }
 //for return products table

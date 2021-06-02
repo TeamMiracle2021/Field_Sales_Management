@@ -16,10 +16,8 @@ class User extends Authenticatable
      *
      * @var array
      */
+    protected $primaryKey = 'userID';
     protected $fillable = [
-//        'name',
-//        'email',
-//        'password',
         'first_name',
         'middle_name',
         'last_name',
@@ -33,7 +31,8 @@ class User extends Authenticatable
         'password',
         'branch_name',
         'approvel_state',
-        'user_typeID'
+        'user_typeID',
+        'vehicle_ID'
     ];
 
     /**
@@ -76,5 +75,8 @@ class User extends Authenticatable
         return $this->hasMany(Attendance::class, 'user_id', 'userID');
     }
 
+    public function vehicle(){
+        return $this->belongsTo(Vehicle::class, 'vehicle_ID', 'vehicle_ID');
+    }
 
 }

@@ -406,8 +406,15 @@ class ProductController extends Controller
         return $categories;
     }
 
-    public function viewcategoryproducts($id){
-        $products = DB::table('products')->where('category_id',$id)->get();
+    public function viewcategoryproducts($id,$id2){
+        $products = DB::table('products')
+            ->join('vehicle_stock','products.productID','=','vehicle_stock.product_ID')
+            ->select('products.productID','products.product_Name','products.cost_price',
+                            'products.sales_price','products.labled_price','products.weight','vehicle_stock.quantity_per_product')
+            ->where('vehicle_stock.user_id','=',$id2)
+            ->where('category_id',$id)
+            ->get();
+
         return $products;
 
     }

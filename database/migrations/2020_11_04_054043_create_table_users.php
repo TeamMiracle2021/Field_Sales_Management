@@ -28,8 +28,10 @@ class CreateTableUsers extends Migration
             $table->string('password');
             $table->string('branch_name');
             $table->boolean('approvel_state');
-            $table->unsignedBigInteger('user_typeID');
+            $table->unsignedBigInteger('user_typeID')->nullable();
             $table->foreign('user_typeID')->references('user_typeID')->on('usertypes');
+            $table->unsignedBigInteger('vehicle_ID')->nullable();
+            $table->foreign('vehicle_ID')->references('vehicle_ID')->on('vehicles');
             $table->timestamps();
         });
 

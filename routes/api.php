@@ -50,7 +50,7 @@ Route::get('/viewshopdetails/{id}',[ShopController::class,'viewshopdetails']);
 
 Route::get('/viewcategories',[ProductController::class,'viewcategories']);
 
-Route::get('/viewcategoryproducts/{id}',[ProductController::class,'viewcategoryproducts']);
+Route::get('/viewcategoryproducts/{id}/user/{id2}',[ProductController::class,'viewcategoryproducts']);
 
 Route::post('/attendancecheckin/{id}',[\App\Http\Controllers\AttendenceController::class,'store']);
 
@@ -68,7 +68,7 @@ Route::post('/shopclosereason/{id}',[ShopController::class,'shopclosereason']);
 
 Route::post('/order',[ShopController::class,'order']);
 
-Route::post('/orderWithReturns',[ShopController::class,'orderWithReturns']);
+Route::post('/orderWithReturns/{id}',[ShopController::class,'orderWithReturns']);
 
 Route::post('/mobilelogin',[UserController::class,'mobilelogin']);
 

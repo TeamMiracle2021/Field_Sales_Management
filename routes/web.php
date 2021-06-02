@@ -9,6 +9,7 @@ use App\Http\Controllers\ReportController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserTypeController;
 use App\Http\Controllers\AttendenceController;
+use App\Http\Controllers\VehicleController;
 
 
 
@@ -46,6 +47,7 @@ Route::resource('route',RouteController::class);
 Route::resource('user',UserController::class);
 Route::resource('usertype',UserTypeController::class);
 Route::resource('attendence',AttendenceController::class);
+Route::resource('vehicle',VehicleController::class);
 
 
 Route::resource('report',\App\Http\Controllers\ReportController::class);
@@ -121,6 +123,10 @@ Route::post('/deleteSchedule/{id}',[RouteController::class,'deleteSchedule'])->n
 Route::get('/addStock',[ProductController::class,'addStock'])->name('product.addStock');
 
 Route::get('/saveStock',[ProductController::class,'saveStock'])->name('product.saveStock');
+
+Route::get('/addVehicleStock/{id}', [VehicleController::class, 'addVehicleStock'])->name('vehicle.addVehicleStock');
+
+Route::post('/saveVehicleStock/{id}',[VehicleController::class,'saveVehicleStock'])->name('vehicle.saveVehicleStock');
 
 
 
