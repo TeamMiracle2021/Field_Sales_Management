@@ -21,7 +21,7 @@ class VehicleController extends Controller
     public function index()
     {
         $vehicle =Vehicle::get();
-        return view('vehicle.index')->with(compact('vehicle'));
+        return view('vehicle.Index')->with(compact('vehicle'));
     }
 
     /**
@@ -32,7 +32,7 @@ class VehicleController extends Controller
     public function create()
     {
         $users = User::all();
-        return view('vehicle.add')->with('users',$users);
+        return view('vehicle.Add')->with('users',$users);
     }
 
     /**
