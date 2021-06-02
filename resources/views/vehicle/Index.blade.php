@@ -51,13 +51,13 @@
 
 
 
-                                                <a class="btn btn-primary" href="{{route('vehicle.edit',$data->vehicle_ID)}}">Edit</a>
+                                                <a class="btn btn-primary" style="margin: 5px" href="{{route('vehicle.edit',$data->vehicle_ID)}}">Edit</a>
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit"  class="btn btn-danger">Delete</button>
+                                                <button type="submit" style="margin: 5px"  class="btn btn-danger">Delete</button>
 {{--                                                <button type="button" data-toggle="modal" class="btn btn-danger" data-target="#exampleModal" >Delete</button>--}}
-                                                <a class="btn btn-success" href="{{route('vehicle.show',$data->vehicle_ID)}}">View</a>
-                                                <a class="btn btn-success" href="{{route('vehicle.addVehicleStock',$data->vehicle_ID)}}">Stock</a>
+                                                <a class="btn btn-success" style="margin: 5px" href="{{route('vehicle.show',$data->vehicle_ID)}}">View</a>
+                                                <a class="btn btn-info" style="margin: 5px" href="{{route('vehicle.addVehicleStock',$data->vehicle_ID)}}">Add Stock</a>
                                                 </form>
                                             </center>
                                         </td>

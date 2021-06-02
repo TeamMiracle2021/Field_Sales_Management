@@ -21,11 +21,11 @@
 
                             <div class="row">
                                 <div class="table table-responsive">
-                                    <table class="table table-bordered" id="shopTable">
+                                    <table class="table table-active" id="shopTable">
 
                                         <tr>
-                                            <th>Vehicle</th>
-                                            <th>Details</th>
+                                            <th width="50px">Vehicle</th>
+                                            <th width="50px">Details</th>
                                         </tr>
 
                                         <tr>
@@ -54,6 +54,53 @@
                                     </table>
                                 </div>
                             </div>
+
+                        </div></div></div></div></div>
+
+
+
+
+                            <div class="card">
+
+                                <div class="card-header">
+                                    <div class="row">
+                                        <div class="col-xl-12">
+                                            <h3 class="float-left"><b>Stock of this vehicle</b></h3>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card-body">
+
+                                    <div class="row">
+
+
+                                <div class="table text-md-center ">
+                                    <table class="table table-bordered" id="shopTable">
+
+                                        <tr>
+                                            <th class="text-center" width="20px" >Product</th>
+                                            <th class="text-center" width="30px" >Qty</th>
+                                        </tr>
+                                    @foreach($products as $data)
+                                        <tr>
+                                            <td> {{$data->product_Name}}</td>
+                                            <td> {{$data->quantity_per_product}}</td>
+                                        </tr>
+                                        @endforeach
+
+
+
+
+                                    </table>
+                                </div>
+                            </div>
+
+                                </div></div></section>
+
+
+
 
 
 

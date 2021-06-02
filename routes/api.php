@@ -8,6 +8,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserTypeController;
+use App\Http\Controllers\VehicleController;
 
 
 /*
@@ -82,4 +83,6 @@ Route::get('/billsfromshops/{id}',[ShopController::class,'billsfromshops']);
 Route::post('/onlyimage',[ShopController::class,'onlyimage']);
 
 Route::post('/imgtest',[RouteController::class,'imgtest']);
+
+Route::get('/viewQty/{id}',[VehicleController::class,'viewQty']);
 

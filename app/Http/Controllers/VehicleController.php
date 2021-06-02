@@ -89,11 +89,22 @@ class VehicleController extends Controller
      */
     public function show(Vehicle $vehicle)
     {
+//        dd($vehicle->vehicle_ID);
+
         $user = DB::table('vehicles')
             ->join('users','vehicles.vehicle_ID','=','users.vehicle_ID')
             ->get();
-//        dd($user);
-        return view('vehicle.show')->with('user',$user);
+
+        $products = DB::table('vehicle_stock')
+            ->join('products','vehicle_stock.product_ID','=','products.productID')
+            ->join('users','vehicle_stock.user_id','=','users.userID')
+            ->join('vehicles','users.vehicle_ID','=','vehicles.vehicle_ID')
+            ->select('products.product_Name','vehicle_stock.quantity_per_product')
+            ->where('users.vehicle_ID','=',$vehicle->vehicle_ID)
+            ->get();
+
+//        dd($products);
+        return view('vehicle.show')->with('user',$user)->with('products',$products);
     }
 
     /**
@@ -198,7 +209,15 @@ class VehicleController extends Controller
 
 
 
+    public function viewQty($id){
+        $products = DB::table('vehicle_stock')
+            ->join('products','vehicle_stock.product_ID','=','products.productID')
+            ->select('products.product_Name','vehicle_stock.quantity_per_product')
+            ->where('user_id','=',$id)
+            ->get();
 
+        return $products;
+    }
 
 
 
