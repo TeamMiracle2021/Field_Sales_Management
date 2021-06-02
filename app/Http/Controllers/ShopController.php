@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use App\Models\OrderProduct;
+use App\Models\Product;
 use App\Models\ReturnProduct;
 use App\Models\Shop;
 use Carbon\Carbon;
@@ -716,7 +717,18 @@ class ShopController extends Controller
             $orderprd->OrderID = $o_id;
             $orderprd->product_ID = $productDetails[$i]['productId'];
             $orderprd->quantity_per_product = $productDetails[$i]['productQuantity'];
+
             $orderprd->save();
+
+            $quantity =  DB::table('products')
+                ->where('productID',$productDetails[$i]['productId'])
+                ->value('qty');
+            $newquantity = $quantity -  ($productDetails[$i]['productQuantity']);
+
+            $product = Product::find( $productDetails[$i]['productId']);
+            $product->qty = $newquantity;
+            $product->update();
+
         }
 //for return products table
             $returnProductDetails = $request->input('returnProductDetails');

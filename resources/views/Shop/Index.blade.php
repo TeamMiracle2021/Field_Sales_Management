@@ -25,9 +25,7 @@
                         <div class="card-header">
                             <a class="btn btn-primary"  href="{{route('shop.create')}}">Create Shop</a>
 
-
                         </div>
-
                         <!-- /.card-header -->
                         <div class="card-body">
                             <table id="example1" class="table table-bordered table-striped" >
