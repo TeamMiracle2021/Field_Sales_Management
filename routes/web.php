@@ -71,9 +71,7 @@ Route::get('/rep/orderreport', [ShopController::class, 'orderreport'])->name('sh
 
 Route::get('/rep/orderdetailreport/{id}', [ShopController::class, 'orderdetailreport'])->name('shop.orderdetailreport');
 
-Route::post('/loginweb', [UserController::class, 'loginweb'])->name('user.loginweb');
 
-Route::get('/loginview', [UserController::class, 'loginview'])->name('user.loginview');
 
 Route::get('/daydate', [UserController::class, 'daydate']);
 
