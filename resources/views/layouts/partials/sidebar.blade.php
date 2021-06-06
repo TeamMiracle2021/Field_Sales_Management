@@ -85,7 +85,6 @@
                     </a>
                 </li>
 
-
                 <li class="nav-item">
                     <a href="/changePassword" class="nav-link">
                         <i class="nav-icon fas fa-unlock-alt"></i>

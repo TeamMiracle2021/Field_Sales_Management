@@ -61,7 +61,7 @@
 
 
         {{--// javascript code--}}
-        <script src="https://maps.google.com/maps/api/js?key=AIzaSyBpXzrZUX5wPh9ayMMP4n81oJ29wzdpCHo&libraries=places&callback=initAutocomplete" type="text/javascript"></script>
+        <script src="https://maps.google.com/maps/api/js?key=YOUR_API_KEY&libraries=places&callback=initAutocomplete" type="text/javascript"></script>
         <script>
             $(document).ready(function() {
                 $("#lat_area").addClass("d-none");
