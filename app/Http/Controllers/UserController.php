@@ -227,13 +227,6 @@ class UserController extends Controller
         return $sort;
         return ([$today,$lastday]);
 
-
-//        $val = DB::table('orders')
-//            ->select(DB::raw('sum(bill_value) as totalValue'))
-//            ->where('placed_date','=', $myDate)
-//            ->get();
-//
-//        return $val;
     }
 
 
