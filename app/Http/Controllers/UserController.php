@@ -224,8 +224,7 @@ class UserController extends Controller
             ->groupBy('placed_date')
             ->whereBetween('placed_date',[$lastday,$today])
             ->get();
-        return $sort;
-        return ([$today,$lastday]);
+
 
     }
 
