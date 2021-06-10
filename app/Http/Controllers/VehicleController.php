@@ -244,7 +244,9 @@ class VehicleController extends Controller
     }
 
 
-
+public function jquery(){
+        return view('vehicle.testjQ');
+}
 
 
 
