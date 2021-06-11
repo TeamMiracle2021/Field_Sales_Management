@@ -107,16 +107,16 @@
             $('#add_row').click(function(e){
                 e.preventDefault();
                 $(":text").hide();
-                $("#p4").before("heh heh heh");
+                $("#p4").before("huh huh huh");
                 var txt = $("<tr></tr>").text("Hi");
                 $("#p4").after(txt);
 
             });
 
-            $('#delete_row').click(function(e){
-                e.preventDefault();
-                $("p").show()
-            });
+            // $('#delete_row').click(function(e){
+            //     e.preventDefault();
+            //     $("#p4").show()
+            // });
 
         });
 
