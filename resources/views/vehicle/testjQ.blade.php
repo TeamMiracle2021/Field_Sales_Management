@@ -104,15 +104,6 @@
 @section('jscript')
     <script>
         $(document).ready(function(){
-            // $('#add_row').click(function(e){
-            //     e.preventDefault();
-            //     $(":text").hide();
-            //     $("#p4").before("huh huh huh");
-            //     var txt = $("<tr></tr>").text("Hi");
-            //     $("#p4").after(txt);
-            //
-            // });
-
             $('#add_row').click(function(e){
                 e.preventDefault();
                 $(":text").hide();
@@ -121,6 +112,7 @@
                 $("#p4").after(txt);
 
             });
+
 
             // $('#delete_row').click(function(e){
             //     e.preventDefault();
