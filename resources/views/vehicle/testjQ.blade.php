@@ -106,18 +106,18 @@
         $(document).ready(function(){
             $('#add_row').click(function(e){
                 e.preventDefault();
-                $(":text").hide();
-                $("#p4").before("huh huh huh");
-                var txt = $("<tr></tr>").text("Hi");
-                $("#p4").after(txt);
+                $("#p4").hide();
+                // $("#p4").before("huh huh huh");
+                // var txt = $("<tr></tr>").text("Hi");
+                // $("#p4").after(txt);
 
             });
 
 
-            // $('#delete_row').click(function(e){
-            //     e.preventDefault();
-            //     $("#p4").show()
-            // });
+            $('#delete_row').click(function(e){
+                e.preventDefault();
+                $("#p4").show()
+            });
 
         });
 
