@@ -249,5 +249,11 @@ public function jquery(){
 }
 
 
+    public function jtest(){
+        return view('vehicle.testjQ');
+    }
+
+
+
 
 }
