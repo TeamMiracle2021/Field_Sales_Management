@@ -103,7 +103,6 @@ class VehicleController extends Controller
             ->where('users.vehicle_ID','=',$vehicle->vehicle_ID)
             ->get();
 
-//        dd($products);
         return view('vehicle.show')->with('user',$user)->with('products',$products);
     }
 
@@ -248,10 +247,6 @@ public function jquery(){
         return view('vehicle.testjQ');
 }
 
-
-    public function jtest(){
-        return view('vehicle.testjQ');
-    }
 
 
 
