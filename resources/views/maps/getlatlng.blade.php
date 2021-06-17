@@ -114,17 +114,6 @@
                 document.getElementById('longclicked').innerHTML = event.latLng.lng();
 
 
-
-
-                {{--form.method = "GET";--}}
-                {{--form.action="{{route('route.test')}}";--}}
-
-
-                {{--document.body.appendChild(form);--}}
-
-                // form.submit();
-
-
             });
 
             // Update lat/long value of div when you move the mouse over the map
