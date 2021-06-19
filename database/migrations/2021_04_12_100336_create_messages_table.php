@@ -18,8 +18,7 @@ class CreateMessagesTable extends Migration
             $table->bigInteger('from');
             $table->bigInteger('to');
             $table->text('message');
-            $table->tinyInteger('is_read'); 
-            $table->timestamps();
+            $table->tinyInteger('is_read');
         });
     }
 
