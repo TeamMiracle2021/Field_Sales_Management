@@ -13,13 +13,15 @@ class CreateMessagesTable extends Migration
      */
     public function up()
     {
-//        Schema::create('messages', function (Blueprint $table) {
-//            $table->id();
-//            $table->text('from');
-//            $table->text('to');
-//            $table->text('message');
-//            $table->tinyInteger('is_read');
-//        });
+        Schema::create('messages', function (Blueprint $table) {
+            $table->id();
+            $table->text('from');
+            $table->text('to');
+            $table->text('message');
+            $table->text('towhom');
+            $table->text('fromwhom');
+            $table->tinyInteger('is_read');
+        });
     }
 
     /**
