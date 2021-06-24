@@ -25,7 +25,7 @@
                             <a class="btn btn-primary" style="margin: 5px"  href="{{route('vehicle.create')}}">Add Vehicle</a>
 
 
-                            <a class="btn btn-primary" style="margin: 5px"  href="{{route('vehicle.jquery')}}">jquery</a>
+{{--                            <a class="btn btn-primary" style="margin: 5px"  href="{{route('vehicle.jquery')}}">jquery</a>--}}
 
 
                         </div>

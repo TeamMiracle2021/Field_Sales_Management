@@ -195,17 +195,17 @@ class UserController extends Controller
         $lastday2 = (Carbon::today()->subDays(10))->toDateString();
         $lastday3 = (Carbon::today()->subDays(15))->toDateString();
         $graph = DB::table('orders')
-            ->select('placed_date',DB::raw('sum(bill_value) as totalValue'))
+            ->select('placed_date',DB::raw('sum(final_bill) as totalValue'))
             ->groupBy('placed_date')
             ->whereBetween('placed_date',[$lastday,$today])
             ->get();
         $graph2 = DB::table('orders')
-            ->select('placed_date',DB::raw('sum(bill_value) as totalValue'))
+            ->select('placed_date',DB::raw('sum(final_bill) as totalValue'))
             ->groupBy('placed_date')
             ->whereBetween('placed_date',[$lastday2,$lastday])
             ->get();
         $graph3 = DB::table('orders')
-            ->select('placed_date',DB::raw('sum(bill_value) as totalValue'))
+            ->select('placed_date',DB::raw('sum(final_bill) as totalValue'))
             ->groupBy('placed_date')
             ->whereBetween('placed_date',[$lastday3,$lastday2])
             ->get();
