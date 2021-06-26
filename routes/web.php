@@ -126,7 +126,8 @@ Route::get('/addVehicleStock/{id}', [VehicleController::class, 'addVehicleStock'
 
 Route::post('/saveVehicleStock/{id}',[VehicleController::class,'saveVehicleStock'])->name('vehicle.saveVehicleStock');
 
-//Route::get('/jquery',[VehicleController::class,'jquery'])->name('vehicle.jquery');
+Route::get('/jquery',[VehicleController::class,'jquery'])->name('vehicle.jquery');
+Route::get('/jquery',[VehicleController::class,'jquery'])->name('vehicle.jquery');
 
 
 
